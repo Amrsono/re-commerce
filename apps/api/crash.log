@@ -1,0 +1,19 @@
+[dotenv@17.3.1] injecting env (0) from .env -- tip: ⚙️  suppress all logs with { quiet: true }
+C:\Github repos\projects\Bob\recommerce-marketplace\packages\database\node_modules\@prisma\client\src\runtime\utils\validatePrismaClientOptions.ts:239
+      throw new PrismaClientConstructorValidationError(
+            ^
+
+PrismaClientConstructorValidationError: Unknown property datasourceUrl provided to PrismaClient constructor.
+Read more at https://pris.ly/d/client-constructor
+    at validatePrismaClientOptions (C:\Github repos\projects\Bob\recommerce-marketplace\packages\database\node_modules\@prisma\client\src\runtime\utils\validatePrismaClientOptions.ts:239:13)
+    at new t (C:\Github repos\projects\Bob\recommerce-marketplace\packages\database\node_modules\@prisma\client\src\runtime\getPrismaClient.ts:282:7)
+    at dotenv (C:\Github repos\projects\Bob\recommerce-marketplace\apps\api\src\db.ts:9:23)
+    at Object.<anonymous> (C:\Github repos\projects\Bob\recommerce-marketplace\apps\api\src\db.ts:13:81)
+    at Module._compile (node:internal/modules/cjs/loader:1812:14)
+    at Object.transformer (C:\Github repos\projects\Bob\recommerce-marketplace\apps\api\node_modules\tsx\dist\register-D46fvsV_.cjs:3:1104)
+    at Module.load (node:internal/modules/cjs/loader:1533:32)
+    at Module._load (node:internal/modules/cjs/loader:1335:12)
+    at wrapModuleLoad (node:internal/modules/cjs/loader:255:19)
+    at Module.require (node:internal/modules/cjs/loader:1556:12)
+
+Node.js v24.14.0

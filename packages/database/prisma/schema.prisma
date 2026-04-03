@@ -1,0 +1,101 @@
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "postgresql"
+}
+
+model User {
+  id        String   @id @default(uuid())
+  email     String   @unique
+  name      String?
+  role      Role     @default(CUSTOMER)
+  trustScore      Int             @default(100)
+  devices         Device[]
+  tickets         Ticket[]
+  messagesSent    Message[]       @relation("SentMessages")
+  messagesReceived Message[]      @relation("ReceivedMessages")
+  paymentMethods  PaymentMethod[]
+  notifications   Notification[]
+  createdAt       DateTime        @default(now())
+  updatedAt       DateTime        @updatedAt
+}
+
+model Device {
+  id          String   @id @default(uuid())
+  brand       String
+  model       String
+  specs       Json
+  condition   String   // e.g., "Mint", "Good", "Poor", "Complex"
+  estimatedVal Float?
+  userId      String
+  user        User     @relation(fields: [userId], references: [id])
+  ticket      Ticket?
+  createdAt   DateTime @default(now())
+  updatedAt   DateTime @updatedAt
+}
+
+model Ticket {
+  id           String       @id @default(uuid())
+  status       TicketStatus @default(OPEN)
+  slaDeadline  DateTime
+  deviceId     String       @unique
+  device       Device       @relation(fields: [deviceId], references: [id])
+  customerId   String
+  customer     User         @relation(fields: [customerId], references: [id])
+  engineerId   String?      // Assigned engineer for mandatory visits
+  isUrgent     Boolean      @default(false)
+  messages     Message[]
+  createdAt    DateTime     @default(now())
+  updatedAt    DateTime     @updatedAt
+}
+
+model Message {
+  id        String   @id @default(uuid())
+  content   String
+  senderId  String
+  sender    User     @relation("SentMessages", fields: [senderId], references: [id])
+  receiverId String
+  receiver  User     @relation("ReceivedMessages", fields: [receiverId], references: [id])
+  ticketId  String
+  ticket    Ticket   @relation(fields: [ticketId], references: [id])
+  isRead    Boolean  @default(false)
+  createdAt DateTime @default(now())
+}
+
+model PaymentMethod {
+  id        String   @id @default(uuid())
+  userId    String
+  user      User     @relation(fields: [userId], references: [id])
+  type      String   // e.g., "CARD", "PAYPAL", "BANK_TRANSFER"
+  last4     String?  // Last 4 digits for UI display
+  provider  String?  // e.g., "Stripe", "PayPal"
+  isDefault Boolean  @default(false)
+  createdAt DateTime @default(now())
+}
+
+model Notification {
+  id        String   @id @default(uuid())
+  userId    String
+  user      User     @relation(fields: [userId], references: [id])
+  title     String
+  content   String
+  type      String   // MESSAGE, TICKET_UPDATE, SYSTEM
+  isRead    Boolean  @default(false)
+  createdAt DateTime @default(now())
+}
+
+enum Role {
+  CUSTOMER
+  ENGINEER
+  ADMIN
+}
+
+enum TicketStatus {
+  OPEN
+  PRICING_ESTIMATED
+  ENGINEER_VISIT_SCHEDULED
+  RESOLVED
+  REJECTED
+}

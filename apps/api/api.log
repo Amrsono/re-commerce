@@ -1,0 +1,1837 @@
+
+> api@1.0.0 dev
+> nodemon src/index.ts
+
+[33m[nodemon] 3.1.14[39m
+[33m[nodemon] to restart at any time, enter `rs`[39m
+[33m[nodemon] watching path(s): *.*[39m
+[33m[nodemon] watching extensions: ts,json[39m
+[32m[nodemon] starting `ts-node src/index.ts`[39m
+[dotenv@17.3.1] injecting env (0) from .env -- tip: ­ƒöÉ prevent building .env in docker: https://dotenvx.com/prebuild
+[dotenv@17.3.1] injecting env (0) from .env -- tip: ­ƒñû agentic secret storage: https://dotenvx.com/as2
+Recommerce API is running on port 4000
+SyntaxError: Expected property name or '}' in JSON at position 1 (line 1 column 2)
+    at JSON.parse (<anonymous>)
+    at parse (C:\Github repos\projects\Bob\recommerce-marketplace\apps\api\node_modules\body-parser\lib\types\json.js:72:19)
+    at C:\Github repos\projects\Bob\recommerce-marketplace\apps\api\node_modules\body-parser\lib\read.js:162:18
+    at AsyncResource.runInAsyncScope (node:async_hooks:228:14)
+    at invokeCallback (C:\Github repos\projects\Bob\recommerce-marketplace\apps\api\node_modules\raw-body\index.js:238:16)
+    at done (C:\Github repos\projects\Bob\recommerce-marketplace\apps\api\node_modules\raw-body\index.js:227:7)
+    at IncomingMessage.onEnd (C:\Github repos\projects\Bob\recommerce-marketplace\apps\api\node_modules\raw-body\index.js:287:7)
+    at IncomingMessage.emit (node:events:508:28)
+    at IncomingMessage.emit (node:domain:489:12)
+    at endReadableNT (node:internal/streams/readable:1729:12)
+[32m[nodemon] restarting due to changes...[39m
+[32m[nodemon] starting `ts-node src/index.ts`[39m
+[dotenv@17.3.1] injecting env (0) from .env -- tip: ­ƒöÉ prevent committing .env to code: https://dotenvx.com/precommit
+[dotenv@17.3.1] injecting env (0) from .env -- tip: ­ƒøí´©Å auth for agents: https://vestauth.com
+Recommerce API is running on port 4000
+GET /health undefined
+GET /api/tickets undefined
+[32m[nodemon] restarting due to changes...[39m
+[32m[nodemon] starting `ts-node src/index.ts`[39m
+[dotenv@17.3.1] injecting env (0) from .env -- tip: ÔÜÖ´©Å  enable debug logging with { debug: true }
+[dotenv@17.3.1] injecting env (0) from .env -- tip: ÔÜÖ´©Å  suppress all logs with { quiet: true }
+Recommerce API is running on port 4000
+GET /api/tickets undefined
+Fetched 3 tickets
+GET /api/tickets undefined
+Fetched 3 tickets
+GET /api/tickets undefined
+Fetched 3 tickets
+GET /api/tickets undefined
+Fetched 3 tickets
+GET /api/tickets undefined
+Fetched 3 tickets
+GET /api/tickets undefined
+Fetched 3 tickets
+GET /api/tickets undefined
+Fetched 3 tickets
+GET /api/tickets undefined
+Fetched 3 tickets
+PATCH /api/tickets/5dcaf70e-d704-4578-b970-f92d4f5fc5a1/status { isUrgent: true }
+Updating ticket 5dcaf70e-d704-4578-b970-f92d4f5fc5a1 with data: { isUrgent: true }
+Error updating ticket: PrismaClientValidationError: 
+Invalid `prisma.ticket.update()` invocation in
+C:\Github repos\projects\Bob\recommerce-marketplace\apps\api\src\index.ts:156:44
+
+  153 
+  154 console.log(`Updating ticket ${id} with data:`, data);
+  155 
+ÔåÆ 156 const ticket = await prisma.ticket.update({
+        where: {
+          id: "5dcaf70e-d704-4578-b970-f92d4f5fc5a1"
+        },
+        data: {
+          isUrgent: true,
+          ~~~~~~~~
+      ?   id?: String | StringFieldUpdateOperationsInput,
+      ?   status?: TicketStatus | EnumTicketStatusFieldUpdateOperationsInput,
+      ?   slaDeadline?: DateTime | DateTimeFieldUpdateOperationsInput,
+      ?   engineerId?: String | NullableStringFieldUpdateOperationsInput | Null,
+      ?   createdAt?: DateTime | DateTimeFieldUpdateOperationsInput,
+      ?   updatedAt?: DateTime | DateTimeFieldUpdateOperationsInput,
+      ?   device?: DeviceUpdateOneRequiredWithoutTicketNestedInput,
+      ?   customer?: UserUpdateOneRequiredWithoutTicketsNestedInput
+        },
+        include: {
+          device: true
+        }
+      })
+
+Unknown argument `isUrgent`. Available options are marked with ?.
+    at throwValidationException (C:\Github repos\projects\Bob\recommerce-marketplace\packages\database\node_modules\@prisma\client\src\runtime\core\errorRendering\throwValidationException.ts:46:9)
+    at zr.handleRequestError (C:\Github repos\projects\Bob\recommerce-marketplace\packages\database\node_modules\@prisma\client\src\runtime\RequestHandler.ts:211:7)
+    at zr.handleAndLogRequestError (C:\Github repos\projects\Bob\recommerce-marketplace\packages\database\node_modules\@prisma\client\src\runtime\RequestHandler.ts:183:12)
+    at zr.request (C:\Github repos\projects\Bob\recommerce-marketplace\packages\database\node_modules\@prisma\client\src\runtime\RequestHandler.ts:152:12)
+    at processTicksAndRejections (node:internal/process/task_queues:104:5)
+    at async a (C:\Github repos\projects\Bob\recommerce-marketplace\packages\database\node_modules\@prisma\client\src\runtime\getPrismaClient.ts:808:24)
+    at async C:\Github repos\projects\Bob\recommerce-marketplace\apps\api\src\index.ts:156:24 {
+  clientVersion: '7.4.2'
+}
+GET /api/tickets undefined
+Fetched 3 tickets
+GET /api/tickets undefined
+Fetched 3 tickets
+GET /api/tickets undefined
+Fetched 3 tickets
+GET /api/tickets undefined
+Fetched 3 tickets
+GET /api/tickets undefined
+Fetched 3 tickets
+GET /api/tickets undefined
+Fetched 3 tickets
+GET /api/tickets undefined
+Fetched 3 tickets
+GET /api/tickets undefined
+Fetched 3 tickets
+GET /api/tickets undefined
+Fetched 3 tickets
+GET /api/tickets undefined
+Fetched 3 tickets
+GET /api/tickets undefined
+Fetched 3 tickets
+GET /api/tickets undefined
+Fetched 3 tickets
+GET /api/tickets undefined
+Fetched 3 tickets
+GET /api/tickets undefined
+Fetched 3 tickets
+GET /api/tickets undefined
+Fetched 3 tickets
+GET /api/tickets undefined
+Fetched 3 tickets
+GET /api/tickets undefined
+Fetched 3 tickets
+GET /api/tickets undefined
+Fetched 3 tickets
+GET /api/tickets undefined
+Fetched 3 tickets
+GET /api/tickets undefined
+Fetched 3 tickets
+GET /api/tickets undefined
+Fetched 3 tickets
+GET /api/tickets undefined
+Fetched 3 tickets
+GET /api/tickets undefined
+Fetched 3 tickets
+GET /api/tickets undefined
+Fetched 3 tickets
+GET /api/tickets undefined
+Fetched 3 tickets
+GET /api/tickets undefined
+Fetched 3 tickets
+GET /api/tickets undefined
+Fetched 3 tickets
+GET /api/tickets undefined
+Fetched 3 tickets
+GET /api/tickets undefined
+Fetched 3 tickets
+GET /api/tickets undefined
+Fetched 3 tickets
+GET /api/tickets undefined
+Fetched 3 tickets
+GET /api/tickets undefined
+Fetched 3 tickets
+GET /api/tickets undefined
+Fetched 3 tickets
+GET /api/tickets undefined
+Fetched 3 tickets
+GET /api/tickets undefined
+Fetched 3 tickets
+GET /api/tickets undefined
+Fetched 3 tickets
+GET /api/tickets undefined
+Fetched 3 tickets
+GET /api/tickets undefined
+Fetched 3 tickets
+GET /api/tickets undefined
+Fetched 3 tickets
+GET /api/tickets undefined
+Fetched 3 tickets
+GET /api/tickets undefined
+Fetched 3 tickets
+GET /api/tickets undefined
+Fetched 3 tickets
+GET /api/tickets undefined
+Fetched 3 tickets
+GET /api/tickets undefined
+Fetched 3 tickets
+GET /api/tickets undefined
+Fetched 3 tickets
+GET /api/tickets undefined
+Fetched 3 tickets
+GET /api/tickets undefined
+Fetched 3 tickets
+GET /api/tickets undefined
+Fetched 3 tickets
+GET /api/tickets undefined
+Fetched 3 tickets
+GET /api/tickets undefined
+Fetched 3 tickets
+GET /api/tickets undefined
+Fetched 3 tickets
+GET /api/tickets undefined
+Fetched 3 tickets
+GET /api/tickets undefined
+Fetched 3 tickets
+GET /api/tickets undefined
+Fetched 3 tickets
+GET /api/tickets undefined
+Fetched 3 tickets
+GET /api/tickets undefined
+Fetched 3 tickets
+GET /api/tickets undefined
+Fetched 3 tickets
+GET /api/tickets undefined
+Fetched 3 tickets
+GET /api/tickets undefined
+Fetched 3 tickets
+GET /api/tickets undefined
+Fetched 3 tickets
+GET /api/tickets undefined
+Fetched 3 tickets
+GET /api/tickets undefined
+Fetched 3 tickets
+GET /api/tickets undefined
+Fetched 3 tickets
+GET /api/tickets undefined
+Fetched 3 tickets
+GET /api/tickets undefined
+Fetched 3 tickets
+GET /api/tickets undefined
+Fetched 3 tickets
+GET /api/tickets undefined
+Fetched 3 tickets
+GET /api/tickets undefined
+Fetched 3 tickets
+GET /api/tickets undefined
+Fetched 3 tickets
+GET /api/tickets undefined
+Fetched 3 tickets
+GET /api/tickets undefined
+Fetched 3 tickets
+GET /api/tickets undefined
+Fetched 3 tickets
+GET /api/tickets undefined
+Fetched 3 tickets
+GET /api/tickets undefined
+Fetched 3 tickets
+GET /api/tickets undefined
+Fetched 3 tickets
+GET /api/tickets undefined
+Fetched 3 tickets
+GET /api/tickets undefined
+Fetched 3 tickets
+GET /api/tickets undefined
+Fetched 3 tickets
+GET /api/tickets undefined
+Fetched 3 tickets
+GET /api/tickets undefined
+Fetched 3 tickets
+GET /api/tickets undefined
+Fetched 3 tickets
+GET /api/tickets undefined
+Fetched 3 tickets
+GET /api/tickets undefined
+Fetched 3 tickets
+GET /api/tickets undefined
+Fetched 3 tickets
+GET /api/tickets undefined
+Fetched 3 tickets
+GET /api/tickets undefined
+Fetched 3 tickets
+GET /api/tickets undefined
+Fetched 3 tickets
+GET /api/tickets undefined
+Fetched 3 tickets
+GET /api/tickets undefined
+Fetched 3 tickets
+GET /api/tickets undefined
+Fetched 3 tickets
+GET /api/tickets undefined
+Fetched 3 tickets
+GET /api/tickets undefined
+Fetched 3 tickets
+GET /api/tickets undefined
+Fetched 3 tickets
+GET /api/tickets undefined
+Fetched 3 tickets
+GET /api/tickets undefined
+Fetched 3 tickets
+GET /api/tickets undefined
+Fetched 3 tickets
+GET /api/tickets undefined
+Fetched 3 tickets
+GET /api/tickets undefined
+Fetched 3 tickets
+GET /api/tickets undefined
+Fetched 3 tickets
+GET /api/tickets undefined
+Fetched 3 tickets
+GET /api/tickets undefined
+Fetched 3 tickets
+GET /api/tickets undefined
+Fetched 3 tickets
+GET /api/tickets undefined
+Fetched 3 tickets
+GET /api/tickets undefined
+Fetched 3 tickets
+GET /api/tickets undefined
+Fetched 3 tickets
+GET /api/tickets undefined
+Fetched 3 tickets
+GET /api/tickets undefined
+Fetched 3 tickets
+GET /api/tickets undefined
+Fetched 3 tickets
+GET /api/tickets undefined
+Fetched 3 tickets
+GET /api/tickets undefined
+Fetched 3 tickets
+GET /api/tickets undefined
+Fetched 3 tickets
+GET /api/tickets undefined
+Fetched 3 tickets
+GET /api/tickets undefined
+Fetched 3 tickets
+GET /api/tickets undefined
+Fetched 3 tickets
+GET /api/tickets undefined
+Fetched 3 tickets
+GET /api/tickets undefined
+Fetched 3 tickets
+GET /api/tickets undefined
+Fetched 3 tickets
+GET /api/tickets undefined
+Fetched 3 tickets
+GET /api/tickets undefined
+Fetched 3 tickets
+GET /api/tickets undefined
+Fetched 3 tickets
+GET /api/tickets undefined
+Fetched 3 tickets
+GET /api/tickets undefined
+Fetched 3 tickets
+GET /api/tickets undefined
+Fetched 3 tickets
+GET /api/tickets undefined
+Fetched 3 tickets
+GET /api/tickets undefined
+Fetched 3 tickets
+GET /api/tickets undefined
+Fetched 3 tickets
+GET /api/tickets undefined
+Fetched 3 tickets
+GET /api/tickets undefined
+Fetched 3 tickets
+GET /api/tickets undefined
+Fetched 3 tickets
+GET /api/tickets undefined
+Fetched 3 tickets
+GET /api/tickets undefined
+Fetched 3 tickets
+GET /api/tickets undefined
+Fetched 3 tickets
+GET /api/tickets undefined
+Fetched 3 tickets
+GET /api/tickets undefined
+Fetched 3 tickets
+GET /api/tickets undefined
+Fetched 3 tickets
+GET /api/tickets undefined
+Fetched 3 tickets
+GET /api/tickets undefined
+Fetched 3 tickets
+GET /api/tickets undefined
+Fetched 3 tickets
+GET /api/tickets undefined
+Fetched 3 tickets
+GET /api/tickets undefined
+Fetched 3 tickets
+GET /api/tickets undefined
+Fetched 3 tickets
+GET /api/tickets undefined
+Fetched 3 tickets
+GET /api/tickets undefined
+Fetched 3 tickets
+GET /api/tickets undefined
+Fetched 3 tickets
+GET /api/tickets undefined
+Fetched 3 tickets
+GET /api/tickets undefined
+Fetched 3 tickets
+GET /api/tickets undefined
+Fetched 3 tickets
+GET /api/tickets undefined
+Fetched 3 tickets
+GET /api/tickets undefined
+Fetched 3 tickets
+GET /api/tickets undefined
+Fetched 3 tickets
+GET /api/tickets undefined
+Fetched 3 tickets
+GET /api/tickets undefined
+Fetched 3 tickets
+GET /api/tickets undefined
+Fetched 3 tickets
+GET /api/tickets undefined
+Fetched 3 tickets
+GET /api/tickets undefined
+Fetched 3 tickets
+GET /api/tickets undefined
+Fetched 3 tickets
+GET /api/tickets undefined
+Fetched 3 tickets
+GET /api/tickets undefined
+Fetched 3 tickets
+GET /api/tickets undefined
+Fetched 3 tickets
+GET /api/tickets undefined
+Fetched 3 tickets
+GET /api/tickets undefined
+Fetched 3 tickets
+GET /api/tickets undefined
+Fetched 3 tickets
+GET /api/tickets undefined
+Fetched 3 tickets
+GET /api/tickets undefined
+Fetched 3 tickets
+GET /api/tickets undefined
+Fetched 3 tickets
+GET /api/tickets undefined
+Fetched 3 tickets
+GET /api/tickets undefined
+Fetched 3 tickets
+GET /api/tickets undefined
+Fetched 3 tickets
+GET /api/tickets undefined
+Fetched 3 tickets
+GET /api/tickets undefined
+Fetched 3 tickets
+GET /api/tickets undefined
+Fetched 3 tickets
+GET /api/tickets undefined
+Fetched 3 tickets
+GET /api/tickets undefined
+Fetched 3 tickets
+GET /api/tickets undefined
+Fetched 3 tickets
+GET /api/tickets undefined
+Fetched 3 tickets
+GET /api/tickets undefined
+Fetched 3 tickets
+GET /api/tickets undefined
+Fetched 3 tickets
+GET /api/tickets undefined
+Fetched 3 tickets
+SyntaxError: Expected property name or '}' in JSON at position 2 (line 1 column 3)
+    at JSON.parse (<anonymous>)
+    at parse (C:\Github repos\projects\Bob\recommerce-marketplace\apps\api\node_modules\body-parser\lib\types\json.js:72:19)
+    at C:\Github repos\projects\Bob\recommerce-marketplace\apps\api\node_modules\body-parser\lib\read.js:162:18
+    at AsyncResource.runInAsyncScope (node:async_hooks:228:14)
+    at invokeCallback (C:\Github repos\projects\Bob\recommerce-marketplace\apps\api\node_modules\raw-body\index.js:238:16)
+    at done (C:\Github repos\projects\Bob\recommerce-marketplace\apps\api\node_modules\raw-body\index.js:227:7)
+    at IncomingMessage.onEnd (C:\Github repos\projects\Bob\recommerce-marketplace\apps\api\node_modules\raw-body\index.js:287:7)
+    at IncomingMessage.emit (node:events:508:28)
+    at IncomingMessage.emit (node:domain:489:12)
+    at endReadableNT (node:internal/streams/readable:1729:12)
+GET /api/tickets undefined
+Fetched 3 tickets
+GET /api/tickets undefined
+Fetched 3 tickets
+GET /api/tickets undefined
+Fetched 3 tickets
+GET /api/tickets undefined
+Fetched 3 tickets
+GET /api/tickets undefined
+Fetched 3 tickets
+GET /api/tickets undefined
+Fetched 3 tickets
+GET /api/tickets undefined
+Fetched 3 tickets
+GET /api/tickets undefined
+Fetched 3 tickets
+GET /api/tickets undefined
+Fetched 3 tickets
+GET /api/tickets undefined
+Fetched 3 tickets
+GET /api/tickets undefined
+Fetched 3 tickets
+GET /api/tickets undefined
+Fetched 3 tickets
+GET /api/tickets undefined
+Fetched 3 tickets
+GET /api/tickets undefined
+Fetched 3 tickets
+GET /api/tickets undefined
+Fetched 3 tickets
+GET /api/tickets undefined
+Fetched 3 tickets
+GET /api/tickets undefined
+Fetched 3 tickets
+GET /api/tickets undefined
+Fetched 3 tickets
+GET /api/tickets undefined
+Fetched 3 tickets
+GET /api/tickets undefined
+Fetched 3 tickets
+GET /api/tickets undefined
+Fetched 3 tickets
+GET /api/tickets undefined
+Fetched 3 tickets
+GET /api/tickets undefined
+Fetched 3 tickets
+GET /api/tickets undefined
+Fetched 3 tickets
+GET /api/tickets undefined
+Fetched 3 tickets
+GET /api/tickets undefined
+Fetched 3 tickets
+GET /api/tickets undefined
+Fetched 3 tickets
+GET /api/tickets undefined
+Fetched 3 tickets
+GET /api/tickets undefined
+Fetched 3 tickets
+GET /api/tickets undefined
+Fetched 3 tickets
+GET /api/tickets undefined
+Fetched 3 tickets
+GET /api/tickets undefined
+Fetched 3 tickets
+GET /api/tickets undefined
+Fetched 3 tickets
+GET /api/tickets undefined
+Fetched 3 tickets
+GET /api/tickets undefined
+Fetched 3 tickets
+GET /api/tickets undefined
+Fetched 3 tickets
+GET /api/tickets undefined
+Fetched 3 tickets
+GET /api/tickets undefined
+Fetched 3 tickets
+PATCH /api/tickets/5dcaf70e-d704-4578-b970-f92d4f5fc5a1/status { isUrgent: true }
+Updating ticket 5dcaf70e-d704-4578-b970-f92d4f5fc5a1 with data: { isUrgent: true }
+Error updating ticket: PrismaClientValidationError: 
+Invalid `prisma.ticket.update()` invocation in
+C:\Github repos\projects\Bob\recommerce-marketplace\apps\api\src\index.ts:156:44
+
+  153 
+  154 console.log(`Updating ticket ${id} with data:`, data);
+  155 
+ÔåÆ 156 const ticket = await prisma.ticket.update({
+        where: {
+          id: "5dcaf70e-d704-4578-b970-f92d4f5fc5a1"
+        },
+        data: {
+          isUrgent: true,
+          ~~~~~~~~
+      ?   id?: String | StringFieldUpdateOperationsInput,
+      ?   status?: TicketStatus | EnumTicketStatusFieldUpdateOperationsInput,
+      ?   slaDeadline?: DateTime | DateTimeFieldUpdateOperationsInput,
+      ?   engineerId?: String | NullableStringFieldUpdateOperationsInput | Null,
+      ?   createdAt?: DateTime | DateTimeFieldUpdateOperationsInput,
+      ?   updatedAt?: DateTime | DateTimeFieldUpdateOperationsInput,
+      ?   device?: DeviceUpdateOneRequiredWithoutTicketNestedInput,
+      ?   customer?: UserUpdateOneRequiredWithoutTicketsNestedInput
+        },
+        include: {
+          device: true
+        }
+      })
+
+Unknown argument `isUrgent`. Available options are marked with ?.
+    at throwValidationException (C:\Github repos\projects\Bob\recommerce-marketplace\packages\database\node_modules\@prisma\client\src\runtime\core\errorRendering\throwValidationException.ts:46:9)
+    at zr.handleRequestError (C:\Github repos\projects\Bob\recommerce-marketplace\packages\database\node_modules\@prisma\client\src\runtime\RequestHandler.ts:211:7)
+    at zr.handleAndLogRequestError (C:\Github repos\projects\Bob\recommerce-marketplace\packages\database\node_modules\@prisma\client\src\runtime\RequestHandler.ts:183:12)
+    at zr.request (C:\Github repos\projects\Bob\recommerce-marketplace\packages\database\node_modules\@prisma\client\src\runtime\RequestHandler.ts:152:12)
+    at processTicksAndRejections (node:internal/process/task_queues:104:5)
+    at async a (C:\Github repos\projects\Bob\recommerce-marketplace\packages\database\node_modules\@prisma\client\src\runtime\getPrismaClient.ts:808:24)
+    at async C:\Github repos\projects\Bob\recommerce-marketplace\apps\api\src\index.ts:156:24 {
+  clientVersion: '7.4.2'
+}
+GET /api/tickets undefined
+Fetched 3 tickets
+GET /api/tickets undefined
+Fetched 3 tickets
+GET /api/tickets undefined
+Fetched 3 tickets
+GET /api/tickets undefined
+Fetched 3 tickets
+GET /api/tickets undefined
+Fetched 3 tickets
+GET /api/tickets undefined
+Fetched 3 tickets
+GET /api/tickets undefined
+Fetched 3 tickets
+GET /api/tickets undefined
+Fetched 3 tickets
+GET /api/tickets undefined
+Fetched 3 tickets
+GET /api/tickets undefined
+Fetched 3 tickets
+GET /api/tickets undefined
+Fetched 3 tickets
+GET /api/tickets undefined
+Fetched 3 tickets
+GET /api/tickets undefined
+Fetched 3 tickets
+GET /api/tickets undefined
+Fetched 3 tickets
+GET /api/tickets undefined
+Fetched 3 tickets
+GET /api/tickets undefined
+Fetched 3 tickets
+GET /api/tickets undefined
+Fetched 3 tickets
+GET /api/tickets undefined
+Fetched 3 tickets
+GET /api/tickets undefined
+Fetched 3 tickets
+GET /api/tickets undefined
+Fetched 3 tickets
+GET /api/tickets undefined
+Fetched 3 tickets
+GET /api/tickets undefined
+Fetched 3 tickets
+GET /api/tickets undefined
+Fetched 3 tickets
+GET /api/tickets undefined
+Fetched 3 tickets
+GET /api/tickets undefined
+Fetched 3 tickets
+GET /api/tickets undefined
+Fetched 3 tickets
+GET /api/tickets undefined
+Fetched 3 tickets
+GET /api/tickets undefined
+Fetched 3 tickets
+GET /api/tickets undefined
+Fetched 3 tickets
+GET /api/tickets undefined
+Fetched 3 tickets
+GET /api/tickets undefined
+Fetched 3 tickets
+GET /api/tickets undefined
+Fetched 3 tickets
+GET /api/tickets undefined
+Fetched 3 tickets
+GET /api/tickets undefined
+Fetched 3 tickets
+GET /api/tickets undefined
+Fetched 3 tickets
+GET /api/tickets undefined
+Fetched 3 tickets
+GET /api/tickets undefined
+Fetched 3 tickets
+GET /api/tickets undefined
+Fetched 3 tickets
+GET /api/tickets undefined
+Fetched 3 tickets
+GET /api/tickets undefined
+Fetched 3 tickets
+GET /api/tickets undefined
+Fetched 3 tickets
+GET /api/tickets undefined
+Fetched 3 tickets
+GET /api/tickets undefined
+Fetched 3 tickets
+GET /api/tickets undefined
+Fetched 3 tickets
+GET /api/tickets undefined
+Fetched 3 tickets
+GET /api/tickets undefined
+Fetched 3 tickets
+GET /api/tickets undefined
+Fetched 3 tickets
+GET /api/tickets undefined
+Fetched 3 tickets
+GET /api/tickets undefined
+Fetched 3 tickets
+GET /api/tickets undefined
+Fetched 3 tickets
+GET /api/tickets undefined
+Fetched 3 tickets
+GET /api/tickets undefined
+Fetched 3 tickets
+GET /api/tickets undefined
+Fetched 3 tickets
+GET /api/tickets undefined
+Fetched 3 tickets
+GET /api/tickets undefined
+Fetched 3 tickets
+GET /api/tickets undefined
+Fetched 3 tickets
+GET /api/tickets undefined
+Fetched 3 tickets
+GET /api/tickets undefined
+Fetched 3 tickets
+GET /api/tickets undefined
+Fetched 3 tickets
+GET /api/tickets undefined
+Fetched 3 tickets
+GET /api/tickets undefined
+Fetched 3 tickets
+GET /api/tickets undefined
+Fetched 3 tickets
+GET /api/tickets undefined
+Fetched 3 tickets
+GET /api/tickets undefined
+Fetched 3 tickets
+GET /api/tickets undefined
+Fetched 3 tickets
+GET /api/tickets undefined
+Fetched 3 tickets
+GET /api/tickets undefined
+Fetched 3 tickets
+GET /api/tickets undefined
+Fetched 3 tickets
+GET /api/tickets undefined
+Fetched 3 tickets
+GET /api/tickets undefined
+Fetched 3 tickets
+GET /api/tickets undefined
+Fetched 3 tickets
+GET /api/tickets undefined
+Fetched 3 tickets
+GET /api/tickets undefined
+Fetched 3 tickets
+GET /api/tickets undefined
+Fetched 3 tickets
+GET /api/tickets undefined
+Fetched 3 tickets
+GET /api/tickets undefined
+Fetched 3 tickets
+GET /api/tickets undefined
+Fetched 3 tickets
+GET /api/tickets undefined
+Fetched 3 tickets
+GET /api/tickets undefined
+Fetched 3 tickets
+GET /api/tickets undefined
+Fetched 3 tickets
+GET /api/tickets undefined
+Fetched 3 tickets
+GET /api/tickets undefined
+Fetched 3 tickets
+GET /api/tickets undefined
+Fetched 3 tickets
+GET /api/tickets undefined
+Fetched 3 tickets
+GET /api/tickets undefined
+Fetched 3 tickets
+GET /api/tickets undefined
+Fetched 3 tickets
+GET /api/tickets undefined
+Fetched 3 tickets
+GET /api/tickets undefined
+Fetched 3 tickets
+GET /api/tickets undefined
+Fetched 3 tickets
+GET /api/tickets undefined
+Fetched 3 tickets
+GET /api/tickets undefined
+Fetched 3 tickets
+GET /api/tickets undefined
+Fetched 3 tickets
+GET /api/tickets undefined
+Fetched 3 tickets
+GET /api/tickets undefined
+Fetched 3 tickets
+GET /api/tickets undefined
+Fetched 3 tickets
+GET /api/tickets undefined
+Fetched 3 tickets
+GET /api/tickets undefined
+Fetched 3 tickets
+GET /api/tickets undefined
+Fetched 3 tickets
+GET /api/tickets undefined
+Fetched 3 tickets
+GET /api/tickets undefined
+Fetched 3 tickets
+GET /api/tickets undefined
+Fetched 3 tickets
+GET /api/tickets undefined
+Fetched 3 tickets
+GET /api/tickets undefined
+Fetched 3 tickets
+GET /api/tickets undefined
+Fetched 3 tickets
+GET /api/tickets undefined
+Fetched 3 tickets
+GET /api/tickets undefined
+Fetched 3 tickets
+GET /api/tickets undefined
+Fetched 3 tickets
+GET /api/tickets undefined
+Fetched 3 tickets
+GET /api/tickets undefined
+Fetched 3 tickets
+GET /api/tickets undefined
+Fetched 3 tickets
+GET /api/tickets undefined
+Fetched 3 tickets
+GET /api/tickets undefined
+Fetched 3 tickets
+GET /api/tickets undefined
+Fetched 3 tickets
+GET /api/tickets undefined
+Fetched 3 tickets
+GET /api/tickets undefined
+Fetched 3 tickets
+GET /api/tickets undefined
+Fetched 3 tickets
+GET /api/tickets undefined
+Fetched 3 tickets
+GET /api/tickets undefined
+Fetched 3 tickets
+GET /api/tickets undefined
+Fetched 3 tickets
+GET /api/tickets undefined
+Fetched 3 tickets
+GET /api/tickets undefined
+Fetched 3 tickets
+GET /api/tickets undefined
+Fetched 3 tickets
+GET /api/tickets undefined
+Fetched 3 tickets
+GET /api/tickets undefined
+Fetched 3 tickets
+GET /api/tickets undefined
+Fetched 3 tickets
+GET /api/tickets undefined
+Fetched 3 tickets
+GET /api/tickets undefined
+Fetched 3 tickets
+GET /api/tickets undefined
+Fetched 3 tickets
+GET /api/tickets undefined
+Fetched 3 tickets
+GET /api/tickets undefined
+Fetched 3 tickets
+GET /api/tickets undefined
+Fetched 3 tickets
+GET /api/tickets undefined
+Fetched 3 tickets
+GET /api/tickets undefined
+Fetched 3 tickets
+GET /api/tickets undefined
+Fetched 3 tickets
+GET /api/tickets undefined
+Fetched 3 tickets
+GET /api/tickets undefined
+Fetched 3 tickets
+GET /api/tickets undefined
+Fetched 3 tickets
+GET /api/tickets undefined
+Fetched 3 tickets
+GET /api/tickets undefined
+Fetched 3 tickets
+GET /api/tickets undefined
+Fetched 3 tickets
+GET /api/tickets undefined
+Fetched 3 tickets
+GET /api/tickets undefined
+Fetched 3 tickets
+GET /api/tickets undefined
+Fetched 3 tickets
+GET /api/tickets undefined
+Fetched 3 tickets
+GET /api/tickets undefined
+Fetched 3 tickets
+GET /api/tickets undefined
+Fetched 3 tickets
+GET /api/tickets undefined
+Fetched 3 tickets
+GET /api/tickets undefined
+Fetched 3 tickets
+GET /api/tickets undefined
+Fetched 3 tickets
+GET /api/tickets undefined
+Fetched 3 tickets
+GET /api/tickets undefined
+Fetched 3 tickets
+GET /api/tickets undefined
+Fetched 3 tickets
+GET /api/tickets undefined
+Fetched 3 tickets
+GET /api/tickets undefined
+Fetched 3 tickets
+GET /api/tickets undefined
+Fetched 3 tickets
+GET /api/tickets undefined
+Fetched 3 tickets
+GET /api/tickets undefined
+Fetched 3 tickets
+GET /api/tickets undefined
+Fetched 3 tickets
+GET /api/tickets undefined
+Fetched 3 tickets
+GET /api/tickets undefined
+Fetched 3 tickets
+GET /api/tickets undefined
+Fetched 3 tickets
+GET /api/tickets undefined
+Fetched 3 tickets
+GET /api/tickets undefined
+Fetched 3 tickets
+GET /api/tickets undefined
+Fetched 3 tickets
+GET /api/tickets undefined
+Fetched 3 tickets
+GET /api/tickets undefined
+Fetched 3 tickets
+GET /api/tickets undefined
+Fetched 3 tickets
+GET /api/tickets undefined
+Fetched 3 tickets
+GET /api/tickets undefined
+Fetched 3 tickets
+GET /api/tickets undefined
+Fetched 3 tickets
+GET /api/tickets undefined
+Fetched 3 tickets
+GET /api/tickets undefined
+Fetched 3 tickets
+GET /api/tickets undefined
+Fetched 3 tickets
+GET /api/tickets undefined
+Fetched 3 tickets
+GET /api/tickets undefined
+Fetched 3 tickets
+GET /api/tickets undefined
+Fetched 3 tickets
+GET /api/tickets undefined
+Fetched 3 tickets
+PATCH /api/tickets/5dcaf70e-d704-4578-b970-f92d4f5fc5a1/status { isUrgent: true }
+Updating ticket 5dcaf70e-d704-4578-b970-f92d4f5fc5a1 with data: { isUrgent: true }
+Error updating ticket: PrismaClientValidationError: 
+Invalid `prisma.ticket.update()` invocation in
+C:\Github repos\projects\Bob\recommerce-marketplace\apps\api\src\index.ts:156:44
+
+  153 
+  154 console.log(`Updating ticket ${id} with data:`, data);
+  155 
+ÔåÆ 156 const ticket = await prisma.ticket.update({
+        where: {
+          id: "5dcaf70e-d704-4578-b970-f92d4f5fc5a1"
+        },
+        data: {
+          isUrgent: true,
+          ~~~~~~~~
+      ?   id?: String | StringFieldUpdateOperationsInput,
+      ?   status?: TicketStatus | EnumTicketStatusFieldUpdateOperationsInput,
+      ?   slaDeadline?: DateTime | DateTimeFieldUpdateOperationsInput,
+      ?   engineerId?: String | NullableStringFieldUpdateOperationsInput | Null,
+      ?   createdAt?: DateTime | DateTimeFieldUpdateOperationsInput,
+      ?   updatedAt?: DateTime | DateTimeFieldUpdateOperationsInput,
+      ?   device?: DeviceUpdateOneRequiredWithoutTicketNestedInput,
+      ?   customer?: UserUpdateOneRequiredWithoutTicketsNestedInput
+        },
+        include: {
+          device: true
+        }
+      })
+
+Unknown argument `isUrgent`. Available options are marked with ?.
+    at throwValidationException (C:\Github repos\projects\Bob\recommerce-marketplace\packages\database\node_modules\@prisma\client\src\runtime\core\errorRendering\throwValidationException.ts:46:9)
+    at zr.handleRequestError (C:\Github repos\projects\Bob\recommerce-marketplace\packages\database\node_modules\@prisma\client\src\runtime\RequestHandler.ts:211:7)
+    at zr.handleAndLogRequestError (C:\Github repos\projects\Bob\recommerce-marketplace\packages\database\node_modules\@prisma\client\src\runtime\RequestHandler.ts:183:12)
+    at zr.request (C:\Github repos\projects\Bob\recommerce-marketplace\packages\database\node_modules\@prisma\client\src\runtime\RequestHandler.ts:152:12)
+    at processTicksAndRejections (node:internal/process/task_queues:104:5)
+    at async a (C:\Github repos\projects\Bob\recommerce-marketplace\packages\database\node_modules\@prisma\client\src\runtime\getPrismaClient.ts:808:24)
+    at async C:\Github repos\projects\Bob\recommerce-marketplace\apps\api\src\index.ts:156:24 {
+  clientVersion: '7.4.2'
+}
+GET /api/tickets undefined
+Fetched 3 tickets
+GET /api/tickets undefined
+Fetched 3 tickets
+GET /api/tickets undefined
+Fetched 3 tickets
+GET /api/tickets undefined
+Fetched 3 tickets
+GET /api/stats undefined
+GET /api/stats undefined
+PATCH /api/tickets/5dcaf70e-d704-4578-b970-f92d4f5fc5a1/status { isUrgent: true }
+Updating ticket 5dcaf70e-d704-4578-b970-f92d4f5fc5a1 with data: { isUrgent: true }
+Error updating ticket: PrismaClientValidationError: 
+Invalid `prisma.ticket.update()` invocation in
+C:\Github repos\projects\Bob\recommerce-marketplace\apps\api\src\index.ts:156:44
+
+  153 
+  154 console.log(`Updating ticket ${id} with data:`, data);
+  155 
+ÔåÆ 156 const ticket = await prisma.ticket.update({
+        where: {
+          id: "5dcaf70e-d704-4578-b970-f92d4f5fc5a1"
+        },
+        data: {
+          isUrgent: true,
+          ~~~~~~~~
+      ?   id?: String | StringFieldUpdateOperationsInput,
+      ?   status?: TicketStatus | EnumTicketStatusFieldUpdateOperationsInput,
+      ?   slaDeadline?: DateTime | DateTimeFieldUpdateOperationsInput,
+      ?   engineerId?: String | NullableStringFieldUpdateOperationsInput | Null,
+      ?   createdAt?: DateTime | DateTimeFieldUpdateOperationsInput,
+      ?   updatedAt?: DateTime | DateTimeFieldUpdateOperationsInput,
+      ?   device?: DeviceUpdateOneRequiredWithoutTicketNestedInput,
+      ?   customer?: UserUpdateOneRequiredWithoutTicketsNestedInput
+        },
+        include: {
+          device: true
+        }
+      })
+
+Unknown argument `isUrgent`. Available options are marked with ?.
+    at throwValidationException (C:\Github repos\projects\Bob\recommerce-marketplace\packages\database\node_modules\@prisma\client\src\runtime\core\errorRendering\throwValidationException.ts:46:9)
+    at zr.handleRequestError (C:\Github repos\projects\Bob\recommerce-marketplace\packages\database\node_modules\@prisma\client\src\runtime\RequestHandler.ts:211:7)
+    at zr.handleAndLogRequestError (C:\Github repos\projects\Bob\recommerce-marketplace\packages\database\node_modules\@prisma\client\src\runtime\RequestHandler.ts:183:12)
+    at zr.request (C:\Github repos\projects\Bob\recommerce-marketplace\packages\database\node_modules\@prisma\client\src\runtime\RequestHandler.ts:152:12)
+    at processTicksAndRejections (node:internal/process/task_queues:104:5)
+    at async a (C:\Github repos\projects\Bob\recommerce-marketplace\packages\database\node_modules\@prisma\client\src\runtime\getPrismaClient.ts:808:24)
+    at async C:\Github repos\projects\Bob\recommerce-marketplace\apps\api\src\index.ts:156:24 {
+  clientVersion: '7.4.2'
+}
+GET /api/tickets undefined
+Fetched 3 tickets
+GET /api/tickets undefined
+Fetched 3 tickets
+PATCH /api/tickets/5dcaf70e-d704-4578-b970-f92d4f5fc5a1/status { isUrgent: true }
+Updating ticket 5dcaf70e-d704-4578-b970-f92d4f5fc5a1 with data: { isUrgent: true }
+Error updating ticket: PrismaClientValidationError: 
+Invalid `prisma.ticket.update()` invocation in
+C:\Github repos\projects\Bob\recommerce-marketplace\apps\api\src\index.ts:156:44
+
+  153 
+  154 console.log(`Updating ticket ${id} with data:`, data);
+  155 
+ÔåÆ 156 const ticket = await prisma.ticket.update({
+        where: {
+          id: "5dcaf70e-d704-4578-b970-f92d4f5fc5a1"
+        },
+        data: {
+          isUrgent: true,
+          ~~~~~~~~
+      ?   id?: String | StringFieldUpdateOperationsInput,
+      ?   status?: TicketStatus | EnumTicketStatusFieldUpdateOperationsInput,
+      ?   slaDeadline?: DateTime | DateTimeFieldUpdateOperationsInput,
+      ?   engineerId?: String | NullableStringFieldUpdateOperationsInput | Null,
+      ?   createdAt?: DateTime | DateTimeFieldUpdateOperationsInput,
+      ?   updatedAt?: DateTime | DateTimeFieldUpdateOperationsInput,
+      ?   device?: DeviceUpdateOneRequiredWithoutTicketNestedInput,
+      ?   customer?: UserUpdateOneRequiredWithoutTicketsNestedInput
+        },
+        include: {
+          device: true
+        }
+      })
+
+Unknown argument `isUrgent`. Available options are marked with ?.
+    at throwValidationException (C:\Github repos\projects\Bob\recommerce-marketplace\packages\database\node_modules\@prisma\client\src\runtime\core\errorRendering\throwValidationException.ts:46:9)
+    at zr.handleRequestError (C:\Github repos\projects\Bob\recommerce-marketplace\packages\database\node_modules\@prisma\client\src\runtime\RequestHandler.ts:211:7)
+    at zr.handleAndLogRequestError (C:\Github repos\projects\Bob\recommerce-marketplace\packages\database\node_modules\@prisma\client\src\runtime\RequestHandler.ts:183:12)
+    at zr.request (C:\Github repos\projects\Bob\recommerce-marketplace\packages\database\node_modules\@prisma\client\src\runtime\RequestHandler.ts:152:12)
+    at processTicksAndRejections (node:internal/process/task_queues:104:5)
+    at async a (C:\Github repos\projects\Bob\recommerce-marketplace\packages\database\node_modules\@prisma\client\src\runtime\getPrismaClient.ts:808:24)
+    at async C:\Github repos\projects\Bob\recommerce-marketplace\apps\api\src\index.ts:156:24 {
+  clientVersion: '7.4.2'
+}
+[32m[nodemon] restarting due to changes...[39m
+[32m[nodemon] starting `ts-node src/index.ts`[39m
+[dotenv@17.3.1] injecting env (0) from .env -- tip: ÔÜí´©Å secrets for agents: https://dotenvx.com/as2
+[dotenv@17.3.1] injecting env (0) from .env -- tip: ­ƒñû agentic secret storage: https://dotenvx.com/as2
+Recommerce API is running on port 4000
+[32m[nodemon] restarting due to changes...[39m
+[32m[nodemon] starting `ts-node src/index.ts`[39m
+[dotenv@17.3.1] injecting env (0) from .env -- tip: ÔÜí´©Å secrets for agents: https://dotenvx.com/as2
+[dotenv@17.3.1] injecting env (0) from .env -- tip: ­ƒöÉ prevent committing .env to code: https://dotenvx.com/precommit
+Recommerce API is running on port 4000
+[32m[nodemon] restarting due to changes...[39m
+[32m[nodemon] starting `ts-node src/index.ts`[39m
+[32m[nodemon] restarting due to changes...[39m
+[32m[nodemon] starting `ts-node src/index.ts`[39m
+[32m[nodemon] restarting due to changes...[39m
+[32m[nodemon] starting `ts-node src/index.ts`[39m
+[dotenv@17.3.1] injecting env (0) from .env -- tip: ­ƒöÉ prevent building .env in docker: https://dotenvx.com/prebuild
+[dotenv@17.3.1] injecting env (0) from .env -- tip: ÔÜÖ´©Å  suppress all logs with { quiet: true }
+Recommerce API is running on port 4000
+[32m[nodemon] restarting due to changes...[39m
+[32m[nodemon] starting `ts-node src/index.ts`[39m
+[32m[nodemon] restarting due to changes...[39m
+[32m[nodemon] starting `ts-node src/index.ts`[39m
+[dotenv@17.3.1] injecting env (0) from .env -- tip: ÔÜÖ´©Å  enable debug logging with { debug: true }
+[dotenv@17.3.1] injecting env (0) from .env -- tip: ÔÜÖ´©Å  specify custom .env file path with { path: '/custom/path/.env' }
+Recommerce API is running on port 4000
+[32m[nodemon] restarting due to changes...[39m
+[32m[nodemon] starting `ts-node src/index.ts`[39m
+[dotenv@17.3.1] injecting env (0) from .env -- tip: ÔÜÖ´©Å  load multiple .env files with { path: ['.env.local', '.env'] }
+[dotenv@17.3.1] injecting env (0) from .env -- tip: ­ƒöÉ prevent committing .env to code: https://dotenvx.com/precommit
+Recommerce API is running on port 4000
+Error sending message: PrismaClientKnownRequestError: 
+Invalid `prisma.message.create()` invocation in
+C:\Github repos\projects\Bob\recommerce-marketplace\apps\api\src\routes\chat.ts:28:46
+
+  25 try {
+  26     const { content, senderId, receiverId, ticketId } = req.body;
+  27 
+ÔåÆ 28     const message = await prisma.message.create(
+Foreign key constraint violated on the constraint: `Message_senderId_fkey`
+    at zr.handleRequestError (C:\Github repos\projects\Bob\recommerce-marketplace\packages\database\node_modules\@prisma\client\src\runtime\RequestHandler.ts:237:13)
+    at zr.handleAndLogRequestError (C:\Github repos\projects\Bob\recommerce-marketplace\packages\database\node_modules\@prisma\client\src\runtime\RequestHandler.ts:183:12)
+    at zr.request (C:\Github repos\projects\Bob\recommerce-marketplace\packages\database\node_modules\@prisma\client\src\runtime\RequestHandler.ts:152:12)
+    at processTicksAndRejections (node:internal/process/task_queues:104:5)
+    at async a (C:\Github repos\projects\Bob\recommerce-marketplace\packages\database\node_modules\@prisma\client\src\runtime\getPrismaClient.ts:808:24)
+    at async C:\Github repos\projects\Bob\recommerce-marketplace\apps\api\src\routes\chat.ts:28:25 {
+  code: 'P2003',
+  meta: {
+    modelName: 'Message',
+    driverAdapterError: DriverAdapterError: ForeignKeyConstraintViolation
+        at PgTransaction.onError (C:\Github repos\projects\Bob\recommerce-marketplace\packages\database\node_modules\@prisma\adapter-pg\dist\index.js:687:11)
+        at PgTransaction.performIO (C:\Github repos\projects\Bob\recommerce-marketplace\packages\database\node_modules\@prisma\adapter-pg\dist\index.js:682:12)
+        at processTicksAndRejections (node:internal/process/task_queues:104:5)
+        at async PgTransaction.queryRaw (C:\Github repos\projects\Bob\recommerce-marketplace\packages\database\node_modules\@prisma\adapter-pg\dist\index.js:602:30)
+        at async e.interpretNode (C:\Github repos\projects\Bob\recommerce-marketplace\packages\database\node_modules\@prisma\client-engine-runtime\src\interpreter\query-interpreter.ts:186:26)
+        at async e.interpretNode (C:\Github repos\projects\Bob\recommerce-marketplace\packages\database\node_modules\@prisma\client-engine-runtime\src\interpreter\query-interpreter.ts:213:41)
+        at async e.interpretNode (C:\Github repos\projects\Bob\recommerce-marketplace\packages\database\node_modules\@prisma\client-engine-runtime\src\interpreter\query-interpreter.ts:128:29)
+        at async e.interpretNode (C:\Github repos\projects\Bob\recommerce-marketplace\packages\database\node_modules\@prisma\client-engine-runtime\src\interpreter\query-interpreter.ts:272:41)
+        at async e.interpretNode (C:\Github repos\projects\Bob\recommerce-marketplace\packages\database\node_modules\@prisma\client-engine-runtime\src\interpreter\query-interpreter.ts:262:25)
+        at async e.run (C:\Github repos\projects\Bob\recommerce-marketplace\packages\database\node_modules\@prisma\client-engine-runtime\src\interpreter\query-interpreter.ts:94:23) {
+      cause: [Object]
+    }
+  },
+  clientVersion: '7.4.2'
+}
+[32m[nodemon] restarting due to changes...[39m
+[32m[nodemon] starting `ts-node src/index.ts`[39m
+[dotenv@17.3.1] injecting env (0) from .env -- tip: ÔÜÖ´©Å  suppress all logs with { quiet: true }
+[dotenv@17.3.1] injecting env (0) from .env -- tip: ­ƒöÉ encrypt with Dotenvx: https://dotenvx.com
+Recommerce API is running on port 4000
+[32m[nodemon] restarting due to changes...[39m
+[32m[nodemon] starting `ts-node src/index.ts`[39m
+[dotenv@17.3.1] injecting env (0) from .env -- tip: ­ƒöÉ prevent building .env in docker: https://dotenvx.com/prebuild
+[dotenv@17.3.1] injecting env (0) from .env -- tip: ­ƒöÉ encrypt with Dotenvx: https://dotenvx.com
+Recommerce API is running on port 4000
+Error sending message: PrismaClientKnownRequestError: 
+Invalid `prisma.message.create()` invocation in
+C:\Github repos\projects\Bob\recommerce-marketplace\apps\api\src\routes\chat.ts:36:46
+
+  33     if (user) realSenderId = user.id;
+  34 }
+  35 
+ÔåÆ 36 const message = await prisma.message.create(
+Foreign key constraint violated on the constraint: `Message_receiverId_fkey`
+    at zr.handleRequestError (C:\Github repos\projects\Bob\recommerce-marketplace\packages\database\node_modules\@prisma\client\src\runtime\RequestHandler.ts:237:13)
+    at zr.handleAndLogRequestError (C:\Github repos\projects\Bob\recommerce-marketplace\packages\database\node_modules\@prisma\client\src\runtime\RequestHandler.ts:183:12)
+    at zr.request (C:\Github repos\projects\Bob\recommerce-marketplace\packages\database\node_modules\@prisma\client\src\runtime\RequestHandler.ts:152:12)
+    at processTicksAndRejections (node:internal/process/task_queues:104:5)
+    at async a (C:\Github repos\projects\Bob\recommerce-marketplace\packages\database\node_modules\@prisma\client\src\runtime\getPrismaClient.ts:808:24)
+    at async C:\Github repos\projects\Bob\recommerce-marketplace\apps\api\src\routes\chat.ts:36:25 {
+  code: 'P2003',
+  meta: {
+    modelName: 'Message',
+    driverAdapterError: DriverAdapterError: ForeignKeyConstraintViolation
+        at PgTransaction.onError (C:\Github repos\projects\Bob\recommerce-marketplace\packages\database\node_modules\@prisma\adapter-pg\dist\index.js:687:11)
+        at PgTransaction.performIO (C:\Github repos\projects\Bob\recommerce-marketplace\packages\database\node_modules\@prisma\adapter-pg\dist\index.js:682:12)
+        at processTicksAndRejections (node:internal/process/task_queues:104:5)
+        at async PgTransaction.queryRaw (C:\Github repos\projects\Bob\recommerce-marketplace\packages\database\node_modules\@prisma\adapter-pg\dist\index.js:602:30)
+        at async e.interpretNode (C:\Github repos\projects\Bob\recommerce-marketplace\packages\database\node_modules\@prisma\client-engine-runtime\src\interpreter\query-interpreter.ts:186:26)
+        at async e.interpretNode (C:\Github repos\projects\Bob\recommerce-marketplace\packages\database\node_modules\@prisma\client-engine-runtime\src\interpreter\query-interpreter.ts:213:41)
+        at async e.interpretNode (C:\Github repos\projects\Bob\recommerce-marketplace\packages\database\node_modules\@prisma\client-engine-runtime\src\interpreter\query-interpreter.ts:128:29)
+        at async e.interpretNode (C:\Github repos\projects\Bob\recommerce-marketplace\packages\database\node_modules\@prisma\client-engine-runtime\src\interpreter\query-interpreter.ts:272:41)
+        at async e.interpretNode (C:\Github repos\projects\Bob\recommerce-marketplace\packages\database\node_modules\@prisma\client-engine-runtime\src\interpreter\query-interpreter.ts:262:25)
+        at async e.run (C:\Github repos\projects\Bob\recommerce-marketplace\packages\database\node_modules\@prisma\client-engine-runtime\src\interpreter\query-interpreter.ts:94:23) {
+      cause: [Object]
+    }
+  },
+  clientVersion: '7.4.2'
+}
+Error sending message: PrismaClientKnownRequestError: 
+Invalid `prisma.message.create()` invocation in
+C:\Github repos\projects\Bob\recommerce-marketplace\apps\api\src\routes\chat.ts:36:46
+
+  33     if (user) realSenderId = user.id;
+  34 }
+  35 
+ÔåÆ 36 const message = await prisma.message.create(
+Foreign key constraint violated on the constraint: `Message_receiverId_fkey`
+    at zr.handleRequestError (C:\Github repos\projects\Bob\recommerce-marketplace\packages\database\node_modules\@prisma\client\src\runtime\RequestHandler.ts:237:13)
+    at zr.handleAndLogRequestError (C:\Github repos\projects\Bob\recommerce-marketplace\packages\database\node_modules\@prisma\client\src\runtime\RequestHandler.ts:183:12)
+    at zr.request (C:\Github repos\projects\Bob\recommerce-marketplace\packages\database\node_modules\@prisma\client\src\runtime\RequestHandler.ts:152:12)
+    at processTicksAndRejections (node:internal/process/task_queues:104:5)
+    at async a (C:\Github repos\projects\Bob\recommerce-marketplace\packages\database\node_modules\@prisma\client\src\runtime\getPrismaClient.ts:808:24)
+    at async C:\Github repos\projects\Bob\recommerce-marketplace\apps\api\src\routes\chat.ts:36:25 {
+  code: 'P2003',
+  meta: {
+    modelName: 'Message',
+    driverAdapterError: DriverAdapterError: ForeignKeyConstraintViolation
+        at PgTransaction.onError (C:\Github repos\projects\Bob\recommerce-marketplace\packages\database\node_modules\@prisma\adapter-pg\dist\index.js:687:11)
+        at PgTransaction.performIO (C:\Github repos\projects\Bob\recommerce-marketplace\packages\database\node_modules\@prisma\adapter-pg\dist\index.js:682:12)
+        at processTicksAndRejections (node:internal/process/task_queues:104:5)
+        at async PgTransaction.queryRaw (C:\Github repos\projects\Bob\recommerce-marketplace\packages\database\node_modules\@prisma\adapter-pg\dist\index.js:602:30)
+        at async e.interpretNode (C:\Github repos\projects\Bob\recommerce-marketplace\packages\database\node_modules\@prisma\client-engine-runtime\src\interpreter\query-interpreter.ts:186:26)
+        at async e.interpretNode (C:\Github repos\projects\Bob\recommerce-marketplace\packages\database\node_modules\@prisma\client-engine-runtime\src\interpreter\query-interpreter.ts:213:41)
+        at async e.interpretNode (C:\Github repos\projects\Bob\recommerce-marketplace\packages\database\node_modules\@prisma\client-engine-runtime\src\interpreter\query-interpreter.ts:128:29)
+        at async e.interpretNode (C:\Github repos\projects\Bob\recommerce-marketplace\packages\database\node_modules\@prisma\client-engine-runtime\src\interpreter\query-interpreter.ts:272:41)
+        at async e.interpretNode (C:\Github repos\projects\Bob\recommerce-marketplace\packages\database\node_modules\@prisma\client-engine-runtime\src\interpreter\query-interpreter.ts:262:25)
+        at async e.run (C:\Github repos\projects\Bob\recommerce-marketplace\packages\database\node_modules\@prisma\client-engine-runtime\src\interpreter\query-interpreter.ts:94:23) {
+      cause: [Object]
+    }
+  },
+  clientVersion: '7.4.2'
+}
+Error sending message: PrismaClientKnownRequestError: 
+Invalid `prisma.message.create()` invocation in
+C:\Github repos\projects\Bob\recommerce-marketplace\apps\api\src\routes\chat.ts:36:46
+
+  33     if (user) realSenderId = user.id;
+  34 }
+  35 
+ÔåÆ 36 const message = await prisma.message.create(
+Foreign key constraint violated on the constraint: `Message_receiverId_fkey`
+    at zr.handleRequestError (C:\Github repos\projects\Bob\recommerce-marketplace\packages\database\node_modules\@prisma\client\src\runtime\RequestHandler.ts:237:13)
+    at zr.handleAndLogRequestError (C:\Github repos\projects\Bob\recommerce-marketplace\packages\database\node_modules\@prisma\client\src\runtime\RequestHandler.ts:183:12)
+    at zr.request (C:\Github repos\projects\Bob\recommerce-marketplace\packages\database\node_modules\@prisma\client\src\runtime\RequestHandler.ts:152:12)
+    at processTicksAndRejections (node:internal/process/task_queues:104:5)
+    at async a (C:\Github repos\projects\Bob\recommerce-marketplace\packages\database\node_modules\@prisma\client\src\runtime\getPrismaClient.ts:808:24)
+    at async C:\Github repos\projects\Bob\recommerce-marketplace\apps\api\src\routes\chat.ts:36:25 {
+  code: 'P2003',
+  meta: {
+    modelName: 'Message',
+    driverAdapterError: DriverAdapterError: ForeignKeyConstraintViolation
+        at PgTransaction.onError (C:\Github repos\projects\Bob\recommerce-marketplace\packages\database\node_modules\@prisma\adapter-pg\dist\index.js:687:11)
+        at PgTransaction.performIO (C:\Github repos\projects\Bob\recommerce-marketplace\packages\database\node_modules\@prisma\adapter-pg\dist\index.js:682:12)
+        at processTicksAndRejections (node:internal/process/task_queues:104:5)
+        at async PgTransaction.queryRaw (C:\Github repos\projects\Bob\recommerce-marketplace\packages\database\node_modules\@prisma\adapter-pg\dist\index.js:602:30)
+        at async e.interpretNode (C:\Github repos\projects\Bob\recommerce-marketplace\packages\database\node_modules\@prisma\client-engine-runtime\src\interpreter\query-interpreter.ts:186:26)
+        at async e.interpretNode (C:\Github repos\projects\Bob\recommerce-marketplace\packages\database\node_modules\@prisma\client-engine-runtime\src\interpreter\query-interpreter.ts:213:41)
+        at async e.interpretNode (C:\Github repos\projects\Bob\recommerce-marketplace\packages\database\node_modules\@prisma\client-engine-runtime\src\interpreter\query-interpreter.ts:128:29)
+        at async e.interpretNode (C:\Github repos\projects\Bob\recommerce-marketplace\packages\database\node_modules\@prisma\client-engine-runtime\src\interpreter\query-interpreter.ts:272:41)
+        at async e.interpretNode (C:\Github repos\projects\Bob\recommerce-marketplace\packages\database\node_modules\@prisma\client-engine-runtime\src\interpreter\query-interpreter.ts:262:25)
+        at async e.run (C:\Github repos\projects\Bob\recommerce-marketplace\packages\database\node_modules\@prisma\client-engine-runtime\src\interpreter\query-interpreter.ts:94:23) {
+      cause: [Object]
+    }
+  },
+  clientVersion: '7.4.2'
+}
+Error sending message: PrismaClientKnownRequestError: 
+Invalid `prisma.message.create()` invocation in
+C:\Github repos\projects\Bob\recommerce-marketplace\apps\api\src\routes\chat.ts:36:46
+
+  33     if (user) realSenderId = user.id;
+  34 }
+  35 
+ÔåÆ 36 const message = await prisma.message.create(
+Foreign key constraint violated on the constraint: `Message_receiverId_fkey`
+    at zr.handleRequestError (C:\Github repos\projects\Bob\recommerce-marketplace\packages\database\node_modules\@prisma\client\src\runtime\RequestHandler.ts:237:13)
+    at zr.handleAndLogRequestError (C:\Github repos\projects\Bob\recommerce-marketplace\packages\database\node_modules\@prisma\client\src\runtime\RequestHandler.ts:183:12)
+    at zr.request (C:\Github repos\projects\Bob\recommerce-marketplace\packages\database\node_modules\@prisma\client\src\runtime\RequestHandler.ts:152:12)
+    at processTicksAndRejections (node:internal/process/task_queues:104:5)
+    at async a (C:\Github repos\projects\Bob\recommerce-marketplace\packages\database\node_modules\@prisma\client\src\runtime\getPrismaClient.ts:808:24)
+    at async C:\Github repos\projects\Bob\recommerce-marketplace\apps\api\src\routes\chat.ts:36:25 {
+  code: 'P2003',
+  meta: {
+    modelName: 'Message',
+    driverAdapterError: DriverAdapterError: ForeignKeyConstraintViolation
+        at PgTransaction.onError (C:\Github repos\projects\Bob\recommerce-marketplace\packages\database\node_modules\@prisma\adapter-pg\dist\index.js:687:11)
+        at PgTransaction.performIO (C:\Github repos\projects\Bob\recommerce-marketplace\packages\database\node_modules\@prisma\adapter-pg\dist\index.js:682:12)
+        at processTicksAndRejections (node:internal/process/task_queues:104:5)
+        at async PgTransaction.queryRaw (C:\Github repos\projects\Bob\recommerce-marketplace\packages\database\node_modules\@prisma\adapter-pg\dist\index.js:602:30)
+        at async e.interpretNode (C:\Github repos\projects\Bob\recommerce-marketplace\packages\database\node_modules\@prisma\client-engine-runtime\src\interpreter\query-interpreter.ts:186:26)
+        at async e.interpretNode (C:\Github repos\projects\Bob\recommerce-marketplace\packages\database\node_modules\@prisma\client-engine-runtime\src\interpreter\query-interpreter.ts:213:41)
+        at async e.interpretNode (C:\Github repos\projects\Bob\recommerce-marketplace\packages\database\node_modules\@prisma\client-engine-runtime\src\interpreter\query-interpreter.ts:128:29)
+        at async e.interpretNode (C:\Github repos\projects\Bob\recommerce-marketplace\packages\database\node_modules\@prisma\client-engine-runtime\src\interpreter\query-interpreter.ts:272:41)
+        at async e.interpretNode (C:\Github repos\projects\Bob\recommerce-marketplace\packages\database\node_modules\@prisma\client-engine-runtime\src\interpreter\query-interpreter.ts:262:25)
+        at async e.run (C:\Github repos\projects\Bob\recommerce-marketplace\packages\database\node_modules\@prisma\client-engine-runtime\src\interpreter\query-interpreter.ts:94:23) {
+      cause: [Object]
+    }
+  },
+  clientVersion: '7.4.2'
+}
+Error sending message: PrismaClientKnownRequestError: 
+Invalid `prisma.message.create()` invocation in
+C:\Github repos\projects\Bob\recommerce-marketplace\apps\api\src\routes\chat.ts:36:46
+
+  33     if (user) realSenderId = user.id;
+  34 }
+  35 
+ÔåÆ 36 const message = await prisma.message.create(
+Foreign key constraint violated on the constraint: `Message_receiverId_fkey`
+    at zr.handleRequestError (C:\Github repos\projects\Bob\recommerce-marketplace\packages\database\node_modules\@prisma\client\src\runtime\RequestHandler.ts:237:13)
+    at zr.handleAndLogRequestError (C:\Github repos\projects\Bob\recommerce-marketplace\packages\database\node_modules\@prisma\client\src\runtime\RequestHandler.ts:183:12)
+    at zr.request (C:\Github repos\projects\Bob\recommerce-marketplace\packages\database\node_modules\@prisma\client\src\runtime\RequestHandler.ts:152:12)
+    at processTicksAndRejections (node:internal/process/task_queues:104:5)
+    at async a (C:\Github repos\projects\Bob\recommerce-marketplace\packages\database\node_modules\@prisma\client\src\runtime\getPrismaClient.ts:808:24)
+    at async C:\Github repos\projects\Bob\recommerce-marketplace\apps\api\src\routes\chat.ts:36:25 {
+  code: 'P2003',
+  meta: {
+    modelName: 'Message',
+    driverAdapterError: DriverAdapterError: ForeignKeyConstraintViolation
+        at PgTransaction.onError (C:\Github repos\projects\Bob\recommerce-marketplace\packages\database\node_modules\@prisma\adapter-pg\dist\index.js:687:11)
+        at PgTransaction.performIO (C:\Github repos\projects\Bob\recommerce-marketplace\packages\database\node_modules\@prisma\adapter-pg\dist\index.js:682:12)
+        at processTicksAndRejections (node:internal/process/task_queues:104:5)
+        at async PgTransaction.queryRaw (C:\Github repos\projects\Bob\recommerce-marketplace\packages\database\node_modules\@prisma\adapter-pg\dist\index.js:602:30)
+        at async e.interpretNode (C:\Github repos\projects\Bob\recommerce-marketplace\packages\database\node_modules\@prisma\client-engine-runtime\src\interpreter\query-interpreter.ts:186:26)
+        at async e.interpretNode (C:\Github repos\projects\Bob\recommerce-marketplace\packages\database\node_modules\@prisma\client-engine-runtime\src\interpreter\query-interpreter.ts:213:41)
+        at async e.interpretNode (C:\Github repos\projects\Bob\recommerce-marketplace\packages\database\node_modules\@prisma\client-engine-runtime\src\interpreter\query-interpreter.ts:128:29)
+        at async e.interpretNode (C:\Github repos\projects\Bob\recommerce-marketplace\packages\database\node_modules\@prisma\client-engine-runtime\src\interpreter\query-interpreter.ts:272:41)
+        at async e.interpretNode (C:\Github repos\projects\Bob\recommerce-marketplace\packages\database\node_modules\@prisma\client-engine-runtime\src\interpreter\query-interpreter.ts:262:25)
+        at async e.run (C:\Github repos\projects\Bob\recommerce-marketplace\packages\database\node_modules\@prisma\client-engine-runtime\src\interpreter\query-interpreter.ts:94:23) {
+      cause: [Object]
+    }
+  },
+  clientVersion: '7.4.2'
+}
+Error sending message: PrismaClientKnownRequestError: 
+Invalid `prisma.message.create()` invocation in
+C:\Github repos\projects\Bob\recommerce-marketplace\apps\api\src\routes\chat.ts:36:46
+
+  33     if (user) realSenderId = user.id;
+  34 }
+  35 
+ÔåÆ 36 const message = await prisma.message.create(
+Foreign key constraint violated on the constraint: `Message_receiverId_fkey`
+    at zr.handleRequestError (C:\Github repos\projects\Bob\recommerce-marketplace\packages\database\node_modules\@prisma\client\src\runtime\RequestHandler.ts:237:13)
+    at zr.handleAndLogRequestError (C:\Github repos\projects\Bob\recommerce-marketplace\packages\database\node_modules\@prisma\client\src\runtime\RequestHandler.ts:183:12)
+    at zr.request (C:\Github repos\projects\Bob\recommerce-marketplace\packages\database\node_modules\@prisma\client\src\runtime\RequestHandler.ts:152:12)
+    at processTicksAndRejections (node:internal/process/task_queues:104:5)
+    at async a (C:\Github repos\projects\Bob\recommerce-marketplace\packages\database\node_modules\@prisma\client\src\runtime\getPrismaClient.ts:808:24)
+    at async C:\Github repos\projects\Bob\recommerce-marketplace\apps\api\src\routes\chat.ts:36:25 {
+  code: 'P2003',
+  meta: {
+    modelName: 'Message',
+    driverAdapterError: DriverAdapterError: ForeignKeyConstraintViolation
+        at PgTransaction.onError (C:\Github repos\projects\Bob\recommerce-marketplace\packages\database\node_modules\@prisma\adapter-pg\dist\index.js:687:11)
+        at PgTransaction.performIO (C:\Github repos\projects\Bob\recommerce-marketplace\packages\database\node_modules\@prisma\adapter-pg\dist\index.js:682:12)
+        at processTicksAndRejections (node:internal/process/task_queues:104:5)
+        at async PgTransaction.queryRaw (C:\Github repos\projects\Bob\recommerce-marketplace\packages\database\node_modules\@prisma\adapter-pg\dist\index.js:602:30)
+        at async e.interpretNode (C:\Github repos\projects\Bob\recommerce-marketplace\packages\database\node_modules\@prisma\client-engine-runtime\src\interpreter\query-interpreter.ts:186:26)
+        at async e.interpretNode (C:\Github repos\projects\Bob\recommerce-marketplace\packages\database\node_modules\@prisma\client-engine-runtime\src\interpreter\query-interpreter.ts:213:41)
+        at async e.interpretNode (C:\Github repos\projects\Bob\recommerce-marketplace\packages\database\node_modules\@prisma\client-engine-runtime\src\interpreter\query-interpreter.ts:128:29)
+        at async e.interpretNode (C:\Github repos\projects\Bob\recommerce-marketplace\packages\database\node_modules\@prisma\client-engine-runtime\src\interpreter\query-interpreter.ts:272:41)
+        at async e.interpretNode (C:\Github repos\projects\Bob\recommerce-marketplace\packages\database\node_modules\@prisma\client-engine-runtime\src\interpreter\query-interpreter.ts:262:25)
+        at async e.run (C:\Github repos\projects\Bob\recommerce-marketplace\packages\database\node_modules\@prisma\client-engine-runtime\src\interpreter\query-interpreter.ts:94:23) {
+      cause: [Object]
+    }
+  },
+  clientVersion: '7.4.2'
+}
+Error sending message: PrismaClientKnownRequestError: 
+Invalid `prisma.message.create()` invocation in
+C:\Github repos\projects\Bob\recommerce-marketplace\apps\api\src\routes\chat.ts:36:46
+
+  33     if (user) realSenderId = user.id;
+  34 }
+  35 
+ÔåÆ 36 const message = await prisma.message.create(
+Foreign key constraint violated on the constraint: `Message_receiverId_fkey`
+    at zr.handleRequestError (C:\Github repos\projects\Bob\recommerce-marketplace\packages\database\node_modules\@prisma\client\src\runtime\RequestHandler.ts:237:13)
+    at zr.handleAndLogRequestError (C:\Github repos\projects\Bob\recommerce-marketplace\packages\database\node_modules\@prisma\client\src\runtime\RequestHandler.ts:183:12)
+    at zr.request (C:\Github repos\projects\Bob\recommerce-marketplace\packages\database\node_modules\@prisma\client\src\runtime\RequestHandler.ts:152:12)
+    at processTicksAndRejections (node:internal/process/task_queues:104:5)
+    at async a (C:\Github repos\projects\Bob\recommerce-marketplace\packages\database\node_modules\@prisma\client\src\runtime\getPrismaClient.ts:808:24)
+    at async C:\Github repos\projects\Bob\recommerce-marketplace\apps\api\src\routes\chat.ts:36:25 {
+  code: 'P2003',
+  meta: {
+    modelName: 'Message',
+    driverAdapterError: DriverAdapterError: ForeignKeyConstraintViolation
+        at PgTransaction.onError (C:\Github repos\projects\Bob\recommerce-marketplace\packages\database\node_modules\@prisma\adapter-pg\dist\index.js:687:11)
+        at PgTransaction.performIO (C:\Github repos\projects\Bob\recommerce-marketplace\packages\database\node_modules\@prisma\adapter-pg\dist\index.js:682:12)
+        at processTicksAndRejections (node:internal/process/task_queues:104:5)
+        at async PgTransaction.queryRaw (C:\Github repos\projects\Bob\recommerce-marketplace\packages\database\node_modules\@prisma\adapter-pg\dist\index.js:602:30)
+        at async e.interpretNode (C:\Github repos\projects\Bob\recommerce-marketplace\packages\database\node_modules\@prisma\client-engine-runtime\src\interpreter\query-interpreter.ts:186:26)
+        at async e.interpretNode (C:\Github repos\projects\Bob\recommerce-marketplace\packages\database\node_modules\@prisma\client-engine-runtime\src\interpreter\query-interpreter.ts:213:41)
+        at async e.interpretNode (C:\Github repos\projects\Bob\recommerce-marketplace\packages\database\node_modules\@prisma\client-engine-runtime\src\interpreter\query-interpreter.ts:128:29)
+        at async e.interpretNode (C:\Github repos\projects\Bob\recommerce-marketplace\packages\database\node_modules\@prisma\client-engine-runtime\src\interpreter\query-interpreter.ts:272:41)
+        at async e.interpretNode (C:\Github repos\projects\Bob\recommerce-marketplace\packages\database\node_modules\@prisma\client-engine-runtime\src\interpreter\query-interpreter.ts:262:25)
+        at async e.run (C:\Github repos\projects\Bob\recommerce-marketplace\packages\database\node_modules\@prisma\client-engine-runtime\src\interpreter\query-interpreter.ts:94:23) {
+      cause: [Object]
+    }
+  },
+  clientVersion: '7.4.2'
+}
+Error sending message: PrismaClientKnownRequestError: 
+Invalid `prisma.message.create()` invocation in
+C:\Github repos\projects\Bob\recommerce-marketplace\apps\api\src\routes\chat.ts:36:46
+
+  33     if (user) realSenderId = user.id;
+  34 }
+  35 
+ÔåÆ 36 const message = await prisma.message.create(
+Foreign key constraint violated on the constraint: `Message_receiverId_fkey`
+    at zr.handleRequestError (C:\Github repos\projects\Bob\recommerce-marketplace\packages\database\node_modules\@prisma\client\src\runtime\RequestHandler.ts:237:13)
+    at zr.handleAndLogRequestError (C:\Github repos\projects\Bob\recommerce-marketplace\packages\database\node_modules\@prisma\client\src\runtime\RequestHandler.ts:183:12)
+    at zr.request (C:\Github repos\projects\Bob\recommerce-marketplace\packages\database\node_modules\@prisma\client\src\runtime\RequestHandler.ts:152:12)
+    at processTicksAndRejections (node:internal/process/task_queues:104:5)
+    at async a (C:\Github repos\projects\Bob\recommerce-marketplace\packages\database\node_modules\@prisma\client\src\runtime\getPrismaClient.ts:808:24)
+    at async C:\Github repos\projects\Bob\recommerce-marketplace\apps\api\src\routes\chat.ts:36:25 {
+  code: 'P2003',
+  meta: {
+    modelName: 'Message',
+    driverAdapterError: DriverAdapterError: ForeignKeyConstraintViolation
+        at PgTransaction.onError (C:\Github repos\projects\Bob\recommerce-marketplace\packages\database\node_modules\@prisma\adapter-pg\dist\index.js:687:11)
+        at PgTransaction.performIO (C:\Github repos\projects\Bob\recommerce-marketplace\packages\database\node_modules\@prisma\adapter-pg\dist\index.js:682:12)
+        at processTicksAndRejections (node:internal/process/task_queues:104:5)
+        at async PgTransaction.queryRaw (C:\Github repos\projects\Bob\recommerce-marketplace\packages\database\node_modules\@prisma\adapter-pg\dist\index.js:602:30)
+        at async e.interpretNode (C:\Github repos\projects\Bob\recommerce-marketplace\packages\database\node_modules\@prisma\client-engine-runtime\src\interpreter\query-interpreter.ts:186:26)
+        at async e.interpretNode (C:\Github repos\projects\Bob\recommerce-marketplace\packages\database\node_modules\@prisma\client-engine-runtime\src\interpreter\query-interpreter.ts:213:41)
+        at async e.interpretNode (C:\Github repos\projects\Bob\recommerce-marketplace\packages\database\node_modules\@prisma\client-engine-runtime\src\interpreter\query-interpreter.ts:128:29)
+        at async e.interpretNode (C:\Github repos\projects\Bob\recommerce-marketplace\packages\database\node_modules\@prisma\client-engine-runtime\src\interpreter\query-interpreter.ts:272:41)
+        at async e.interpretNode (C:\Github repos\projects\Bob\recommerce-marketplace\packages\database\node_modules\@prisma\client-engine-runtime\src\interpreter\query-interpreter.ts:262:25)
+        at async e.run (C:\Github repos\projects\Bob\recommerce-marketplace\packages\database\node_modules\@prisma\client-engine-runtime\src\interpreter\query-interpreter.ts:94:23) {
+      cause: [Object]
+    }
+  },
+  clientVersion: '7.4.2'
+}
+Error sending message: PrismaClientKnownRequestError: 
+Invalid `prisma.message.create()` invocation in
+C:\Github repos\projects\Bob\recommerce-marketplace\apps\api\src\routes\chat.ts:36:46
+
+  33     if (user) realSenderId = user.id;
+  34 }
+  35 
+ÔåÆ 36 const message = await prisma.message.create(
+Foreign key constraint violated on the constraint: `Message_receiverId_fkey`
+    at zr.handleRequestError (C:\Github repos\projects\Bob\recommerce-marketplace\packages\database\node_modules\@prisma\client\src\runtime\RequestHandler.ts:237:13)
+    at zr.handleAndLogRequestError (C:\Github repos\projects\Bob\recommerce-marketplace\packages\database\node_modules\@prisma\client\src\runtime\RequestHandler.ts:183:12)
+    at zr.request (C:\Github repos\projects\Bob\recommerce-marketplace\packages\database\node_modules\@prisma\client\src\runtime\RequestHandler.ts:152:12)
+    at processTicksAndRejections (node:internal/process/task_queues:104:5)
+    at async a (C:\Github repos\projects\Bob\recommerce-marketplace\packages\database\node_modules\@prisma\client\src\runtime\getPrismaClient.ts:808:24)
+    at async C:\Github repos\projects\Bob\recommerce-marketplace\apps\api\src\routes\chat.ts:36:25 {
+  code: 'P2003',
+  meta: {
+    modelName: 'Message',
+    driverAdapterError: DriverAdapterError: ForeignKeyConstraintViolation
+        at PgTransaction.onError (C:\Github repos\projects\Bob\recommerce-marketplace\packages\database\node_modules\@prisma\adapter-pg\dist\index.js:687:11)
+        at PgTransaction.performIO (C:\Github repos\projects\Bob\recommerce-marketplace\packages\database\node_modules\@prisma\adapter-pg\dist\index.js:682:12)
+        at processTicksAndRejections (node:internal/process/task_queues:104:5)
+        at async PgTransaction.queryRaw (C:\Github repos\projects\Bob\recommerce-marketplace\packages\database\node_modules\@prisma\adapter-pg\dist\index.js:602:30)
+        at async e.interpretNode (C:\Github repos\projects\Bob\recommerce-marketplace\packages\database\node_modules\@prisma\client-engine-runtime\src\interpreter\query-interpreter.ts:186:26)
+        at async e.interpretNode (C:\Github repos\projects\Bob\recommerce-marketplace\packages\database\node_modules\@prisma\client-engine-runtime\src\interpreter\query-interpreter.ts:213:41)
+        at async e.interpretNode (C:\Github repos\projects\Bob\recommerce-marketplace\packages\database\node_modules\@prisma\client-engine-runtime\src\interpreter\query-interpreter.ts:128:29)
+        at async e.interpretNode (C:\Github repos\projects\Bob\recommerce-marketplace\packages\database\node_modules\@prisma\client-engine-runtime\src\interpreter\query-interpreter.ts:272:41)
+        at async e.interpretNode (C:\Github repos\projects\Bob\recommerce-marketplace\packages\database\node_modules\@prisma\client-engine-runtime\src\interpreter\query-interpreter.ts:262:25)
+        at async e.run (C:\Github repos\projects\Bob\recommerce-marketplace\packages\database\node_modules\@prisma\client-engine-runtime\src\interpreter\query-interpreter.ts:94:23) {
+      cause: [Object]
+    }
+  },
+  clientVersion: '7.4.2'
+}
+Error sending message: PrismaClientKnownRequestError: 
+Invalid `prisma.message.create()` invocation in
+C:\Github repos\projects\Bob\recommerce-marketplace\apps\api\src\routes\chat.ts:36:46
+
+  33     if (user) realSenderId = user.id;
+  34 }
+  35 
+ÔåÆ 36 const message = await prisma.message.create(
+Foreign key constraint violated on the constraint: `Message_receiverId_fkey`
+    at zr.handleRequestError (C:\Github repos\projects\Bob\recommerce-marketplace\packages\database\node_modules\@prisma\client\src\runtime\RequestHandler.ts:237:13)
+    at zr.handleAndLogRequestError (C:\Github repos\projects\Bob\recommerce-marketplace\packages\database\node_modules\@prisma\client\src\runtime\RequestHandler.ts:183:12)
+    at zr.request (C:\Github repos\projects\Bob\recommerce-marketplace\packages\database\node_modules\@prisma\client\src\runtime\RequestHandler.ts:152:12)
+    at processTicksAndRejections (node:internal/process/task_queues:104:5)
+    at async a (C:\Github repos\projects\Bob\recommerce-marketplace\packages\database\node_modules\@prisma\client\src\runtime\getPrismaClient.ts:808:24)
+    at async C:\Github repos\projects\Bob\recommerce-marketplace\apps\api\src\routes\chat.ts:36:25 {
+  code: 'P2003',
+  meta: {
+    modelName: 'Message',
+    driverAdapterError: DriverAdapterError: ForeignKeyConstraintViolation
+        at PgTransaction.onError (C:\Github repos\projects\Bob\recommerce-marketplace\packages\database\node_modules\@prisma\adapter-pg\dist\index.js:687:11)
+        at PgTransaction.performIO (C:\Github repos\projects\Bob\recommerce-marketplace\packages\database\node_modules\@prisma\adapter-pg\dist\index.js:682:12)
+        at processTicksAndRejections (node:internal/process/task_queues:104:5)
+        at async PgTransaction.queryRaw (C:\Github repos\projects\Bob\recommerce-marketplace\packages\database\node_modules\@prisma\adapter-pg\dist\index.js:602:30)
+        at async e.interpretNode (C:\Github repos\projects\Bob\recommerce-marketplace\packages\database\node_modules\@prisma\client-engine-runtime\src\interpreter\query-interpreter.ts:186:26)
+        at async e.interpretNode (C:\Github repos\projects\Bob\recommerce-marketplace\packages\database\node_modules\@prisma\client-engine-runtime\src\interpreter\query-interpreter.ts:213:41)
+        at async e.interpretNode (C:\Github repos\projects\Bob\recommerce-marketplace\packages\database\node_modules\@prisma\client-engine-runtime\src\interpreter\query-interpreter.ts:128:29)
+        at async e.interpretNode (C:\Github repos\projects\Bob\recommerce-marketplace\packages\database\node_modules\@prisma\client-engine-runtime\src\interpreter\query-interpreter.ts:272:41)
+        at async e.interpretNode (C:\Github repos\projects\Bob\recommerce-marketplace\packages\database\node_modules\@prisma\client-engine-runtime\src\interpreter\query-interpreter.ts:262:25)
+        at async e.run (C:\Github repos\projects\Bob\recommerce-marketplace\packages\database\node_modules\@prisma\client-engine-runtime\src\interpreter\query-interpreter.ts:94:23) {
+      cause: [Object]
+    }
+  },
+  clientVersion: '7.4.2'
+}
+Error sending message: PrismaClientKnownRequestError: 
+Invalid `prisma.message.create()` invocation in
+C:\Github repos\projects\Bob\recommerce-marketplace\apps\api\src\routes\chat.ts:36:46
+
+  33     if (user) realSenderId = user.id;
+  34 }
+  35 
+ÔåÆ 36 const message = await prisma.message.create(
+Foreign key constraint violated on the constraint: `Message_receiverId_fkey`
+    at zr.handleRequestError (C:\Github repos\projects\Bob\recommerce-marketplace\packages\database\node_modules\@prisma\client\src\runtime\RequestHandler.ts:237:13)
+    at zr.handleAndLogRequestError (C:\Github repos\projects\Bob\recommerce-marketplace\packages\database\node_modules\@prisma\client\src\runtime\RequestHandler.ts:183:12)
+    at zr.request (C:\Github repos\projects\Bob\recommerce-marketplace\packages\database\node_modules\@prisma\client\src\runtime\RequestHandler.ts:152:12)
+    at processTicksAndRejections (node:internal/process/task_queues:104:5)
+    at async a (C:\Github repos\projects\Bob\recommerce-marketplace\packages\database\node_modules\@prisma\client\src\runtime\getPrismaClient.ts:808:24)
+    at async C:\Github repos\projects\Bob\recommerce-marketplace\apps\api\src\routes\chat.ts:36:25 {
+  code: 'P2003',
+  meta: {
+    modelName: 'Message',
+    driverAdapterError: DriverAdapterError: ForeignKeyConstraintViolation
+        at PgTransaction.onError (C:\Github repos\projects\Bob\recommerce-marketplace\packages\database\node_modules\@prisma\adapter-pg\dist\index.js:687:11)
+        at PgTransaction.performIO (C:\Github repos\projects\Bob\recommerce-marketplace\packages\database\node_modules\@prisma\adapter-pg\dist\index.js:682:12)
+        at processTicksAndRejections (node:internal/process/task_queues:104:5)
+        at async PgTransaction.queryRaw (C:\Github repos\projects\Bob\recommerce-marketplace\packages\database\node_modules\@prisma\adapter-pg\dist\index.js:602:30)
+        at async e.interpretNode (C:\Github repos\projects\Bob\recommerce-marketplace\packages\database\node_modules\@prisma\client-engine-runtime\src\interpreter\query-interpreter.ts:186:26)
+        at async e.interpretNode (C:\Github repos\projects\Bob\recommerce-marketplace\packages\database\node_modules\@prisma\client-engine-runtime\src\interpreter\query-interpreter.ts:213:41)
+        at async e.interpretNode (C:\Github repos\projects\Bob\recommerce-marketplace\packages\database\node_modules\@prisma\client-engine-runtime\src\interpreter\query-interpreter.ts:128:29)
+        at async e.interpretNode (C:\Github repos\projects\Bob\recommerce-marketplace\packages\database\node_modules\@prisma\client-engine-runtime\src\interpreter\query-interpreter.ts:272:41)
+        at async e.interpretNode (C:\Github repos\projects\Bob\recommerce-marketplace\packages\database\node_modules\@prisma\client-engine-runtime\src\interpreter\query-interpreter.ts:262:25)
+        at async e.run (C:\Github repos\projects\Bob\recommerce-marketplace\packages\database\node_modules\@prisma\client-engine-runtime\src\interpreter\query-interpreter.ts:94:23) {
+      cause: [Object]
+    }
+  },
+  clientVersion: '7.4.2'
+}
+Error sending message: PrismaClientKnownRequestError: 
+Invalid `prisma.message.create()` invocation in
+C:\Github repos\projects\Bob\recommerce-marketplace\apps\api\src\routes\chat.ts:36:46
+
+  33     if (user) realSenderId = user.id;
+  34 }
+  35 
+ÔåÆ 36 const message = await prisma.message.create(
+Foreign key constraint violated on the constraint: `Message_receiverId_fkey`
+    at zr.handleRequestError (C:\Github repos\projects\Bob\recommerce-marketplace\packages\database\node_modules\@prisma\client\src\runtime\RequestHandler.ts:237:13)
+    at zr.handleAndLogRequestError (C:\Github repos\projects\Bob\recommerce-marketplace\packages\database\node_modules\@prisma\client\src\runtime\RequestHandler.ts:183:12)
+    at zr.request (C:\Github repos\projects\Bob\recommerce-marketplace\packages\database\node_modules\@prisma\client\src\runtime\RequestHandler.ts:152:12)
+    at processTicksAndRejections (node:internal/process/task_queues:104:5)
+    at async a (C:\Github repos\projects\Bob\recommerce-marketplace\packages\database\node_modules\@prisma\client\src\runtime\getPrismaClient.ts:808:24)
+    at async C:\Github repos\projects\Bob\recommerce-marketplace\apps\api\src\routes\chat.ts:36:25 {
+  code: 'P2003',
+  meta: {
+    modelName: 'Message',
+    driverAdapterError: DriverAdapterError: ForeignKeyConstraintViolation
+        at PgTransaction.onError (C:\Github repos\projects\Bob\recommerce-marketplace\packages\database\node_modules\@prisma\adapter-pg\dist\index.js:687:11)
+        at PgTransaction.performIO (C:\Github repos\projects\Bob\recommerce-marketplace\packages\database\node_modules\@prisma\adapter-pg\dist\index.js:682:12)
+        at processTicksAndRejections (node:internal/process/task_queues:104:5)
+        at async PgTransaction.queryRaw (C:\Github repos\projects\Bob\recommerce-marketplace\packages\database\node_modules\@prisma\adapter-pg\dist\index.js:602:30)
+        at async e.interpretNode (C:\Github repos\projects\Bob\recommerce-marketplace\packages\database\node_modules\@prisma\client-engine-runtime\src\interpreter\query-interpreter.ts:186:26)
+        at async e.interpretNode (C:\Github repos\projects\Bob\recommerce-marketplace\packages\database\node_modules\@prisma\client-engine-runtime\src\interpreter\query-interpreter.ts:213:41)
+        at async e.interpretNode (C:\Github repos\projects\Bob\recommerce-marketplace\packages\database\node_modules\@prisma\client-engine-runtime\src\interpreter\query-interpreter.ts:128:29)
+        at async e.interpretNode (C:\Github repos\projects\Bob\recommerce-marketplace\packages\database\node_modules\@prisma\client-engine-runtime\src\interpreter\query-interpreter.ts:272:41)
+        at async e.interpretNode (C:\Github repos\projects\Bob\recommerce-marketplace\packages\database\node_modules\@prisma\client-engine-runtime\src\interpreter\query-interpreter.ts:262:25)
+        at async e.run (C:\Github repos\projects\Bob\recommerce-marketplace\packages\database\node_modules\@prisma\client-engine-runtime\src\interpreter\query-interpreter.ts:94:23) {
+      cause: [Object]
+    }
+  },
+  clientVersion: '7.4.2'
+}
+Error sending message: PrismaClientKnownRequestError: 
+Invalid `prisma.message.create()` invocation in
+C:\Github repos\projects\Bob\recommerce-marketplace\apps\api\src\routes\chat.ts:36:46
+
+  33     if (user) realSenderId = user.id;
+  34 }
+  35 
+ÔåÆ 36 const message = await prisma.message.create(
+Foreign key constraint violated on the constraint: `Message_receiverId_fkey`
+    at zr.handleRequestError (C:\Github repos\projects\Bob\recommerce-marketplace\packages\database\node_modules\@prisma\client\src\runtime\RequestHandler.ts:237:13)
+    at zr.handleAndLogRequestError (C:\Github repos\projects\Bob\recommerce-marketplace\packages\database\node_modules\@prisma\client\src\runtime\RequestHandler.ts:183:12)
+    at zr.request (C:\Github repos\projects\Bob\recommerce-marketplace\packages\database\node_modules\@prisma\client\src\runtime\RequestHandler.ts:152:12)
+    at processTicksAndRejections (node:internal/process/task_queues:104:5)
+    at async a (C:\Github repos\projects\Bob\recommerce-marketplace\packages\database\node_modules\@prisma\client\src\runtime\getPrismaClient.ts:808:24)
+    at async C:\Github repos\projects\Bob\recommerce-marketplace\apps\api\src\routes\chat.ts:36:25 {
+  code: 'P2003',
+  meta: {
+    modelName: 'Message',
+    driverAdapterError: DriverAdapterError: ForeignKeyConstraintViolation
+        at PgTransaction.onError (C:\Github repos\projects\Bob\recommerce-marketplace\packages\database\node_modules\@prisma\adapter-pg\dist\index.js:687:11)
+        at PgTransaction.performIO (C:\Github repos\projects\Bob\recommerce-marketplace\packages\database\node_modules\@prisma\adapter-pg\dist\index.js:682:12)
+        at processTicksAndRejections (node:internal/process/task_queues:104:5)
+        at async PgTransaction.queryRaw (C:\Github repos\projects\Bob\recommerce-marketplace\packages\database\node_modules\@prisma\adapter-pg\dist\index.js:602:30)
+        at async e.interpretNode (C:\Github repos\projects\Bob\recommerce-marketplace\packages\database\node_modules\@prisma\client-engine-runtime\src\interpreter\query-interpreter.ts:186:26)
+        at async e.interpretNode (C:\Github repos\projects\Bob\recommerce-marketplace\packages\database\node_modules\@prisma\client-engine-runtime\src\interpreter\query-interpreter.ts:213:41)
+        at async e.interpretNode (C:\Github repos\projects\Bob\recommerce-marketplace\packages\database\node_modules\@prisma\client-engine-runtime\src\interpreter\query-interpreter.ts:128:29)
+        at async e.interpretNode (C:\Github repos\projects\Bob\recommerce-marketplace\packages\database\node_modules\@prisma\client-engine-runtime\src\interpreter\query-interpreter.ts:272:41)
+        at async e.interpretNode (C:\Github repos\projects\Bob\recommerce-marketplace\packages\database\node_modules\@prisma\client-engine-runtime\src\interpreter\query-interpreter.ts:262:25)
+        at async e.run (C:\Github repos\projects\Bob\recommerce-marketplace\packages\database\node_modules\@prisma\client-engine-runtime\src\interpreter\query-interpreter.ts:94:23) {
+      cause: [Object]
+    }
+  },
+  clientVersion: '7.4.2'
+}
+Error sending message: PrismaClientKnownRequestError: 
+Invalid `prisma.message.create()` invocation in
+C:\Github repos\projects\Bob\recommerce-marketplace\apps\api\src\routes\chat.ts:36:46
+
+  33     if (user) realSenderId = user.id;
+  34 }
+  35 
+ÔåÆ 36 const message = await prisma.message.create(
+Foreign key constraint violated on the constraint: `Message_receiverId_fkey`
+    at zr.handleRequestError (C:\Github repos\projects\Bob\recommerce-marketplace\packages\database\node_modules\@prisma\client\src\runtime\RequestHandler.ts:237:13)
+    at zr.handleAndLogRequestError (C:\Github repos\projects\Bob\recommerce-marketplace\packages\database\node_modules\@prisma\client\src\runtime\RequestHandler.ts:183:12)
+    at zr.request (C:\Github repos\projects\Bob\recommerce-marketplace\packages\database\node_modules\@prisma\client\src\runtime\RequestHandler.ts:152:12)
+    at processTicksAndRejections (node:internal/process/task_queues:104:5)
+    at async a (C:\Github repos\projects\Bob\recommerce-marketplace\packages\database\node_modules\@prisma\client\src\runtime\getPrismaClient.ts:808:24)
+    at async C:\Github repos\projects\Bob\recommerce-marketplace\apps\api\src\routes\chat.ts:36:25 {
+  code: 'P2003',
+  meta: {
+    modelName: 'Message',
+    driverAdapterError: DriverAdapterError: ForeignKeyConstraintViolation
+        at PgTransaction.onError (C:\Github repos\projects\Bob\recommerce-marketplace\packages\database\node_modules\@prisma\adapter-pg\dist\index.js:687:11)
+        at PgTransaction.performIO (C:\Github repos\projects\Bob\recommerce-marketplace\packages\database\node_modules\@prisma\adapter-pg\dist\index.js:682:12)
+        at processTicksAndRejections (node:internal/process/task_queues:104:5)
+        at async PgTransaction.queryRaw (C:\Github repos\projects\Bob\recommerce-marketplace\packages\database\node_modules\@prisma\adapter-pg\dist\index.js:602:30)
+        at async e.interpretNode (C:\Github repos\projects\Bob\recommerce-marketplace\packages\database\node_modules\@prisma\client-engine-runtime\src\interpreter\query-interpreter.ts:186:26)
+        at async e.interpretNode (C:\Github repos\projects\Bob\recommerce-marketplace\packages\database\node_modules\@prisma\client-engine-runtime\src\interpreter\query-interpreter.ts:213:41)
+        at async e.interpretNode (C:\Github repos\projects\Bob\recommerce-marketplace\packages\database\node_modules\@prisma\client-engine-runtime\src\interpreter\query-interpreter.ts:128:29)
+        at async e.interpretNode (C:\Github repos\projects\Bob\recommerce-marketplace\packages\database\node_modules\@prisma\client-engine-runtime\src\interpreter\query-interpreter.ts:272:41)
+        at async e.interpretNode (C:\Github repos\projects\Bob\recommerce-marketplace\packages\database\node_modules\@prisma\client-engine-runtime\src\interpreter\query-interpreter.ts:262:25)
+        at async e.run (C:\Github repos\projects\Bob\recommerce-marketplace\packages\database\node_modules\@prisma\client-engine-runtime\src\interpreter\query-interpreter.ts:94:23) {
+      cause: [Object]
+    }
+  },
+  clientVersion: '7.4.2'
+}
+Error sending message: PrismaClientKnownRequestError: 
+Invalid `prisma.message.create()` invocation in
+C:\Github repos\projects\Bob\recommerce-marketplace\apps\api\src\routes\chat.ts:36:46
+
+  33     if (user) realSenderId = user.id;
+  34 }
+  35 
+ÔåÆ 36 const message = await prisma.message.create(
+Foreign key constraint violated on the constraint: `Message_receiverId_fkey`
+    at zr.handleRequestError (C:\Github repos\projects\Bob\recommerce-marketplace\packages\database\node_modules\@prisma\client\src\runtime\RequestHandler.ts:237:13)
+    at zr.handleAndLogRequestError (C:\Github repos\projects\Bob\recommerce-marketplace\packages\database\node_modules\@prisma\client\src\runtime\RequestHandler.ts:183:12)
+    at zr.request (C:\Github repos\projects\Bob\recommerce-marketplace\packages\database\node_modules\@prisma\client\src\runtime\RequestHandler.ts:152:12)
+    at processTicksAndRejections (node:internal/process/task_queues:104:5)
+    at async a (C:\Github repos\projects\Bob\recommerce-marketplace\packages\database\node_modules\@prisma\client\src\runtime\getPrismaClient.ts:808:24)
+    at async C:\Github repos\projects\Bob\recommerce-marketplace\apps\api\src\routes\chat.ts:36:25 {
+  code: 'P2003',
+  meta: {
+    modelName: 'Message',
+    driverAdapterError: DriverAdapterError: ForeignKeyConstraintViolation
+        at PgTransaction.onError (C:\Github repos\projects\Bob\recommerce-marketplace\packages\database\node_modules\@prisma\adapter-pg\dist\index.js:687:11)
+        at PgTransaction.performIO (C:\Github repos\projects\Bob\recommerce-marketplace\packages\database\node_modules\@prisma\adapter-pg\dist\index.js:682:12)
+        at processTicksAndRejections (node:internal/process/task_queues:104:5)
+        at async PgTransaction.queryRaw (C:\Github repos\projects\Bob\recommerce-marketplace\packages\database\node_modules\@prisma\adapter-pg\dist\index.js:602:30)
+        at async e.interpretNode (C:\Github repos\projects\Bob\recommerce-marketplace\packages\database\node_modules\@prisma\client-engine-runtime\src\interpreter\query-interpreter.ts:186:26)
+        at async e.interpretNode (C:\Github repos\projects\Bob\recommerce-marketplace\packages\database\node_modules\@prisma\client-engine-runtime\src\interpreter\query-interpreter.ts:213:41)
+        at async e.interpretNode (C:\Github repos\projects\Bob\recommerce-marketplace\packages\database\node_modules\@prisma\client-engine-runtime\src\interpreter\query-interpreter.ts:128:29)
+        at async e.interpretNode (C:\Github repos\projects\Bob\recommerce-marketplace\packages\database\node_modules\@prisma\client-engine-runtime\src\interpreter\query-interpreter.ts:272:41)
+        at async e.interpretNode (C:\Github repos\projects\Bob\recommerce-marketplace\packages\database\node_modules\@prisma\client-engine-runtime\src\interpreter\query-interpreter.ts:262:25)
+        at async e.run (C:\Github repos\projects\Bob\recommerce-marketplace\packages\database\node_modules\@prisma\client-engine-runtime\src\interpreter\query-interpreter.ts:94:23) {
+      cause: [Object]
+    }
+  },
+  clientVersion: '7.4.2'
+}
+Error sending message: PrismaClientKnownRequestError: 
+Invalid `prisma.message.create()` invocation in
+C:\Github repos\projects\Bob\recommerce-marketplace\apps\api\src\routes\chat.ts:36:46
+
+  33     if (user) realSenderId = user.id;
+  34 }
+  35 
+ÔåÆ 36 const message = await prisma.message.create(
+Foreign key constraint violated on the constraint: `Message_receiverId_fkey`
+    at zr.handleRequestError (C:\Github repos\projects\Bob\recommerce-marketplace\packages\database\node_modules\@prisma\client\src\runtime\RequestHandler.ts:237:13)
+    at zr.handleAndLogRequestError (C:\Github repos\projects\Bob\recommerce-marketplace\packages\database\node_modules\@prisma\client\src\runtime\RequestHandler.ts:183:12)
+    at zr.request (C:\Github repos\projects\Bob\recommerce-marketplace\packages\database\node_modules\@prisma\client\src\runtime\RequestHandler.ts:152:12)
+    at processTicksAndRejections (node:internal/process/task_queues:104:5)
+    at async a (C:\Github repos\projects\Bob\recommerce-marketplace\packages\database\node_modules\@prisma\client\src\runtime\getPrismaClient.ts:808:24)
+    at async C:\Github repos\projects\Bob\recommerce-marketplace\apps\api\src\routes\chat.ts:36:25 {
+  code: 'P2003',
+  meta: {
+    modelName: 'Message',
+    driverAdapterError: DriverAdapterError: ForeignKeyConstraintViolation
+        at PgTransaction.onError (C:\Github repos\projects\Bob\recommerce-marketplace\packages\database\node_modules\@prisma\adapter-pg\dist\index.js:687:11)
+        at PgTransaction.performIO (C:\Github repos\projects\Bob\recommerce-marketplace\packages\database\node_modules\@prisma\adapter-pg\dist\index.js:682:12)
+        at processTicksAndRejections (node:internal/process/task_queues:104:5)
+        at async PgTransaction.queryRaw (C:\Github repos\projects\Bob\recommerce-marketplace\packages\database\node_modules\@prisma\adapter-pg\dist\index.js:602:30)
+        at async e.interpretNode (C:\Github repos\projects\Bob\recommerce-marketplace\packages\database\node_modules\@prisma\client-engine-runtime\src\interpreter\query-interpreter.ts:186:26)
+        at async e.interpretNode (C:\Github repos\projects\Bob\recommerce-marketplace\packages\database\node_modules\@prisma\client-engine-runtime\src\interpreter\query-interpreter.ts:213:41)
+        at async e.interpretNode (C:\Github repos\projects\Bob\recommerce-marketplace\packages\database\node_modules\@prisma\client-engine-runtime\src\interpreter\query-interpreter.ts:128:29)
+        at async e.interpretNode (C:\Github repos\projects\Bob\recommerce-marketplace\packages\database\node_modules\@prisma\client-engine-runtime\src\interpreter\query-interpreter.ts:272:41)
+        at async e.interpretNode (C:\Github repos\projects\Bob\recommerce-marketplace\packages\database\node_modules\@prisma\client-engine-runtime\src\interpreter\query-interpreter.ts:262:25)
+        at async e.run (C:\Github repos\projects\Bob\recommerce-marketplace\packages\database\node_modules\@prisma\client-engine-runtime\src\interpreter\query-interpreter.ts:94:23) {
+      cause: [Object]
+    }
+  },
+  clientVersion: '7.4.2'
+}
+Error sending message: PrismaClientKnownRequestError: 
+Invalid `prisma.message.create()` invocation in
+C:\Github repos\projects\Bob\recommerce-marketplace\apps\api\src\routes\chat.ts:36:46
+
+  33     if (user) realSenderId = user.id;
+  34 }
+  35 
+ÔåÆ 36 const message = await prisma.message.create(
+Foreign key constraint violated on the constraint: `Message_receiverId_fkey`
+    at zr.handleRequestError (C:\Github repos\projects\Bob\recommerce-marketplace\packages\database\node_modules\@prisma\client\src\runtime\RequestHandler.ts:237:13)
+    at zr.handleAndLogRequestError (C:\Github repos\projects\Bob\recommerce-marketplace\packages\database\node_modules\@prisma\client\src\runtime\RequestHandler.ts:183:12)
+    at zr.request (C:\Github repos\projects\Bob\recommerce-marketplace\packages\database\node_modules\@prisma\client\src\runtime\RequestHandler.ts:152:12)
+    at processTicksAndRejections (node:internal/process/task_queues:104:5)
+    at async a (C:\Github repos\projects\Bob\recommerce-marketplace\packages\database\node_modules\@prisma\client\src\runtime\getPrismaClient.ts:808:24)
+    at async C:\Github repos\projects\Bob\recommerce-marketplace\apps\api\src\routes\chat.ts:36:25 {
+  code: 'P2003',
+  meta: {
+    modelName: 'Message',
+    driverAdapterError: DriverAdapterError: ForeignKeyConstraintViolation
+        at PgTransaction.onError (C:\Github repos\projects\Bob\recommerce-marketplace\packages\database\node_modules\@prisma\adapter-pg\dist\index.js:687:11)
+        at PgTransaction.performIO (C:\Github repos\projects\Bob\recommerce-marketplace\packages\database\node_modules\@prisma\adapter-pg\dist\index.js:682:12)
+        at processTicksAndRejections (node:internal/process/task_queues:104:5)
+        at async PgTransaction.queryRaw (C:\Github repos\projects\Bob\recommerce-marketplace\packages\database\node_modules\@prisma\adapter-pg\dist\index.js:602:30)
+        at async e.interpretNode (C:\Github repos\projects\Bob\recommerce-marketplace\packages\database\node_modules\@prisma\client-engine-runtime\src\interpreter\query-interpreter.ts:186:26)
+        at async e.interpretNode (C:\Github repos\projects\Bob\recommerce-marketplace\packages\database\node_modules\@prisma\client-engine-runtime\src\interpreter\query-interpreter.ts:213:41)
+        at async e.interpretNode (C:\Github repos\projects\Bob\recommerce-marketplace\packages\database\node_modules\@prisma\client-engine-runtime\src\interpreter\query-interpreter.ts:128:29)
+        at async e.interpretNode (C:\Github repos\projects\Bob\recommerce-marketplace\packages\database\node_modules\@prisma\client-engine-runtime\src\interpreter\query-interpreter.ts:272:41)
+        at async e.interpretNode (C:\Github repos\projects\Bob\recommerce-marketplace\packages\database\node_modules\@prisma\client-engine-runtime\src\interpreter\query-interpreter.ts:262:25)
+        at async e.run (C:\Github repos\projects\Bob\recommerce-marketplace\packages\database\node_modules\@prisma\client-engine-runtime\src\interpreter\query-interpreter.ts:94:23) {
+      cause: [Object]
+    }
+  },
+  clientVersion: '7.4.2'
+}
+Error sending message: PrismaClientKnownRequestError: 
+Invalid `prisma.message.create()` invocation in
+C:\Github repos\projects\Bob\recommerce-marketplace\apps\api\src\routes\chat.ts:36:46
+
+  33     if (user) realSenderId = user.id;
+  34 }
+  35 
+ÔåÆ 36 const message = await prisma.message.create(
+Foreign key constraint violated on the constraint: `Message_receiverId_fkey`
+    at zr.handleRequestError (C:\Github repos\projects\Bob\recommerce-marketplace\packages\database\node_modules\@prisma\client\src\runtime\RequestHandler.ts:237:13)
+    at zr.handleAndLogRequestError (C:\Github repos\projects\Bob\recommerce-marketplace\packages\database\node_modules\@prisma\client\src\runtime\RequestHandler.ts:183:12)
+    at zr.request (C:\Github repos\projects\Bob\recommerce-marketplace\packages\database\node_modules\@prisma\client\src\runtime\RequestHandler.ts:152:12)
+    at processTicksAndRejections (node:internal/process/task_queues:104:5)
+    at async a (C:\Github repos\projects\Bob\recommerce-marketplace\packages\database\node_modules\@prisma\client\src\runtime\getPrismaClient.ts:808:24)
+    at async C:\Github repos\projects\Bob\recommerce-marketplace\apps\api\src\routes\chat.ts:36:25 {
+  code: 'P2003',
+  meta: {
+    modelName: 'Message',
+    driverAdapterError: DriverAdapterError: ForeignKeyConstraintViolation
+        at PgTransaction.onError (C:\Github repos\projects\Bob\recommerce-marketplace\packages\database\node_modules\@prisma\adapter-pg\dist\index.js:687:11)
+        at PgTransaction.performIO (C:\Github repos\projects\Bob\recommerce-marketplace\packages\database\node_modules\@prisma\adapter-pg\dist\index.js:682:12)
+        at processTicksAndRejections (node:internal/process/task_queues:104:5)
+        at async PgTransaction.queryRaw (C:\Github repos\projects\Bob\recommerce-marketplace\packages\database\node_modules\@prisma\adapter-pg\dist\index.js:602:30)
+        at async e.interpretNode (C:\Github repos\projects\Bob\recommerce-marketplace\packages\database\node_modules\@prisma\client-engine-runtime\src\interpreter\query-interpreter.ts:186:26)
+        at async e.interpretNode (C:\Github repos\projects\Bob\recommerce-marketplace\packages\database\node_modules\@prisma\client-engine-runtime\src\interpreter\query-interpreter.ts:213:41)
+        at async e.interpretNode (C:\Github repos\projects\Bob\recommerce-marketplace\packages\database\node_modules\@prisma\client-engine-runtime\src\interpreter\query-interpreter.ts:128:29)
+        at async e.interpretNode (C:\Github repos\projects\Bob\recommerce-marketplace\packages\database\node_modules\@prisma\client-engine-runtime\src\interpreter\query-interpreter.ts:272:41)
+        at async e.interpretNode (C:\Github repos\projects\Bob\recommerce-marketplace\packages\database\node_modules\@prisma\client-engine-runtime\src\interpreter\query-interpreter.ts:262:25)
+        at async e.run (C:\Github repos\projects\Bob\recommerce-marketplace\packages\database\node_modules\@prisma\client-engine-runtime\src\interpreter\query-interpreter.ts:94:23) {
+      cause: [Object]
+    }
+  },
+  clientVersion: '7.4.2'
+}
+Error sending message: PrismaClientKnownRequestError: 
+Invalid `prisma.message.create()` invocation in
+C:\Github repos\projects\Bob\recommerce-marketplace\apps\api\src\routes\chat.ts:36:46
+
+  33     if (user) realSenderId = user.id;
+  34 }
+  35 
+ÔåÆ 36 const message = await prisma.message.create(
+Foreign key constraint violated on the constraint: `Message_receiverId_fkey`
+    at zr.handleRequestError (C:\Github repos\projects\Bob\recommerce-marketplace\packages\database\node_modules\@prisma\client\src\runtime\RequestHandler.ts:237:13)
+    at zr.handleAndLogRequestError (C:\Github repos\projects\Bob\recommerce-marketplace\packages\database\node_modules\@prisma\client\src\runtime\RequestHandler.ts:183:12)
+    at zr.request (C:\Github repos\projects\Bob\recommerce-marketplace\packages\database\node_modules\@prisma\client\src\runtime\RequestHandler.ts:152:12)
+    at processTicksAndRejections (node:internal/process/task_queues:104:5)
+    at async a (C:\Github repos\projects\Bob\recommerce-marketplace\packages\database\node_modules\@prisma\client\src\runtime\getPrismaClient.ts:808:24)
+    at async C:\Github repos\projects\Bob\recommerce-marketplace\apps\api\src\routes\chat.ts:36:25 {
+  code: 'P2003',
+  meta: {
+    modelName: 'Message',
+    driverAdapterError: DriverAdapterError: ForeignKeyConstraintViolation
+        at PgTransaction.onError (C:\Github repos\projects\Bob\recommerce-marketplace\packages\database\node_modules\@prisma\adapter-pg\dist\index.js:687:11)
+        at PgTransaction.performIO (C:\Github repos\projects\Bob\recommerce-marketplace\packages\database\node_modules\@prisma\adapter-pg\dist\index.js:682:12)
+        at processTicksAndRejections (node:internal/process/task_queues:104:5)
+        at async PgTransaction.queryRaw (C:\Github repos\projects\Bob\recommerce-marketplace\packages\database\node_modules\@prisma\adapter-pg\dist\index.js:602:30)
+        at async e.interpretNode (C:\Github repos\projects\Bob\recommerce-marketplace\packages\database\node_modules\@prisma\client-engine-runtime\src\interpreter\query-interpreter.ts:186:26)
+        at async e.interpretNode (C:\Github repos\projects\Bob\recommerce-marketplace\packages\database\node_modules\@prisma\client-engine-runtime\src\interpreter\query-interpreter.ts:213:41)
+        at async e.interpretNode (C:\Github repos\projects\Bob\recommerce-marketplace\packages\database\node_modules\@prisma\client-engine-runtime\src\interpreter\query-interpreter.ts:128:29)
+        at async e.interpretNode (C:\Github repos\projects\Bob\recommerce-marketplace\packages\database\node_modules\@prisma\client-engine-runtime\src\interpreter\query-interpreter.ts:272:41)
+        at async e.interpretNode (C:\Github repos\projects\Bob\recommerce-marketplace\packages\database\node_modules\@prisma\client-engine-runtime\src\interpreter\query-interpreter.ts:262:25)
+        at async e.run (C:\Github repos\projects\Bob\recommerce-marketplace\packages\database\node_modules\@prisma\client-engine-runtime\src\interpreter\query-interpreter.ts:94:23) {
+      cause: [Object]
+    }
+  },
+  clientVersion: '7.4.2'
+}
+Error sending message: PrismaClientKnownRequestError: 
+Invalid `prisma.message.create()` invocation in
+C:\Github repos\projects\Bob\recommerce-marketplace\apps\api\src\routes\chat.ts:36:46
+
+  33     if (user) realSenderId = user.id;
+  34 }
+  35 
+ÔåÆ 36 const message = await prisma.message.create(
+Foreign key constraint violated on the constraint: `Message_receiverId_fkey`
+    at zr.handleRequestError (C:\Github repos\projects\Bob\recommerce-marketplace\packages\database\node_modules\@prisma\client\src\runtime\RequestHandler.ts:237:13)
+    at zr.handleAndLogRequestError (C:\Github repos\projects\Bob\recommerce-marketplace\packages\database\node_modules\@prisma\client\src\runtime\RequestHandler.ts:183:12)
+    at zr.request (C:\Github repos\projects\Bob\recommerce-marketplace\packages\database\node_modules\@prisma\client\src\runtime\RequestHandler.ts:152:12)
+    at processTicksAndRejections (node:internal/process/task_queues:104:5)
+    at async a (C:\Github repos\projects\Bob\recommerce-marketplace\packages\database\node_modules\@prisma\client\src\runtime\getPrismaClient.ts:808:24)
+    at async C:\Github repos\projects\Bob\recommerce-marketplace\apps\api\src\routes\chat.ts:36:25 {
+  code: 'P2003',
+  meta: {
+    modelName: 'Message',
+    driverAdapterError: DriverAdapterError: ForeignKeyConstraintViolation
+        at PgTransaction.onError (C:\Github repos\projects\Bob\recommerce-marketplace\packages\database\node_modules\@prisma\adapter-pg\dist\index.js:687:11)
+        at PgTransaction.performIO (C:\Github repos\projects\Bob\recommerce-marketplace\packages\database\node_modules\@prisma\adapter-pg\dist\index.js:682:12)
+        at processTicksAndRejections (node:internal/process/task_queues:104:5)
+        at async PgTransaction.queryRaw (C:\Github repos\projects\Bob\recommerce-marketplace\packages\database\node_modules\@prisma\adapter-pg\dist\index.js:602:30)
+        at async e.interpretNode (C:\Github repos\projects\Bob\recommerce-marketplace\packages\database\node_modules\@prisma\client-engine-runtime\src\interpreter\query-interpreter.ts:186:26)
+        at async e.interpretNode (C:\Github repos\projects\Bob\recommerce-marketplace\packages\database\node_modules\@prisma\client-engine-runtime\src\interpreter\query-interpreter.ts:213:41)
+        at async e.interpretNode (C:\Github repos\projects\Bob\recommerce-marketplace\packages\database\node_modules\@prisma\client-engine-runtime\src\interpreter\query-interpreter.ts:128:29)
+        at async e.interpretNode (C:\Github repos\projects\Bob\recommerce-marketplace\packages\database\node_modules\@prisma\client-engine-runtime\src\interpreter\query-interpreter.ts:272:41)
+        at async e.interpretNode (C:\Github repos\projects\Bob\recommerce-marketplace\packages\database\node_modules\@prisma\client-engine-runtime\src\interpreter\query-interpreter.ts:262:25)
+        at async e.run (C:\Github repos\projects\Bob\recommerce-marketplace\packages\database\node_modules\@prisma\client-engine-runtime\src\interpreter\query-interpreter.ts:94:23) {
+      cause: [Object]
+    }
+  },
+  clientVersion: '7.4.2'
+}
+[32m[nodemon] restarting due to changes...[39m
+[32m[nodemon] starting `ts-node src/index.ts`[39m
+[dotenv@17.3.1] injecting env (0) from .env -- tip: ÔÜÖ´©Å  specify custom .env file path with { path: '/custom/path/.env' }
+[dotenv@17.3.1] injecting env (0) from .env -- tip: ÔÜÖ´©Å  load multiple .env files with { path: ['.env.local', '.env'] }
+Recommerce API is running on port 4000
+[32m[nodemon] restarting due to changes...[39m
+[32m[nodemon] starting `ts-node src/index.ts`[39m
+[dotenv@17.3.1] injecting env (0) from .env -- tip: ÔÜÖ´©Å  write to custom object with { processEnv: myObject }
+[dotenv@17.3.1] injecting env (0) from .env -- tip: ÔÜÖ´©Å  enable debug logging with { debug: true }
+Recommerce API is running on port 4000
+[32m[nodemon] restarting due to changes...[39m
+[32m[nodemon] starting `ts-node src/index.ts`[39m
+[dotenv@17.3.1] injecting env (0) from .env -- tip: ­ƒñû agentic secret storage: https://dotenvx.com/as2
+[dotenv@17.3.1] injecting env (0) from .env -- tip: ÔÜÖ´©Å  specify custom .env file path with { path: '/custom/path/.env' }
+Recommerce API is running on port 4000
+[32m[nodemon] restarting due to changes...[39m
+[32m[nodemon] starting `ts-node src/index.ts`[39m
+[dotenv@17.3.1] injecting env (0) from .env -- tip: ÔÜÖ´©Å  override existing env vars with { override: true }
+[dotenv@17.3.1] injecting env (0) from .env -- tip: ÔÜÖ´©Å  suppress all logs with { quiet: true }
+Recommerce API is running on port 4000
