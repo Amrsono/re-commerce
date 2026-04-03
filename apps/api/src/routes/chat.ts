@@ -1,10 +1,10 @@
-import { Router } from 'express';
+import { Router, Request, Response } from 'express';
 import { prisma } from '../db';
 
 const router = Router();
 
 // Get messages for a specific order/ticket
-router.get('/ticket/:ticketId', async (req, res) => {
+router.get('/ticket/:ticketId', async (req: Request, res: Response) => {
     try {
         const { ticketId } = req.params;
         const messages = await prisma.message.findMany({
@@ -21,7 +21,7 @@ router.get('/ticket/:ticketId', async (req, res) => {
 });
 
 // Send a message
-router.post('/send', async (req, res) => {
+router.post('/send', async (req: Request, res: Response) => {
     try {
         const { content, senderId, senderEmail, receiverId, ticketId } = req.body;
 
@@ -92,7 +92,7 @@ router.post('/send', async (req, res) => {
 });
 
 // Admin endpoint: Get all tickets that have chat messages (Inbox view)
-router.get('/admin/inbox', async (req, res) => {
+router.get('/admin/inbox', async (req: Request, res: Response) => {
     try {
         const tickets = await prisma.ticket.findMany({
             where: {

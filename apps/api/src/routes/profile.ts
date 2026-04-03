@@ -1,13 +1,15 @@
-import { Router } from 'express';
+import { Router, Request, Response } from 'express';
 import { prisma } from '../db';
 
 const router = Router();
 
 // Get customer profile overview
-router.get('/:identifier', async (req, res) => {
+router.get('/:identifier', async (req: Request, res: Response) => {
     try {
-        const { identifier } = req.params;
-        
+        const identifier = req.params.identifier;
+        if (!identifier) {
+            return res.status(400).json({ success: false, error: 'Identifier is required' });
+        }
         const isEmail = identifier.includes('@');
 
         const user = await prisma.user.findFirst({
@@ -38,9 +40,12 @@ router.get('/:identifier', async (req, res) => {
 });
 
 // Get order details & history
-router.get('/:identifier/orders', async (req, res) => {
+router.get('/:identifier/orders', async (req: Request, res: Response) => {
     try {
-        const { identifier } = req.params;
+        const identifier = req.params.identifier;
+        if (!identifier) {
+            return res.status(400).json({ success: false, error: 'Identifier is required' });
+        }
         const isEmail = identifier.includes('@');
 
         // First resolve the actual DB User ID

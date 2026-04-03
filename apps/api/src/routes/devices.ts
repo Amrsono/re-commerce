@@ -1,4 +1,4 @@
-import { Router } from 'express';
+import { Router, Request, Response } from 'express';
 import { prisma, redis } from '../db';
 
 const router = Router();
@@ -17,7 +17,7 @@ function estimatePrice(condition: string, model: string): number {
     return Math.round(base * (multiplier[condition] ?? 0.75));
 }
 
-router.post('/submit', async (req, res) => {
+router.post('/submit', async (req: Request, res: Response) => {
     try {
         const { brand, model, specs, condition, userEmail, userName, userId, estimatedPrice, status } = req.body;
 
@@ -76,7 +76,7 @@ router.post('/submit', async (req, res) => {
 });
 
 // Backfill existing devices that have null estimatedVal
-router.post('/backfill-prices', async (req, res) => {
+router.post('/backfill-prices', async (req: Request, res: Response) => {
     try {
         const devices = await prisma.device.findMany({
             where: { estimatedVal: null }
