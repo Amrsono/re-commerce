@@ -28,9 +28,9 @@ services:
           name: recommerce-db
           property: connectionString
       - key: REDIS_URL
-        value: ""  # Add Upstash Redis URL here after setup
+        value: ""  # REQUIRED: Add your Upstash or Redis connection string here
       - key: CORS_ORIGIN
-        value: "https://recommerce-web.onrender.com"  # Update if using a custom domain
+        value: "https://recommerce-web.onrender.com" # Should match the web-admin service URL
 
   # ── Next.js Frontend ────────────────────────────────────
   - type: web
@@ -40,6 +40,7 @@ services:
     rootDir: apps/web-admin
     buildCommand: npm install && npm run build
     startCommand: npm run start
+    healthCheckPath: /
     envVars:
       - key: NODE_ENV
         value: production

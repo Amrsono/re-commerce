@@ -19,4 +19,10 @@ export const redis = new Redis(process.env.REDIS_URL || 'redis://localhost:6379'
     return Math.min(times * 200, 2000);
   },
 });
-redis.on('error', (err) => console.warn('[Redis] Connection error (non-fatal):', err.message));
+redis.on('error', (err) => {
+  if (!process.env.REDIS_URL) {
+    console.warn('[Redis] No REDIS_URL provided. Connection will fail (expected if not configured).');
+  } else {
+    console.warn('[Redis] Connection error:', err.message);
+  }
+});
