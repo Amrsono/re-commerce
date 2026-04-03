@@ -48,7 +48,7 @@ export function AuthProvider({ children }: { children: ReactNode }) {
 
         // Resolve the real DB user by fetching profile from API
         try {
-            const res = await fetch(`http://localhost:4000/api/profile/${encodeURIComponent(email)}`);
+            const res = await fetch(`${process.env.NEXT_PUBLIC_API_URL || 'http://localhost:4000/api'}/profile/${encodeURIComponent(email)}`);
             const data = await res.json();
 
             let loggedInUser: User;

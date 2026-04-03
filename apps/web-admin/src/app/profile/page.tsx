@@ -53,7 +53,7 @@ export default function ProfilePage() {
 
     const fetchProfile = () => {
         if (user?.email) {
-            fetch(`http://localhost:4000/api/profile/${user.email}`)
+            fetch(`${process.env.NEXT_PUBLIC_API_URL || 'http://localhost:4000/api'}/profile/${user.email}`)
                 .then(res => res.json())
                 .then(data => {
                     if (data.success) setProfileData(data.user);
@@ -75,7 +75,7 @@ export default function ProfilePage() {
     const handleAcceptOffer = async (ticketId: string) => {
         setIsAccepting(true);
         try {
-            const res = await fetch(`http://localhost:4000/api/tickets/${ticketId}/accept-offer`, {
+            const res = await fetch(`${process.env.NEXT_PUBLIC_API_URL || 'http://localhost:4000/api'}/tickets/${ticketId}/accept-offer`, {
                 method: 'POST',
                 headers: { 'Content-Type': 'application/json' }
             });
@@ -94,7 +94,7 @@ export default function ProfilePage() {
     const handleRejectOffer = async (ticketId: string) => {
         setIsRejecting(true);
         try {
-            const res = await fetch(`http://localhost:4000/api/tickets/${ticketId}/reject-offer`, {
+            const res = await fetch(`${process.env.NEXT_PUBLIC_API_URL || 'http://localhost:4000/api'}/tickets/${ticketId}/reject-offer`, {
                 method: 'POST',
                 headers: { 'Content-Type': 'application/json' }
             });

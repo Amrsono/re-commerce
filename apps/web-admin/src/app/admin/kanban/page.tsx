@@ -23,7 +23,7 @@ export default function KanbanCommandCenter() {
 
     const fetchTickets = async () => {
         try {
-            const res = await fetch('http://localhost:4000/api/tickets');
+            const res = await fetch(`${process.env.NEXT_PUBLIC_API_URL || 'http://localhost:4000/api'}/tickets`);
             const data = await res.json();
             if (data.success && Array.isArray(data.tickets)) {
                 // Format SLAs
@@ -52,7 +52,7 @@ export default function KanbanCommandCenter() {
     const updateStatus = async (ticketId: string, newStatus: Ticket['status']) => {
         setIsUpdating(ticketId);
         try {
-            const res = await fetch(`http://localhost:4000/api/tickets/${ticketId}/status`, {
+            const res = await fetch(`${process.env.NEXT_PUBLIC_API_URL || 'http://localhost:4000/api'}/tickets/${ticketId}/status`, {
                 method: 'PATCH',
                 headers: { 'Content-Type': 'application/json' },
                 body: JSON.stringify({ status: newStatus }),
@@ -92,7 +92,7 @@ export default function KanbanCommandCenter() {
     const toggleUrgency = async (ticketId: string, currentUrgency: boolean) => {
         setIsUpdating(ticketId);
         try {
-            const res = await fetch(`http://localhost:4000/api/tickets/${ticketId}/status`, {
+            const res = await fetch(`${process.env.NEXT_PUBLIC_API_URL || 'http://localhost:4000/api'}/tickets/${ticketId}/status`, {
                 method: 'PATCH',
                 headers: { 'Content-Type': 'application/json' },
                 body: JSON.stringify({ isUrgent: !currentUrgency }),

@@ -73,7 +73,7 @@ export default function OfferJourney() {
                 userName: user?.name,
             };
 
-            const res = await fetch('http://localhost:4000/api/devices/submit', {
+            const res = await fetch(`${process.env.NEXT_PUBLIC_API_URL || 'http://localhost:4000/api'}/devices/submit`, {
                 method: 'POST',
                 headers: { 'Content-Type': 'application/json' },
                 body: JSON.stringify(apiData)
