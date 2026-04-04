@@ -4,7 +4,7 @@ import { useState, useEffect, useRef } from "react";
 import { useAuth } from "@/contexts/AuthContext";
 import { 
     Search, User as UserIcon, Send, Clock, CircleDot, 
-    Smartphone, MessageSquare, ShieldCheck 
+    Smartphone, MessageSquare, ShieldCheck, Image as ImageIcon
 } from "lucide-react";
 
 export default function AdminChatDashboard() {
@@ -237,6 +237,26 @@ export default function AdminChatDashboard() {
                             <h5 className="font-bold text-white mb-1">{activeTicket.device?.brand} {activeTicket.device?.model}</h5>
                             <p className="text-emerald-400 font-bold text-lg">£{activeTicket.device?.estimatedVal}</p>
                         </div>
+
+                        {/* Customer Uploaded Photos */}
+                        {activeTicket.device?.specs?.scannedPhoto && (
+                            <div className="mb-6">
+                                <div className="flex items-center gap-2 mb-3 text-slate-500">
+                                    <ImageIcon className="w-3.5 h-3.5" />
+                                    <span className="text-[10px] font-bold uppercase tracking-wider">Uploaded Visuals</span>
+                                </div>
+                                <div className="relative group">
+                                    {/* eslint-disable-next-line @next/next/no-img-element */}
+                                    <img 
+                                        src={activeTicket.device.specs.scannedPhoto} 
+                                        alt="Customer upload" 
+                                        className="w-full rounded-xl border border-slate-800 hover:border-blue-500/50 transition-colors cursor-zoom-in shadow-lg"
+                                        onClick={() => window.open(activeTicket.device.specs.scannedPhoto, '_blank')}
+                                    />
+                                    <div className="absolute inset-0 bg-blue-600/0 group-hover:bg-blue-600/10 transition-all rounded-xl pointer-events-none" />
+                                </div>
+                            </div>
+                        )}
 
                         <div className="space-y-4 text-sm">
                             <div className="flex justify-between border-b border-slate-800 pb-3">

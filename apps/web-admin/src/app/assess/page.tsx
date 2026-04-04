@@ -39,6 +39,15 @@ type DeviceInfo = {
 
 // ─── Helpers ──────────────────────────────────────────────────────────────────
 
+function fileToBase64(file: File): Promise<string> {
+    return new Promise((resolve, reject) => {
+        const reader = new FileReader();
+        reader.readAsDataURL(file);
+        reader.onload = () => resolve(reader.result as string);
+        reader.onerror = error => reject(error);
+    });
+}
+
 function parseConditionFromText(text: string): string {
     const lower = text.toLowerCase();
     if (lower.includes("mint") || lower.includes("perfect") || lower.includes("flawless")) return "Mint";
@@ -166,13 +175,21 @@ export default function AssessPage() {
         fileInputRef.current?.click();
     };
 
-    const handleFileSelected = (e: React.ChangeEvent<HTMLInputElement>) => {
+    const handleFileSelected = async (e: React.ChangeEvent<HTMLInputElement>) => {
         const file = e.target.files?.[0];
         if (!file) return;
 
         const url = URL.createObjectURL(file);
         setScanPhotoUrl(url);
         setScanState("analysing");
+
+        // Convert to base64 for persistence
+        try {
+            const base64 = await fileToBase64(file);
+            setDevice(d => ({ ...d, scannedPhoto: base64 }));
+        } catch (err) {
+            console.error("File conversion failed:", err);
+        }
 
         // Add a user-side "photo sent" message
         setMessages(prev => [...prev, {
@@ -216,6 +233,7 @@ export default function AssessPage() {
                 condition: finalDevice.condition,
                 askedPrice: finalDevice.askedPrice,
                 estimatedPrice,
+                scannedPhoto: finalDevice.scannedPhoto, // PERSISTED PHOTO
             },
             condition: finalDevice.condition,
             userEmail: user?.email,
