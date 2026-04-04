@@ -3,8 +3,9 @@
 import { useState } from "react";
 import { useRouter } from "next/navigation";
 import { useAuth } from "@/contexts/AuthContext";
-import { ArrowRight, ArrowLeft, CheckCircle2, AlertTriangle, MonitorSmartphone, MapPin, DollarSign, CheckSquare, Camera, UploadCloud, Image as ImageIcon } from "lucide-react";
+import { ArrowRight, ArrowLeft, CheckCircle2, AlertTriangle, MonitorSmartphone, MapPin, DollarSign, CheckSquare, Camera, UploadCloud, Image as ImageIcon, Smartphone } from "lucide-react";
 import Link from "next/link";
+import { QRCodeSVG } from "qrcode.react";
 
 type OfferData = {
     make: string;
@@ -37,6 +38,46 @@ export default function OfferJourney() {
         photos: { front: null, back: null, box: null },
         address: "",
         acceptFee: false,
+    });
+
+    const [handoffSessionId, setHandoffSessionId] = useState<string | null>(null);
+    const [showQR, setShowQR] = useState(false);
+
+    // Initialise handoff session when reaching step 3
+    if (step === 3 && !handoffSessionId) {
+        setHandoffSessionId(`sid_${Date.now()}_${Math.random().toString(36).substring(7)}`);
+    }
+
+    // Polling hook for mobile QR handoff sync
+    // eslint-disable-next-line react-hooks/rules-of-hooks
+    import("react").then(({ useEffect }) => {
+        useEffect(() => {
+            if (step !== 3 || !handoffSessionId || !showQR) return;
+
+            const interval = setInterval(async () => {
+                try {
+                    const res = await fetch(`${process.env.NEXT_PUBLIC_API_URL || 'http://localhost:4000/api'}/devices/handoff/${handoffSessionId}`);
+                    if (!res.ok) return;
+                    const result = await res.json();
+                    if (result.success && result.session.status === 'UPLOADED') {
+                        // Assign the photo to the first empty slot
+                        setData(prev => {
+                            const p = { ...prev.photos };
+                            if (!p.front) p.front = result.session.photoUrl;
+                            else if (!p.back) p.back = result.session.photoUrl;
+                            else if (!p.box) p.box = result.session.photoUrl;
+                            return { ...prev, photos: p };
+                        });
+                        // Automatically generate a new session ID for the *next* photo scan
+                        setHandoffSessionId(`sid_${Date.now()}_${Math.random().toString(36).substring(7)}`);
+                    }
+                } catch (err) {
+                    console.error('Polling error', err);
+                }
+            }, 2000);
+
+            return () => clearInterval(interval);
+        }, [step, handoffSessionId, showQR, setData]);
     });
 
     // Redirect to login if user is not authenticated
@@ -328,7 +369,29 @@ export default function OfferJourney() {
                                 </div>
                             ))}
                         </div>
-                        <div className="bg-blue-500/10 border border-blue-500/20 rounded-xl p-4 mt-4">
+
+                        {/* Mobile QR Request Option */}
+                        <div className="mt-6 flex flex-col items-center border border-slate-800 rounded-xl p-4 bg-slate-900/50">
+                            <button
+                                onClick={() => setShowQR(!showQR)}
+                                className="w-full bg-slate-800 hover:bg-slate-700 text-white rounded-xl px-4 py-3 flex items-center justify-center gap-2 text-sm font-semibold transition-all active:scale-95"
+                            >
+                                <Smartphone className="w-5 h-5 text-blue-400" />
+                                {showQR ? "Hide Mobile Scanner" : "Use Phone Camera Instead"}
+                            </button>
+                            
+                            {showQR && handoffSessionId && (
+                                <div className="mt-6 bg-white rounded-[24px] p-6 flex flex-col items-center animate-in zoom-in-95 duration-200">
+                                    <QRCodeSVG value={`${typeof window !== 'undefined' ? window.location.origin : ''}/assess/camera/${handoffSessionId}`} size={180} level="H" />
+                                    <p className="text-slate-900 font-bold text-sm mt-4 text-center">Scan with Phone Camera</p>
+                                    <p className="text-slate-500 text-xs text-center mt-1 w-48">
+                                        Take a photo on your phone and it will securely sync here.
+                                    </p>
+                                </div>
+                            )}
+                        </div>
+
+                        <div className="bg-blue-500/10 border border-blue-500/20 rounded-xl p-4 mt-6">
                             <p className="text-sm text-blue-300 flex items-center gap-2">
                                 <CheckCircle2 className="w-4 h-4 text-blue-500 shrink-0" />
                                 Clear photos assist the vision AI agent in matching your quoted asking price instantly.
