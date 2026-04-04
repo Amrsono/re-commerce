@@ -22,7 +22,7 @@ const handoffSessions = new Map<string, { photoUrl: string | null; status: 'PEND
 
 router.post('/handoff/:sessionId', async (req: Request, res: Response) => {
     try {
-        const { sessionId } = req.params;
+        const sessionId = req.params.sessionId as string;
         const { photoUrl } = req.body;
         if (!photoUrl) {
             return res.status(400).json({ success: false, error: 'photoUrl is required' });
@@ -36,7 +36,7 @@ router.post('/handoff/:sessionId', async (req: Request, res: Response) => {
 });
 
 router.get('/handoff/:sessionId', async (req: Request, res: Response) => {
-    const { sessionId } = req.params;
+    const sessionId = req.params.sessionId as string;
     const session = handoffSessions.get(sessionId);
     if (!session) {
         // Return PENDING if not created yet (allow desktop to poll before mobile opens)
