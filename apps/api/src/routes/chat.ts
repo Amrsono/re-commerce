@@ -58,9 +58,11 @@ router.post('/send', async (req: Request, res: Response) => {
             if (admin) {
                 realReceiverId = admin.id;
             } else {
-                // If no admin exists at all, we could fail or create a dummy one.
-                // It's safer to fail logically so we don't insert bad FKs.
-                return res.status(400).json({ success: false, error: 'No admin user found to receive message' });
+                console.error('[Chat] No user found with role: ADMIN');
+                return res.status(400).json({ 
+                    success: false, 
+                    error: 'Support system is currently unavailable. Please check back soon.' 
+                });
             }
         }
 
