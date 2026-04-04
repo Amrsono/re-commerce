@@ -152,6 +152,21 @@ app.get('/health', (req, res) => {
     res.json({ status: 'ok', service: 'recommerce-api' });
 });
 
+app.get('/api/debug/users', async (req, res) => {
+    try {
+        const users = await prisma.user.findMany({
+            select: { email: true, role: true }
+        });
+        const counts = await prisma.user.groupBy({
+            by: ['role'],
+            _count: true
+        });
+        res.json({ success: true, counts, users });
+    } catch (error) {
+        res.status(500).json({ success: false, error: error.message });
+    }
+});
+
 app.patch('/api/tickets/:id/status', async (req, res) => {
     try {
         const { id } = req.params;
