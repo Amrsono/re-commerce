@@ -283,6 +283,27 @@ app.post('/api/tickets/:id/reject-offer', async (req, res) => {
     }
 });
 
-app.listen(port, () => {
+// Auto-seed admin user on startup
+async function ensureAdmin() {
+    try {
+        const adminExists = await prisma.user.findFirst({ where: { role: 'ADMIN' } });
+        if (!adminExists) {
+            console.log('[Startup] No admin found, creating default admin...');
+            await prisma.user.upsert({
+                where: { email: 'admin@test.com' },
+                update: { role: 'ADMIN', name: 'System Admin' },
+                create: { email: 'admin@test.com', name: 'System Admin', role: 'ADMIN' }
+            });
+            console.log('[Startup] Default admin created: admin@test.com');
+        } else {
+            console.log('[Startup] Verified: Admin account exists.');
+        }
+    } catch (error) {
+        console.error('[Startup] Failed to ensure admin:', error.message);
+    }
+}
+
+app.listen(port, async () => {
+    await ensureAdmin();
     console.log(`Recommerce API is running on port ${port}`);
 });
