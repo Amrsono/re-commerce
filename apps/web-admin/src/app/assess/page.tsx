@@ -3,10 +3,11 @@
 import { useState, useRef, useEffect, useCallback } from "react";
 import { useAuth } from "@/contexts/AuthContext";
 import { useRouter } from "next/navigation";
+import { QRCodeSVG } from "qrcode.react";
 import {
     Bot, User as UserIcon, Send, Sparkles, Loader2, DollarSign,
     Camera, ArrowLeft, CheckCircle2, AlertTriangle, ScanLine,
-    UploadCloud, Image as ImageIcon, X
+    UploadCloud, Image as ImageIcon, X, Smartphone
 } from "lucide-react";
 import Link from "next/link";
 
@@ -94,6 +95,7 @@ export default function AssessPage() {
     const [input, setInput] = useState("");
     const [isTyping, setIsTyping] = useState(false);
     const [ticketId, setTicketId] = useState<string | null>(null);
+    const [handoffSessionId, setHandoffSessionId] = useState<string | null>(null);
 
     const [device, setDevice] = useState<DeviceInfo>({
         deviceName: "", storage: "", condition: "", askedPrice: "", scannedPhoto: null
@@ -113,6 +115,28 @@ export default function AssessPage() {
     useEffect(() => {
         messagesEndRef.current?.scrollIntoView({ behavior: "smooth" });
     }, [messages, isTyping]);
+
+    // ─── Polling for mobile handoff sync ────────────────────────────────────
+    useEffect(() => {
+        if (step !== "ASK_CONDITION" || !handoffSessionId) return;
+
+        const interval = setInterval(async () => {
+            try {
+                const res = await fetch(`${process.env.NEXT_PUBLIC_API_URL || 'http://localhost:4000/api'}/devices/handoff/${handoffSessionId}`);
+                if (!res.ok) return;
+                const data = await res.json();
+                if (data.success && data.session.status === 'UPLOADED') {
+                    clearInterval(interval);
+                    handleMobileUpload(data.session.photoUrl);
+                }
+            } catch (err) {
+                console.error('Polling error', err);
+            }
+        }, 2000);
+
+        return () => clearInterval(interval);
+        // eslint-disable-next-line react-hooks/exhaustive-deps
+    }, [step, handoffSessionId]);
 
     // ─── Core: add AI reply after a delay ───────────────────────────────────
     const aiReply = useCallback((content: string | React.ReactNode, delay = 1200) => {
@@ -139,7 +163,9 @@ export default function AssessPage() {
         } else if (step === "ASK_STORAGE") {
             setDevice(d => ({ ...d, storage: text }));
             setStep("ASK_CONDITION");
-            aiReply(<ConditionPrompt onScan={triggerScan} />, 1000);
+            const sid = `sid_${Date.now()}`;
+            setHandoffSessionId(sid);
+            aiReply(<ConditionPrompt onScan={triggerScan} sessionId={sid} />, 1000);
 
         } else if (step === "ASK_CONDITION") {
             // Manual condition entry
@@ -174,6 +200,38 @@ export default function AssessPage() {
     const triggerScan = () => {
         fileInputRef.current?.click();
     };
+
+    const handleMobileUpload = useCallback((base64Url: string) => {
+        setScanPhotoUrl(base64Url);
+        setScanState("analysing");
+        setDevice(d => ({ ...d, scannedPhoto: base64Url }));
+
+        setMessages(prev => [...prev, {
+            role: "user",
+            content: (
+                <div className="space-y-2">
+                    <p className="text-sm opacity-80">📸 Photo synced from mobile</p>
+                    {/* eslint-disable-next-line @next/next/no-img-element */}
+                    <img src={base64Url} alt="Device scan" className="rounded-xl max-h-48 object-cover w-full" />
+                </div>
+            )
+        }]);
+
+        setIsTyping(true);
+        setTimeout(() => {
+            setScanState("done");
+            setIsTyping(false);
+            setMessages(prev => [...prev, {
+                role: "ai",
+                content: <ScanResultCard onConfirm={(cond) => {
+                    setDevice(d => ({ ...d, condition: cond }));
+                    setScanState("done");
+                    setStep("ASK_PRICE");
+                    aiReply(`Condition locked as **${cond}**. What's your asking price in £? (Enter numbers only, e.g. 450)`);
+                }} />
+            }]);
+        }, 2500);
+    }, [aiReply]);
 
     const handleFileSelected = async (e: React.ChangeEvent<HTMLInputElement>) => {
         const file = e.target.files?.[0];
@@ -418,20 +476,43 @@ function StepPills({ current }: { current: string }) {
     );
 }
 
-function ConditionPrompt({ onScan }: { onScan: () => void }) {
+function ConditionPrompt({ onScan, sessionId }: { onScan: () => void; sessionId?: string }) {
+    const [showQR, setShowQR] = useState(false);
+    const domain = typeof window !== 'undefined' ? window.location.origin : '';
+    const qrUrl = `${domain}/assess/camera/${sessionId}`;
+
     return (
         <div className="space-y-4">
             <p>
-                Now let&apos;s assess the condition. You can either <strong className="text-white">upload a photo</strong> for our Vision AI to analyse it, or just type the condition below (Mint / Good / Poor / Broken).
+                Now let&apos;s assess the condition. You can <strong className="text-white">upload a photo</strong>, use your phone camera, or just type the condition below (Mint / Good / Poor / Broken).
             </p>
-            <button
-                onClick={onScan}
-                className="w-full bg-gradient-to-r from-blue-600 to-blue-500 hover:from-blue-500 hover:to-blue-400 text-white rounded-xl px-4 py-3.5 flex items-center justify-center gap-3 text-sm font-semibold transition-all shadow-lg shadow-blue-600/20 active:scale-95"
-            >
-                <ScanLine className="w-5 h-5 animate-pulse" />
-                Start Visual Diagnostic Scan
-                <Camera className="w-4 h-4 opacity-70" />
-            </button>
+            <div className="flex gap-2">
+                <button
+                    onClick={onScan}
+                    className="flex-1 bg-slate-800 hover:bg-slate-700 text-white rounded-xl px-4 py-3.5 flex items-center justify-center gap-2 text-sm font-semibold transition-all active:scale-95"
+                >
+                    <UploadCloud className="w-5 h-5 text-blue-400" />
+                    From PC
+                </button>
+                {sessionId && (
+                    <button
+                        onClick={() => setShowQR(!showQR)}
+                        className="flex-1 bg-gradient-to-r from-blue-600 to-blue-500 hover:from-blue-500 hover:to-blue-400 text-white rounded-xl px-4 py-3.5 flex items-center justify-center gap-2 text-sm font-semibold transition-all shadow-lg active:scale-95"
+                    >
+                        <Smartphone className="w-5 h-5 animate-pulse" />
+                        Use Phone
+                    </button>
+                )}
+            </div>
+            
+            {showQR && sessionId && (
+                <div className="bg-white rounded-[24px] p-6 flex flex-col items-center animate-in zoom-in-95 duration-200 shadow-xl mx-auto w-fit">
+                    <QRCodeSVG value={qrUrl} size={180} level="H" />
+                    <p className="text-slate-900 font-bold text-sm mt-4 text-center">Scan with Phone Camera</p>
+                    <p className="text-slate-500 text-xs text-center mt-1">Leave this page open to sync automatically</p>
+                </div>
+            )}
+            
             <p className="text-xs text-slate-400 text-center">
                 Or just type: <span className="text-slate-300 font-medium">Mint</span>, <span className="text-slate-300 font-medium">Good</span>, <span className="text-slate-300 font-medium">Poor</span>, or <span className="text-slate-300 font-medium">Broken</span>
             </p>

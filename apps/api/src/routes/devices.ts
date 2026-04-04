@@ -16,6 +16,34 @@ function estimatePrice(condition: string, model: string): number {
     };
     return Math.round(base * (multiplier[condition] ?? 0.75));
 }
+// Handoff sessions repository (temporary memory storage)
+// In a scalable production app, use Redis for this
+const handoffSessions = new Map<string, { photoUrl: string | null; status: 'PENDING' | 'UPLOADED' }>();
+
+router.post('/handoff/:sessionId', async (req: Request, res: Response) => {
+    try {
+        const { sessionId } = req.params;
+        const { photoUrl } = req.body;
+        if (!photoUrl) {
+            return res.status(400).json({ success: false, error: 'photoUrl is required' });
+        }
+        handoffSessions.set(sessionId, { photoUrl, status: 'UPLOADED' });
+        res.json({ success: true });
+    } catch (err) {
+        console.error('Handoff POST error:', err);
+        res.status(500).json({ success: false, error: 'Internal server error' });
+    }
+});
+
+router.get('/handoff/:sessionId', async (req: Request, res: Response) => {
+    const { sessionId } = req.params;
+    const session = handoffSessions.get(sessionId);
+    if (!session) {
+        // Return PENDING if not created yet (allow desktop to poll before mobile opens)
+        return res.json({ success: true, session: { status: 'PENDING', photoUrl: null } });
+    }
+    res.json({ success: true, session });
+});
 
 router.post('/submit', async (req: Request, res: Response) => {
     try {
@@ -27,26 +55,26 @@ router.post('/submit', async (req: Request, res: Response) => {
 
         // 1. Upsert user
         const user = await prisma.user.upsert({
-            where: { email: userEmail },
-            update: { name: userName || undefined },
+            where: { email: userEmail as string },
+            update: { name: (userName as string) || undefined },
             create: {
-                id: userId || undefined,
-                email: userEmail,
-                name: userName || userEmail.split('@')[0],
+                id: (userId as string) || undefined,
+                email: userEmail as string,
+                name: (userName as string) || (userEmail as string).split('@')[0],
                 role: 'CUSTOMER',
             },
         });
 
         // 2. Compute estimated value (use client-provided or server-computed)
-        const computedEstimate = estimatedPrice || estimatePrice(condition, model);
+        const computedEstimate = estimatedPrice || estimatePrice(condition as string, model as string);
 
         // 3. Create Device entry with estimated value
         const device = await prisma.device.create({
             data: {
-                brand,
-                model,
-                specs,
-                condition,
+                brand: brand as string,
+                model: model as string,
+                specs: specs as any,
+                condition: condition as string,
                 estimatedVal: computedEstimate,
                 userId: user.id,
             },
