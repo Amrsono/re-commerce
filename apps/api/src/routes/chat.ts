@@ -50,9 +50,12 @@ router.post('/send', async (req: Request, res: Response) => {
             console.log(`[Chat] Resolved sender by email: ${senderEmail} -> ${user.id}`);
         }
         
-        console.log(`[Chat] Sending message: sender=${realSenderId}, receiver=${realReceiverId}, ticket=${ticketId}`);
+        // Resolve mock admin "1" for sender or receiver
+        if (senderId === "1" || !senderId) {
+            const admin = await prisma.user.findFirst({ where: { role: 'ADMIN' }});
+            if (admin) realSenderId = admin.id;
+        }
 
-        // If sending to mock admin "1", resolve real admin DB CUID
         if (receiverId === "1" || !receiverId) {
             const admin = await prisma.user.findFirst({ where: { role: 'ADMIN' }});
             if (admin) {
