@@ -43,8 +43,11 @@ export default function AdminLayout({
                     </nav>
 
                     <div className="pt-4 border-t border-slate-800 mt-auto">
-                        <div className="flex items-center justify-between px-3 py-2 text-sm text-slate-400">
-                            <span className="truncate">{user?.email}</span>
+                        <div className="flex items-center gap-3 px-3 py-2 text-sm text-slate-400">
+                            <Link href="/profile" className="w-8 h-8 rounded-full bg-gradient-to-br from-blue-500 to-purple-600 flex items-center justify-center text-[10px] font-bold text-white hover:scale-110 transition-all active:scale-95 shadow-lg shadow-blue-500/20 shrink-0">
+                                {user?.name?.[0]}
+                            </Link>
+                            <span className="truncate flex-1">{user?.email}</span>
                             <button onClick={logout} className="hover:text-white transition-colors p-1" title="Sign Out">
                                 <LogOut className="w-4 h-4" />
                             </button>

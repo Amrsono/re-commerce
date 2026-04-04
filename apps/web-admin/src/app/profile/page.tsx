@@ -21,7 +21,8 @@ import {
     Truck,
     MapPin,
     Package,
-    Loader2
+    Loader2,
+    Calendar
 } from "lucide-react";
 import Link from "next/link";
 import OrderTracker from "@/components/OrderTracker";
@@ -50,6 +51,7 @@ export default function ProfilePage() {
     const [selectedTicketId, setSelectedTicketId] = useState<string | null>(null);
     const [isAccepting, setIsAccepting] = useState(false);
     const [isRejecting, setIsRejecting] = useState(false);
+    const [isApproving, setIsApproving] = useState(false);
 
     const fetchProfile = () => {
         if (user?.email) {
@@ -109,6 +111,24 @@ export default function ProfilePage() {
         }
     };
 
+    const handleApproveVisit = async (ticketId: string) => {
+        setIsApproving(true);
+        try {
+            const res = await fetch(`${process.env.NEXT_PUBLIC_API_URL || 'http://localhost:4000/api'}/tickets/${ticketId}/approve-visit`, {
+                method: 'POST',
+                headers: { 'Content-Type': 'application/json' }
+            });
+            const data = await res.json();
+            if (data.success) {
+                fetchProfile();
+            }
+        } catch (err) {
+            console.error('Failed to approve visit:', err);
+        } finally {
+            setIsApproving(false);
+        }
+    };
+
     const handleOpenChatForTicket = (ticketId: string) => {
         setSelectedTicketId(null);
         setActiveTab('chat');
@@ -132,9 +152,9 @@ export default function ProfilePage() {
                                 <span className="absolute top-2 right-2 w-2 h-2 bg-blue-500 rounded-full border border-[#0A0A0A]" />
                             )}
                         </button>
-                        <div className="w-8 h-8 rounded-full bg-gradient-to-br from-blue-500 to-purple-600 flex items-center justify-center text-xs font-bold text-white">
+                        <Link href="/profile" className="w-8 h-8 rounded-full bg-gradient-to-br from-blue-500 to-purple-600 flex items-center justify-center text-xs font-bold text-white hover:scale-110 transition-transform active:scale-95 shadow-lg shadow-blue-500/20">
                             {user.name?.[0]}
-                        </div>
+                        </Link>
                     </div>
                 </div>
             </nav>
@@ -294,9 +314,11 @@ export default function ProfilePage() {
                                         onBack={() => setSelectedTicketId(null)}
                                         onAcceptOffer={handleAcceptOffer}
                                         onRejectOffer={handleRejectOffer}
+                                        onApproveVisit={handleApproveVisit}
                                         onOpenChat={() => handleOpenChatForTicket(selectedTicket.id)}
                                         isAccepting={isAccepting}
                                         isRejecting={isRejecting}
+                                        isApproving={isApproving}
                                     />
                                 )}
 
@@ -372,14 +394,16 @@ export default function ProfilePage() {
 
 // ─── Ticket Detail Component ──────────────────────
 
-function TicketDetail({ ticket, onBack, onAcceptOffer, onRejectOffer, onOpenChat, isAccepting, isRejecting }: {
+function TicketDetail({ ticket, onBack, onAcceptOffer, onRejectOffer, onApproveVisit, onOpenChat, isAccepting, isRejecting, isApproving }: {
     ticket: any;
     onBack: () => void;
     onAcceptOffer: (id: string) => void;
     onRejectOffer: (id: string) => void;
+    onApproveVisit: (id: string) => void;
     onOpenChat: () => void;
     isAccepting: boolean;
     isRejecting: boolean;
+    isApproving: boolean;
 }) {
     const device = ticket.device;
     const specs = device?.specs || {};
@@ -541,7 +565,34 @@ function TicketDetail({ ticket, onBack, onAcceptOffer, onRejectOffer, onOpenChat
                 {ticket.status === 'ENGINEER_VISIT_SCHEDULED' && (
                     <div className="flex-[3] bg-purple-500/10 border border-purple-500/20 text-purple-300 rounded-xl px-6 py-4 font-medium text-sm flex items-center justify-center gap-3">
                         <Truck className="w-5 h-5 text-purple-400" />
-                        Engineer visit scheduled — we'll contact you within 24 hours
+                        Engineer visit {ticket.visitStatus === 'APPROVED' ? 'confirmed' : 'scheduled'} — {ticket.scheduledVisit ? `Pickup on ${new Date(ticket.scheduledVisit).toLocaleString()}` : "we'll contact you within 24 hours"}
+                    </div>
+                )}
+
+                {ticket.scheduledVisit && ticket.visitStatus === 'PENDING' && (
+                    <div className="flex-[3] bg-blue-600/10 border border-blue-500/30 p-6 rounded-2xl animate-in zoom-in-95 duration-500">
+                        <div className="flex items-start gap-4 mb-6">
+                            <div className="p-3 bg-blue-600/20 rounded-2xl">
+                                <Calendar className="w-6 h-6 text-blue-400" />
+                            </div>
+                            <div>
+                                <h4 className="text-xl font-bold text-white mb-1">Pickup Scheduled</h4>
+                                <p className="text-slate-400 text-sm leading-relaxed">
+                                    Our logistics team has proposed a pickup for <strong className="text-blue-400">{new Date(ticket.scheduledVisit).toLocaleString()}</strong>. Please approve this date to lock it in.
+                                </p>
+                            </div>
+                        </div>
+                        <button
+                            onClick={() => onApproveVisit(ticket.id)}
+                            disabled={isApproving}
+                            className="w-full bg-blue-600 hover:bg-blue-500 disabled:bg-slate-800 disabled:text-slate-500 text-white rounded-xl py-4 font-bold transition-all shadow-lg shadow-blue-600/20 active:scale-[0.98] flex items-center justify-center gap-2"
+                        >
+                            {isApproving ? (
+                                <><Loader2 className="w-5 h-5 animate-spin" /> Confirming...</>
+                            ) : (
+                                <><CheckCircle2 className="w-5 h-5" /> Approve Pickup Date</>
+                            )}
+                        </button>
                     </div>
                 )}
 

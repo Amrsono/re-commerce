@@ -46,9 +46,17 @@ model Ticket {
   customer     User         @relation(fields: [customerId], references: [id])
   engineerId   String?      // Assigned engineer for mandatory visits
   isUrgent     Boolean      @default(false)
+  scheduledVisit DateTime?  // Admin proposed date/time
+  visitStatus  VisitStatus? @default(PENDING)
   messages     Message[]
   createdAt    DateTime     @default(now())
   updatedAt    DateTime     @updatedAt
+}
+
+enum VisitStatus {
+  PENDING
+  APPROVED
+  REJECTED
 }
 
 model Message {

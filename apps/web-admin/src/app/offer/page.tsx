@@ -112,8 +112,13 @@ export default function OfferJourney() {
                     Recommerce<span className="text-blue-500">AI</span>
                 </Link>
                 {step < 6 && (
-                    <div className="text-sm font-medium text-slate-400">
-                        Step {step} of 5
+                    <div className="flex items-center gap-4">
+                        <div className="text-sm font-medium text-slate-400 hidden sm:block">
+                            Step {step} of 5
+                        </div>
+                        <Link href="/profile" className="w-8 h-8 rounded-full bg-gradient-to-br from-blue-500 to-purple-600 flex items-center justify-center text-[10px] font-bold text-white hover:scale-110 transition-all active:scale-95 shadow-lg shadow-blue-500/20 border border-white/5">
+                            {user?.name?.[0]}
+                        </Link>
                     </div>
                 )}
             </div>

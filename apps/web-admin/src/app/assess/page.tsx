@@ -270,6 +270,9 @@ export default function AssessPage() {
                 </div>
                 <div className="flex items-center gap-3">
                     <StepPills current={step} />
+                    <Link href="/profile" className="w-8 h-8 rounded-full bg-gradient-to-br from-blue-500 to-purple-600 flex items-center justify-center text-[10px] font-bold text-white hover:scale-110 transition-all active:scale-95 shadow-lg shadow-blue-500/20 border border-white/5 ml-2">
+                        {user.name?.[0]}
+                    </Link>
                     <span className="text-sm font-medium text-slate-400 hidden md:block">{user.name}</span>
                 </div>
             </header>

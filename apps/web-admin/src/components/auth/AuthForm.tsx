@@ -63,7 +63,7 @@ export function AuthForm() {
                         value={email}
                         onChange={(e) => setEmail(e.target.value)}
                         className="w-full bg-slate-950 border border-slate-800 rounded-lg px-4 py-3 text-slate-100 placeholder:text-slate-600 focus:outline-none focus:border-blue-500 focus:ring-1 focus:ring-blue-500 transition-all"
-                        placeholder="you@example.com (use admin@ for admin)"
+                        placeholder="you@example.com"
                     />
                 </div>
 
@@ -79,15 +79,7 @@ export function AuthForm() {
                     />
                 </div>
 
-                {isLogin && (
-                    <div className="bg-blue-500/5 border border-blue-500/10 rounded-lg p-3">
-                        <p className="text-xs text-blue-400 leading-relaxed">
-                            <span className="font-semibold block mb-1">Admin Preview Credentials:</span>
-                            Email: <code className="bg-blue-500/10 px-1 rounded">admin@test.com</code><br />
-                            Pass: <code className="bg-blue-500/10 px-1 rounded">Password@26</code>
-                        </p>
-                    </div>
-                )}
+
 
                 <button
                     type="submit"

@@ -155,7 +155,7 @@ app.get('/health', (req, res) => {
 app.patch('/api/tickets/:id/status', async (req, res) => {
     try {
         const { id } = req.params;
-        const { status, isUrgent } = req.body;
+        const { status, isUrgent, scheduledVisit, visitStatus } = req.body;
 
         const data: any = {};
         if (status) {
@@ -169,6 +169,15 @@ app.patch('/api/tickets/:id/status', async (req, res) => {
             data.isUrgent = isUrgent;
         }
 
+        if (scheduledVisit) {
+            data.scheduledVisit = new Date(scheduledVisit);
+            data.visitStatus = 'PENDING';
+        }
+
+        if (visitStatus) {
+            data.visitStatus = visitStatus;
+        }
+
         const ticket = await prisma.ticket.update({
             where: { id },
             data,
@@ -179,6 +188,25 @@ app.patch('/api/tickets/:id/status', async (req, res) => {
     } catch (error) {
         console.error('Error updating ticket:', error);
         res.status(500).json({ success: false, error: 'Failed to update ticket' });
+    }
+});
+
+// Approve a scheduled visit
+app.post('/api/tickets/:id/approve-visit', async (req, res) => {
+    try {
+        const { id } = req.params;
+        const ticket = await prisma.ticket.update({
+            where: { id },
+            data: { 
+                visitStatus: 'APPROVED',
+                status: 'ENGINEER_VISIT_SCHEDULED'
+            },
+            include: { device: true }
+        });
+        res.json({ success: true, ticket });
+    } catch (error) {
+        console.error('Error approving visit:', error);
+        res.status(500).json({ success: false, error: 'Failed' });
     }
 });
 

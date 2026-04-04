@@ -10,9 +10,11 @@ import {
 type Ticket = {
     id: string;
     device: string;
-    status: 'OPEN' | 'PRICING_ESTIMATED' | 'ENGINEER_VISIT_SCHEDULED' | 'RESOLVED';
+    status: 'OPEN' | 'PRICING_ESTIMATED' | 'ENGINEER_VISIT_SCHEDULED' | 'RESOLVED' | 'REJECTED';
     slaDeadline: string;
     isUrgent: boolean;
+    scheduledVisit?: string;
+    visitStatus?: 'PENDING' | 'APPROVED' | 'REJECTED';
 };
 
 export default function KanbanCommandCenter() {
@@ -20,6 +22,9 @@ export default function KanbanCommandCenter() {
     const [searchTerm, setSearchTerm] = useState('');
     const [activeFilter, setActiveFilter] = useState<'ALL' | 'URGENT' | 'ACTIVE'>('ALL');
     const [isUpdating, setIsUpdating] = useState<string | null>(null);
+    const [selectedTicketForSchedule, setSelectedTicketForSchedule] = useState<Ticket | null>(null);
+    const [scheduleDate, setScheduleDate] = useState('');
+    const [scheduleTime, setScheduleTime] = useState('');
 
     const fetchTickets = async () => {
         try {
@@ -107,6 +112,33 @@ export default function KanbanCommandCenter() {
         }
     };
 
+    const handleScheduleVisit = async () => {
+        if (!selectedTicketForSchedule || !scheduleDate || !scheduleTime) return;
+        
+        setIsUpdating(selectedTicketForSchedule.id);
+        try {
+            const dateTime = `${scheduleDate}T${scheduleTime}:00`;
+            const res = await fetch(`${process.env.NEXT_PUBLIC_API_URL || 'http://localhost:4000/api'}/tickets/${selectedTicketForSchedule.id}/status`, {
+                method: 'PATCH',
+                headers: { 'Content-Type': 'application/json' },
+                body: JSON.stringify({ 
+                    scheduledVisit: dateTime,
+                    visitStatus: 'PENDING'
+                }),
+            });
+            if (res.ok) {
+                setSelectedTicketForSchedule(null);
+                setScheduleDate('');
+                setScheduleTime('');
+                await fetchTickets();
+            }
+        } catch (err) {
+            console.error("Failed to schedule visit", err);
+        } finally {
+            setIsUpdating(null);
+        }
+    };
+
     const getStatusColumn = (status: Ticket['status'], title: string, icon: React.ReactNode, nextStatus?: Ticket['status'], actionLabel?: string, ActionIcon?: any) => {
         const columnTickets = filteredTickets.filter(t => t.status === status);
 
@@ -168,7 +200,13 @@ export default function KanbanCommandCenter() {
 
                                     {nextStatus && (
                                         <button 
-                                            onClick={() => updateStatus(ticket.id, nextStatus)}
+                                            onClick={() => {
+                                                if (actionLabel === 'Schedule Visit') {
+                                                    setSelectedTicketForSchedule(ticket);
+                                                } else {
+                                                    updateStatus(ticket.id, nextStatus);
+                                                }
+                                            }}
                                             disabled={isUpdating === ticket.id}
                                             className="opacity-0 group-hover:opacity-100 flex items-center gap-1.5 text-[10px] font-bold bg-blue-600 hover:bg-blue-500 text-white px-2.5 py-1.5 rounded-lg transition-all transform translate-y-2 group-hover:translate-y-0 disabled:opacity-50"
                                         >
@@ -268,6 +306,64 @@ export default function KanbanCommandCenter() {
                     <CheckCircle2 className="w-4 h-4 text-emerald-500" />
                 )}
             </div>
+
+            {/* Schedule Modal */}
+            {selectedTicketForSchedule && (
+                <div className="fixed inset-0 z-[100] flex items-center justify-center p-4 bg-slate-950/80 backdrop-blur-sm animate-in fade-in duration-300">
+                    <div className="bg-slate-900 border border-slate-800 rounded-3xl p-8 w-full max-w-md shadow-2xl animate-in zoom-in-95 duration-300">
+                        <div className="flex items-center gap-3 mb-6">
+                            <div className="p-3 bg-blue-600/10 rounded-2xl">
+                                <Calendar className="w-6 h-6 text-blue-500" />
+                            </div>
+                            <div>
+                                <h3 className="text-xl font-bold text-white">Schedule Visit</h3>
+                                <p className="text-slate-400 text-sm">Propose a pickup date for this device.</p>
+                            </div>
+                        </div>
+
+                        <div className="space-y-4 mb-8">
+                            <div>
+                                <label className="block text-xs font-bold text-slate-500 uppercase tracking-widest mb-2 px-1">Pickup Date</label>
+                                <input 
+                                    type="date" 
+                                    value={scheduleDate}
+                                    onChange={(e) => setScheduleDate(e.target.value)}
+                                    className="w-full bg-slate-950 border border-slate-800 rounded-xl px-4 py-3 text-white focus:ring-2 focus:ring-blue-500 outline-none transition-all [color-scheme:dark]"
+                                />
+                            </div>
+                            <div>
+                                <label className="block text-xs font-bold text-slate-500 uppercase tracking-widest mb-2 px-1">Preferred Time</label>
+                                <input 
+                                    type="time" 
+                                    value={scheduleTime}
+                                    onChange={(e) => setScheduleTime(e.target.value)}
+                                    className="w-full bg-slate-950 border border-slate-800 rounded-xl px-4 py-3 text-white focus:ring-2 focus:ring-blue-500 outline-none transition-all [color-scheme:dark]"
+                                />
+                            </div>
+                        </div>
+
+                        <div className="flex gap-3">
+                            <button 
+                                onClick={() => setSelectedTicketForSchedule(null)}
+                                className="flex-1 px-6 py-3 rounded-xl bg-slate-800 text-white font-bold text-sm hover:bg-slate-700 transition-colors"
+                            >
+                                Cancel
+                            </button>
+                            <button 
+                                onClick={handleScheduleVisit}
+                                disabled={!scheduleDate || !scheduleTime || isUpdating === selectedTicketForSchedule.id}
+                                className="flex-[2] px-6 py-3 rounded-xl bg-blue-600 text-white font-bold text-sm hover:bg-blue-500 transition-all disabled:opacity-50 disabled:hover:bg-blue-600 flex items-center justify-center gap-2"
+                            >
+                                {isUpdating === selectedTicketForSchedule.id ? (
+                                    <div className="w-4 h-4 border-2 border-white/30 border-t-white rounded-full animate-spin" />
+                                ) : (
+                                    "Dispatch Request"
+                                )}
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            )}
         </div>
     );
 }
