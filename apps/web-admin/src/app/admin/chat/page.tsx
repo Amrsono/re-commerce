@@ -175,18 +175,31 @@ export default function AdminChatDashboard() {
 
                         <div ref={scrollRef} className="flex-1 overflow-y-auto p-6 space-y-6 z-10">
                             {messages.map((msg) => {
-                                const isAdmin = msg.senderId === user?.id; // Or role check
+                                const isMsgAdmin = msg.sender?.role === 'ADMIN';
                                 return (
-                                    <div key={msg.id} className={`flex ${isAdmin ? 'justify-end' : 'justify-start'}`}>
-                                        <div className={`max-w-[70%] p-4 rounded-2xl text-sm leading-relaxed shadow-lg ${
-                                            isAdmin 
-                                                ? 'bg-blue-600 text-white rounded-tr-none' 
-                                                : 'bg-slate-800 text-slate-200 rounded-tl-none border border-slate-700'
-                                        }`}>
-                                            <p>{msg.content}</p>
-                                            <span className={`text-[10px] mt-2 block ${isAdmin ? 'text-blue-200' : 'text-slate-500'}`}>
-                                                {new Date(msg.createdAt).toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' })}
-                                            </span>
+                                    <div key={msg.id} className={`flex flex-col ${isMsgAdmin ? 'items-end' : 'items-start'}`}>
+                                        <div className={`flex items-end gap-2 ${isMsgAdmin ? 'flex-row-reverse' : 'flex-row'}`}>
+                                            <div className={`w-8 h-8 rounded-full flex items-center justify-center text-[10px] font-bold shadow-lg ${
+                                                isMsgAdmin ? 'bg-blue-500 text-white' : 'bg-slate-700 text-slate-300'
+                                            }`}>
+                                                {isMsgAdmin ? 'AD' : 'CU'}
+                                            </div>
+                                            <div className={`max-w-[80%] p-4 rounded-2xl text-sm leading-relaxed shadow-xl ${
+                                                isMsgAdmin 
+                                                    ? 'bg-blue-600 text-white rounded-tr-none' 
+                                                    : 'bg-slate-800 text-slate-200 rounded-tl-none border border-slate-700'
+                                            }`}>
+                                                <p>{msg.content}</p>
+                                                <div className="flex items-center gap-2 mt-2">
+                                                    <span className={`text-[10px] uppercase font-bold opacity-50`}>
+                                                        {isMsgAdmin ? 'Support' : activeTicket.customer?.name}
+                                                    </span>
+                                                    <span className="text-[10px] opacity-40">•</span>
+                                                    <span className={`text-[10px] opacity-50`}>
+                                                        {new Date(msg.createdAt).toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' })}
+                                                    </span>
+                                                </div>
+                                            </div>
                                         </div>
                                     </div>
                                 );
