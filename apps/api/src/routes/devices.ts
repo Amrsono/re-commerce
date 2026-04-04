@@ -1,5 +1,5 @@
 import { Router, Request, Response } from 'express';
-import { prisma, redis } from '../db';
+import { prisma } from '../db';
 
 const router = Router();
 
@@ -65,8 +65,6 @@ router.post('/submit', async (req: Request, res: Response) => {
             }
         });
 
-        // 5. Set Redis key for AI pricing SLA (5 mins)
-        await redis.setex(`sla:pricing:${device.id}`, 300, 'pending');
 
         res.json({ success: true, device, ticket });
     } catch (error) {

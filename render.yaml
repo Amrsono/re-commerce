@@ -27,8 +27,6 @@ services:
         fromDatabase:
           name: recommerce-db
           property: connectionString
-      - key: REDIS_URL
-        value: ""  # REQUIRED: Add your Upstash or Redis connection string here
       - key: CORS_ORIGIN
         value: "https://recommerce-web.onrender.com" # Should match the web-admin service URL
 

@@ -2,7 +2,7 @@
 import express from 'express';
 import cors from 'cors';
 import dotenv from 'dotenv';
-import { prisma, redis } from './db';
+import { prisma } from './db';
 import devicesRouter from './routes/devices';
 import profileRouter from './routes/profile';
 import chatRouter from './routes/chat';
