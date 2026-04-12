@@ -8,13 +8,7 @@ dotenv.config();
  * Uses globalThis to persist the instance across function hot-starts.
  */
 const prismaClientSingleton = () => {
-  return new PrismaClient({
-    datasources: {
-      db: {
-        url: process.env.DATABASE_URL || process.env.POSTGRES_PRISMA_URL
-      }
-    }
-  } as any);
+  return new PrismaClient();
 };
 
 type PrismaClientSingleton = ReturnType<typeof prismaClientSingleton>;
