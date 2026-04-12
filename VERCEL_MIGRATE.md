@@ -14,6 +14,17 @@ You need to create two separate projects in Vercel. Both will point to the same 
 5.  **Build Command**: `npm run build`
 6.  **Environment Variables**:
     *   `NEXT_PUBLIC_API_URL`: The URL of Project B (e.g., `https://makeuse-api.vercel.app/api`)
+    *   `DATABASE_URL`: Your Neon/Postgres connection string (Required for `prisma generate`)
+
+---
+
+## 2. Monorepo Configuration (Vercel Dashboard)
+To prevent the "Prisma schema not found" error during build:
+1.  Go to **Settings** > **General**.
+2.  Locate **Root Directory** and ensure it is set to `apps/web-admin`.
+3.  **CRITICAL**: Ensure that **"Include source files from outside of the Root Directory"** is enabled. This allows the build process to reach `../../packages/database`.
+
+---
 
 ### Project B: `makeuse-api` (Backend)
 1.  **Import** the repository again in Vercel.
