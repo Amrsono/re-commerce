@@ -3,7 +3,10 @@
   "version": "1.0.0",
   "private": true,
   "workspaces": [
-    "apps/*",
+    "apps/makeuse-admin",
+    "apps/api",
+    "apps/ai-pricing",
+    "apps/mobile",
     "packages/*"
   ],
   "dependencies": {

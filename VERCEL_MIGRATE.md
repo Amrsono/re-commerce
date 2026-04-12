@@ -9,7 +9,7 @@ You need to create two separate projects in Vercel. Both will point to the same 
 ### Project A: `makeuse-web` (Frontend)
 1.  **Import** the repository in Vercel.
 2.  **Project Name**: `makeuse-web`
-3.  **Root Directory**: `apps/web-admin` (Important!)
+3.  **Root Directory**: `apps/makeuse-admin` (Important!)
 4.  **Framework Preset**: `Next.js`
 5.  **Build Command**: `npm run build`
 6.  **Environment Variables**:
@@ -21,7 +21,7 @@ You need to create two separate projects in Vercel. Both will point to the same 
 ## 2. Monorepo Configuration (Vercel Dashboard)
 To prevent the "Prisma schema not found" error during build:
 1.  Go to **Settings** > **General**.
-2.  Locate **Root Directory** and ensure it is set to `apps/web-admin`.
+2.  Locate **Root Directory** and ensure it is set to `apps/makeuse-admin`.
 3.  **CRITICAL**: Ensure that **"Include source files from outside of the Root Directory"** is enabled. This allows the build process to reach `../../packages/database`.
 
 ---
