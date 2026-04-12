@@ -9,7 +9,11 @@ dotenv.config();
  */
 const prismaClientSingleton = () => {
   return new PrismaClient({
-    datasourceUrl: process.env.DATABASE_URL || process.env.POSTGRES_PRISMA_URL
+    datasources: {
+      db: {
+        url: process.env.DATABASE_URL || process.env.POSTGRES_PRISMA_URL
+      }
+    }
   } as any);
 };
 
