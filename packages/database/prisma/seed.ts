@@ -1,7 +1,4 @@
-const path = require('path')
-// Force resolve the absolute path to the generated client
-const clientPath = path.join(__dirname, '../generated/client/index.js')
-const { PrismaClient } = require(clientPath)
+const { PrismaClient } = require('@prisma/client')
 const bcrypt = require('bcryptjs')
 
 const prisma = new PrismaClient()

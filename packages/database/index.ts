@@ -1,2 +1,2 @@
-export * from './generated/client';
+export * from '@prisma/client';
 export { PrismaPg } from '@prisma/adapter-pg';
