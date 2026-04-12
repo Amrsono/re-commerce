@@ -1,9 +1,19 @@
 "use client";
 
 import { createContext, useContext, useState, ReactNode, useEffect } from "react";
-import { useRouter, usePathname } from "next/navigation";
+import { useRouter } from "next/navigation";
+import { 
+    onAuthStateChanged, 
+    signInWithEmailAndPassword, 
+    createUserWithEmailAndPassword, 
+    signOut, 
+    updateProfile,
+    User as FirebaseUser
+} from "firebase/auth";
+import { doc, getDoc, setDoc } from "firebase/firestore";
+import { auth, db } from "@/lib/firebase";
 
-type UserRole = "CUSTOMER" | "ADMIN" | null;
+type UserRole = "CUSTOMER" | "ADMIN" | "ENGINEER" | null;
 
 interface User {
     id: string;
@@ -15,8 +25,8 @@ interface User {
 interface AuthContextType {
     user: User | null;
     login: (email: string, pass: string, redirectTo?: string) => Promise<void>;
-    register: (name: string, email: string, pass: string, redirectTo?: string) => void;
-    logout: () => void;
+    register: (name: string, email: string, pass: string, redirectTo?: string) => Promise<void>;
+    logout: () => Promise<void>;
     isLoading: boolean;
 }
 
@@ -26,87 +36,81 @@ export function AuthProvider({ children }: { children: ReactNode }) {
     const [user, setUser] = useState<User | null>(null);
     const [isLoading, setIsLoading] = useState(true);
     const router = useRouter();
-    const pathname = usePathname();
 
     useEffect(() => {
-        // Mock check for existing session
-        const storedUser = localStorage.getItem("recommerce_user");
-        if (storedUser) {
-            setUser(JSON.parse(storedUser));
-        }
-        setIsLoading(false);
+        const unsubscribe = onAuthStateChanged(auth, async (firebaseUser) => {
+            if (firebaseUser) {
+                // Fetch additional user data (like role) from Firestore
+                const userDoc = await getDoc(doc(db, "users", firebaseUser.uid));
+                const userData = userDoc.data();
+
+                setUser({
+                    id: firebaseUser.uid,
+                    name: firebaseUser.displayName || firebaseUser.email?.split("@")[0] || "User",
+                    email: firebaseUser.email || "",
+                    role: (userData?.role as UserRole) || "CUSTOMER"
+                });
+            } else {
+                setUser(null);
+            }
+            setIsLoading(false);
+        });
+
+        return () => unsubscribe();
     }, []);
 
     const login = async (email: string, pass: string, redirectTo?: string) => {
-        console.log(`[Auth] Attempting login for: ${email}`);
-
-        if (email === "admin@test.com" && pass !== "Password@26") {
-            console.error("[Auth] Admin password mismatch");
-            alert("Incorrect admin password.");
-            return;
-        }
-
-        // Resolve the real DB user by fetching profile from API
+        console.log(`[Auth] Attempting Firebase login for: ${email}`);
         try {
-            const res = await fetch(`${process.env.NEXT_PUBLIC_API_URL || 'http://localhost:4000/api'}/profile/${encodeURIComponent(email)}`);
-            const data = await res.json();
+            const userCredential = await signInWithEmailAndPassword(auth, email, pass);
+            const firebaseUser = userCredential.user;
+            
+            // Get role from Firestore
+            const userDoc = await getDoc(doc(db, "users", firebaseUser.uid));
+            const role = userDoc.data()?.role || "CUSTOMER";
 
-            let loggedInUser: User;
-
-            if (data.success && data.user) {
-                // Use the real DB ID and role
-                loggedInUser = {
-                    id: data.user.id,
-                    name: data.user.name || email.split("@")[0],
-                    email,
-                    role: data.user.role as UserRole,
-                };
-                console.log(`[Auth] Resolved real DB user: id=${loggedInUser.id}, role=${loggedInUser.role}`);
-            } else {
-                // Fallback: user not in DB yet, use temporary mock
-                console.warn(`[Auth] User not found in DB, using temporary ID`);
-                const isAdmin = email === "admin@test.com";
-                loggedInUser = {
-                    id: isAdmin ? "1" : Date.now().toString(),
-                    name: email.split("@")[0],
-                    email,
-                    role: isAdmin ? "ADMIN" : "CUSTOMER",
-                };
-            }
-
-            setUser(loggedInUser);
-            localStorage.setItem("recommerce_user", JSON.stringify(loggedInUser));
-            const dest = loggedInUser.role === "ADMIN" ? "/admin" : (redirectTo || "/profile");
+            const dest = role === "ADMIN" ? "/admin" : (redirectTo || "/profile");
             console.log(`[Auth] Redirecting to: ${dest}`);
             router.push(dest);
-        } catch (err) {
-            console.error("[Auth] Failed to fetch user profile:", err);
-            // Fallback to basic mock if API is down
-            const isAdmin = email === "admin@test.com";
-            const loggedInUser: User = {
-                id: isAdmin ? "1" : "2",
-                name: email.split("@")[0],
-                email,
-                role: isAdmin ? "ADMIN" : "CUSTOMER",
-            };
-            setUser(loggedInUser);
-            localStorage.setItem("recommerce_user", JSON.stringify(loggedInUser));
-            router.push(isAdmin ? "/admin" : (redirectTo || "/profile"));
+        } catch (error: any) {
+            console.error("[Auth] Login failed:", error.message);
+            alert(`Login failed: ${error.message}`);
         }
     };
 
-    const register = (name: string, email: string, pass: string, redirectTo?: string) => {
-        // Mock registration logic
-        const newUser: User = { id: Date.now().toString(), name, email, role: "CUSTOMER" };
-        setUser(newUser);
-        localStorage.setItem("recommerce_user", JSON.stringify(newUser));
-        router.push(redirectTo || "/assess");
+    const register = async (name: string, email: string, pass: string, redirectTo?: string) => {
+        console.log(`[Auth] Attempting Firebase registration for: ${email}`);
+        try {
+            const userCredential = await createUserWithEmailAndPassword(auth, email, pass);
+            const firebaseUser = userCredential.user;
+
+            // Set display name
+            await updateProfile(firebaseUser, { displayName: name });
+
+            // Create user document in Firestore with default role
+            const role = email === "admin@test.com" ? "ADMIN" : "CUSTOMER";
+            await setDoc(doc(db, "users", firebaseUser.uid), {
+                name,
+                email,
+                role,
+                createdAt: new Date().toISOString()
+            });
+
+            const dest = role === "ADMIN" ? "/admin" : (redirectTo || "/assess");
+            router.push(dest);
+        } catch (error: any) {
+            console.error("[Auth] Registration failed:", error.message);
+            alert(`Registration failed: ${error.message}`);
+        }
     };
 
-    const logout = () => {
-        setUser(null);
-        localStorage.removeItem("recommerce_user");
-        router.push("/");
+    const logout = async () => {
+        try {
+            await signOut(auth);
+            router.push("/");
+        } catch (error: any) {
+            console.error("[Auth] Logout failed:", error.message);
+        }
     };
 
     return (

@@ -1,0 +1,45 @@
+rules_version = '2';
+
+service cloud.firestore {
+  match /databases/{database}/documents {
+    
+    // Helper functions
+    function isSignedIn() {
+      return request.auth != null;
+    }
+    
+    function hasRole(role) {
+      return isSignedIn() && request.auth.token.role == role;
+    }
+    
+    function isOwner(userId) {
+      return isSignedIn() && request.auth.uid == userId;
+    }
+
+    // User profiles
+    match /users/{userId} {
+      allow read: if isSignedIn();
+      allow write: if hasRole('ADMIN') || isOwner(userId);
+    }
+
+    // Devices
+    match /devices/{deviceId} {
+      allow read: if isSignedIn();
+      allow create: if isSignedIn();
+      allow update, delete: if hasRole('ADMIN') || isOwner(resource.data.userId);
+    }
+
+    // Tickets
+    match /tickets/{ticketId} {
+      allow read: if hasRole('ADMIN') || hasRole('ENGINEER') || isOwner(resource.data.customerId);
+      allow create: if isSignedIn();
+      allow update: if hasRole('ADMIN') || hasRole('ENGINEER') || isOwner(resource.data.customerId);
+    }
+
+    // Support Messages
+    match /messages/{messageId} {
+      allow read: if isSignedIn() && (request.auth.uid == resource.data.senderId || request.auth.uid == resource.data.receiverId || hasRole('ADMIN'));
+      allow create: if isSignedIn();
+    }
+  }
+}

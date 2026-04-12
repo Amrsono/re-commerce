@@ -1,11 +1,28 @@
-import { PrismaClient, PrismaPg } from 'database';
+import { PrismaClient } from 'database';
 import dotenv from 'dotenv';
 
 dotenv.config();
 
-const connectionString = process.env.DATABASE_URL || 'postgresql://postgres:postgres@localhost:5432/recommerce';
-const adapter = new PrismaPg({ connectionString }, { schema: 'public' });
+/**
+ * Prisma singleton to prevent connection exhaustion in serverless environments.
+ * Uses globalThis to persist the instance across function hot-starts.
+ */
+const prismaClientSingleton = () => {
+  return new PrismaClient({
+    datasources: {
+      db: {
+        url: process.env.POSTGRES_PRISMA_URL || process.env.DATABASE_URL,
+      },
+    },
+  });
+};
 
-// Explicit `any` type annotation avoids TS2742 — the inferred PrismaClient type
-// references an internal path from the `database` package that isn't portable.
-export const prisma: any = new PrismaClient({ adapter });
+type PrismaClientSingleton = ReturnType<typeof prismaClientSingleton>;
+
+const globalForPrisma = globalThis as unknown as {
+  prisma: PrismaClientSingleton | undefined;
+};
+
+export const prisma = globalForPrisma.prisma ?? prismaClientSingleton();
+
+if (process.env.NODE_ENV !== 'production') globalForPrisma.prisma = prisma;

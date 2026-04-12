@@ -1,0 +1,28 @@
+# Firebase App Hosting configuration for the Recommerce Admin Dashboard
+# This file configures the build and runtime settings for the Next.js application.
+
+kind: AppHostingConfiguration
+schemaVersion: v1
+
+# Build settings
+build:
+  # The root directory is managed in the Firebase Console setup (apps/web-admin)
+  # Standard Next.js build command
+  command: npm run build
+
+# Runtime settings
+run:
+  # Configuration for environment and secrets
+  cpu: 1
+  memoryMiB: 512
+  minInstances: 0
+  maxInstances: 10
+  concurrency: 80
+
+# Secrets integrated with Google Cloud Secret Manager
+# Uncomment and add secrets as they are created in the Google Cloud Console
+# secrets:
+#   - variable: DATABASE_URL
+#     secret: recommerce-db-url
+#   - variable: FIREBASE_ADMIN_KEY
+#     secret: recommerce-firebase-admin-key

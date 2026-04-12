@@ -288,7 +288,13 @@ async function ensureAdmin() {
     }
 }
 
-app.listen(port, async () => {
-    await ensureAdmin();
-    console.log(`Recommerce API is running on port ${port}`);
-});
+// Export for Vercel
+export default app;
+
+// Only listen if not running in production (Vercel handles the listener in prod)
+if (process.env.NODE_ENV !== 'production') {
+    app.listen(port, async () => {
+        await ensureAdmin();
+        console.log(`Recommerce API is running on port ${port}`);
+    });
+}

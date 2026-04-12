@@ -1,0 +1,41 @@
+# Project Description: Recommerce Marketplace
+
+The **Recommerce Marketplace** is a next-generation platform designed for the efficient resale of used electronic devices. It leverages AI-driven visual diagnostics and smart pricing models to provide users with instant, accurate valuations for their gadgets. The platform bridges the gap between consumers and the secondary market, prioritizing transparency, speed, and a seamless user experience across mobile and web interfaces.
+
+## Key Functionalities
+
+1.  **AI Visual Diagnostics**: An integrated mobile experience allowing users to perform automated physical assessments of their devices using the camera. The AI detects scratches, screen damage, and other wear to determine condition accurately.
+2.  **Smart AI Pricing Engine**: A real-time valuation system that correlates device specifications with current market trends and physical diagnostic results to offer competitive, fair-market pricing.
+3.  **Omnichannel Experience**: A cross-platform Flutter mobile application for consumers to list and sell, paired with a sophisticated Next.js admin dashboard for operational management.
+4.  **QR Code Mobile Handoff**: A specialized feature that allows users to initiate an assessment on a web browser and seamlessly transition the camera-based diagnostics to their mobile device via a dynamic QR code.
+5.  **Rapid Fulfillment & 24-Hour Payouts**: Optimized workflows designed to verify device condition quickly and process user payouts within a 24-hour window.
+6.  **Admin Operations Center**: A comprehensive dashboard for administrators to monitor the marketplace, manage assessments, oversee payouts, and track platform analytics.
+7.  **Secure Transactional Backend**: A robust and scalable architecture ensuring that user data, device history, and financial transactions are handled with enterprise-grade security.
+
+## Build Stack & Technologies
+
+### Frontend & Mobile
+*   **Mobile Framework**: Flutter (Dart) - for a high-performance, native-feel cross-platform application.
+*   **Web Framework**: Next.js 16 + React 19 - powering the administrative and management interfaces.
+*   **Styling**: TailwindCSS - providing a modern, responsive, and premium design system.
+*   **Hosting**: Firebase Hosting - providing fast and secure global content delivery.
+
+### Backend & AI
+*   **Core API**: Node.js with Express (TypeScript) - deployed as Firebase Cloud Functions for a serverless, auto-scaling backend.
+*   **AI Services**: Firebase Extensions and Cloud Functions - integrated for smart pricing and image recognition.
+*   **Database**: Cloud Firestore - for a flexible, scalable, and real-time NoSQL database.
+*   **Storage**: Cloud Storage for Firebase - for securely storing and serving device diagnostic media.
+
+### Infrastructure & DevOps
+*   **Orchestration**: Firebase CLI & GitHub Actions - for automated serverless deployments and CI/CD.
+*   **App Hosting Configuration**: `apphosting.yaml` - managing build/runtime settings and Secret Manager integration.
+*   **Deep-Linking**: Fully configured `.well-known` assets for Android App Links and iOS Universal Links to support the QR Handoff feature.
+*   **Project Management**: Turborepo - for efficient monorepo management across all apps and packages.
+*   **Deployment Platforms**: Google Play Store (Mobile) and Firebase (Web/API/Database).
+
+## Finalized Implementation Roadmap
+
+1.  **Phase 1**: Separate Firebase Projects (Staging/Production) connected to GitHub backends with root directory set to `apps/web-admin`.
+2.  **Phase 2**: Environment management via GitHub Environments (`NEXT_PUBLIC_FIREBASE_PROJECT_ID`) and sensitive storage via Google Cloud Secret Manager.
+3.  **Phase 3**: Turborepo-optimized CI/CD workflows for incremental builds and unified deployments.
+4.  **Phase 4**: Role-based access control via Firestore Security Rules and Custom Claims, with deep-linking support for seamless mobile-web transitions.
