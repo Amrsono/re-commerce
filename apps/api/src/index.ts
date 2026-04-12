@@ -275,20 +275,15 @@ app.post('/api/tickets/:id/reject-offer', async (req, res) => {
 // Auto-seed database on startup
 async function ensureAdmin() {
     try {
-        console.log('[Startup] Checking database state...');
-        
-        // 1. Ensure Admin exists
-        const adminExists = await prisma.user.findFirst({ where: { role: 'ADMIN' } });
+        console.log('[Startup] Ensuring admin account...');
         const hashedPassword = await bcrypt.hash('password123', 10);
         
-        if (!adminExists) {
-            await prisma.user.upsert({
-                where: { email: 'admin@test.com' },
-                update: { role: 'ADMIN', name: 'System Admin', password: hashedPassword },
-                create: { email: 'admin@test.com', name: 'System Admin', role: 'ADMIN', password: hashedPassword }
-            });
-            console.log('[Startup] Created default admin.');
-        }
+        await prisma.user.upsert({
+            where: { email: 'admin@test.com' },
+            update: { role: 'ADMIN', name: 'System Admin', password: hashedPassword },
+            create: { email: 'admin@test.com', name: 'System Admin', role: 'ADMIN', password: hashedPassword }
+        });
+        console.log('[Startup] Admin account verified and password reset to default.');
 
         // 2. Ensure Sample Customer and Data exists if DB is empty
         const deviceCount = await prisma.device.count();
