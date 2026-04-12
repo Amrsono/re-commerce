@@ -11,6 +11,7 @@ datasource db {
 model User {
   id        String   @id @default(uuid())
   email     String   @unique
+  password  String   @default("") // Temporarily default for existing; will be mandatory for new
   name      String?
   role      Role     @default(CUSTOMER)
   trustScore      Int             @default(100)

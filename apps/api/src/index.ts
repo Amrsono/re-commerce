@@ -3,6 +3,7 @@ import express from 'express';
 import cors from 'cors';
 import dotenv from 'dotenv';
 import { prisma } from './db';
+import authRouter from './routes/auth';
 import devicesRouter from './routes/devices';
 import profileRouter from './routes/profile';
 import chatRouter from './routes/chat';
@@ -19,6 +20,7 @@ app.use(cors({
 app.use(express.json({ limit: '50mb' }));
 app.use(express.urlencoded({ limit: '50mb', extended: true }));
 // Routes
+app.use('/api/auth', authRouter);
 app.use('/api/devices', devicesRouter);
 app.use('/api/profile', profileRouter);
 app.use('/api/chat', chatRouter);

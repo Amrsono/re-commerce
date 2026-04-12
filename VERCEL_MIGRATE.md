@@ -14,7 +14,6 @@ You need to create two separate projects in Vercel. Both will point to the same 
 5.  **Build Command**: `npm run build`
 6.  **Environment Variables**:
     *   `NEXT_PUBLIC_API_URL`: The URL of Project B (e.g., `https://recommerce-api.vercel.app/api`)
-    *   *Firebase Variables*: Copy all `NEXT_PUBLIC_FIREBASE_*` keys from your `.env.local`.
 
 ### Project B: `recommerce-api` (Backend)
 1.  **Import** the repository again in Vercel.
