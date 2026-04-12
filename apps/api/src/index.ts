@@ -1,15 +1,15 @@
 // @ts-nocheck
+import dotenv from 'dotenv';
+dotenv.config();
+
 import express from 'express';
 import cors from 'cors';
-import dotenv from 'dotenv';
 import { prisma } from './db';
 import authRouter from './routes/auth';
 import devicesRouter from './routes/devices';
 import profileRouter from './routes/profile';
 import chatRouter from './routes/chat';
 import bcrypt from 'bcryptjs';
-
-dotenv.config();
 
 const app = express();
 const port = process.env.PORT || 4000;
