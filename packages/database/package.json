@@ -4,7 +4,7 @@
   "main": "index.js",
   "types": "index.d.ts",
   "scripts": {
-    "generate": "prisma generate"
+    "generate": "npx prisma generate"
   },
   "dependencies": {
     "@prisma/adapter-pg": "^7.4.2",
@@ -14,7 +14,6 @@
   },
   "devDependencies": {
     "@types/node": "^20.11.19",
-    "prisma": "^7.4.2",
     "tsx": "^4.21.0",
     "typescript": "^5.3.3"
   },
