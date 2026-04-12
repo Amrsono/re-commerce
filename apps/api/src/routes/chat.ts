@@ -8,7 +8,7 @@ router.get('/ticket/:ticketId', async (req: Request, res: Response) => {
     try {
         const { ticketId } = req.params;
         const messages = await prisma.message.findMany({
-            where: { ticketId },
+            where: { ticketId: ticketId as string },
             include: { sender: true },
             orderBy: { createdAt: 'asc' }
         });

@@ -13,7 +13,7 @@ router.get('/:identifier', async (req: Request, res: Response) => {
         const isEmail = identifier.includes('@');
 
         const user = await prisma.user.findFirst({
-            where: isEmail ? { email: identifier } : { id: identifier },
+            where: isEmail ? { email: identifier as string } : { id: identifier as string },
             include: {
                 tickets: {
                     include: { device: true },
@@ -50,7 +50,7 @@ router.get('/:identifier/orders', async (req: Request, res: Response) => {
 
         // First resolve the actual DB User ID
         const user = await prisma.user.findFirst({
-            where: isEmail ? { email: identifier } : { id: identifier },
+            where: isEmail ? { email: identifier as string } : { id: identifier as string },
             select: { id: true }
         });
 
