@@ -7,6 +7,7 @@ import authRouter from './routes/auth';
 import devicesRouter from './routes/devices';
 import profileRouter from './routes/profile';
 import chatRouter from './routes/chat';
+import bcrypt from 'bcryptjs';
 
 dotenv.config();
 
@@ -271,26 +272,71 @@ app.post('/api/tickets/:id/reject-offer', async (req, res) => {
     }
 });
 
-// Auto-seed admin user on startup
+// Auto-seed database on startup
 async function ensureAdmin() {
     try {
+        console.log('[Startup] Checking database state...');
+        
+        // 1. Ensure Admin exists
         const adminExists = await prisma.user.findFirst({ where: { role: 'ADMIN' } });
+        const hashedPassword = await bcrypt.hash('password123', 10);
+        
         if (!adminExists) {
-            console.log('[Startup] No admin found, creating default admin...');
-            const hashedPassword = await bcrypt.hash('password123', 10);
             await prisma.user.upsert({
                 where: { email: 'admin@test.com' },
                 update: { role: 'ADMIN', name: 'System Admin', password: hashedPassword },
                 create: { email: 'admin@test.com', name: 'System Admin', role: 'ADMIN', password: hashedPassword }
             });
-            console.log('[Startup] Default admin created: admin@test.com');
+            console.log('[Startup] Created default admin.');
+        }
+
+        // 2. Ensure Sample Customer and Data exists if DB is empty
+        const deviceCount = await prisma.device.count();
+        if (deviceCount === 0) {
+            console.log('[Startup] Database is empty, seeding sample data...');
+            
+            const customer = await prisma.user.upsert({
+                where: { email: 'customer@test.com' },
+                update: {},
+                create: {
+                    email: 'customer@test.com',
+                    name: 'John Doe',
+                    role: 'CUSTOMER',
+                    password: hashedPassword
+                },
+            });
+
+            const device = await prisma.device.create({
+                data: {
+                    brand: 'Apple',
+                    model: 'iPhone 15 Pro',
+                    condition: 'Mint',
+                    specs: { storage: '256GB', color: 'Natural Titanium' },
+                    estimatedVal: 850,
+                    userId: customer.id,
+                }
+            });
+
+            await prisma.ticket.create({
+                data: {
+                    deviceId: device.id,
+                    customerId: customer.id,
+                    status: 'PRICING_ESTIMATED',
+                    slaDeadline: new Date(Date.now() + 48 * 60 * 60 * 1000),
+                    isUrgent: false,
+                }
+            });
+            console.log('[Startup] Sample data seeded successfully.');
         } else {
-            console.log('[Startup] Verified: Admin account exists.');
+            console.log('[Startup] Database has existing data, skipping sample seed.');
         }
     } catch (error: any) {
-        console.error('[Startup] Failed to ensure admin:', error.message);
+        console.error('[Startup] Failed to ensure database state:', error.message);
     }
 }
+
+// Trigger auto-seed (runs once when Vercel or Node.js loads this module)
+ensureAdmin();
 
 // Export for Vercel
 export default app;
