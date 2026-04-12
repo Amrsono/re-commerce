@@ -31,6 +31,17 @@ export function AuthProvider({ children }: { children: ReactNode }) {
     const router = useRouter();
 
     useEffect(() => {
+        const checkConnectivity = async () => {
+            console.log(`[AuthContext] Pinging API at: ${API_URL}/../health`);
+            try {
+                const ping = await fetch(`${API_URL}/../health`);
+                console.log(`[AuthContext] API Status: ${ping.status} ${ping.statusText}`);
+            } catch (e: any) {
+                console.warn(`[AuthContext] API Connectivity Test Failed: ${e.message}`);
+            }
+        };
+        checkConnectivity();
+
         // Hydrate auth state from localStorage
         const storedUser = localStorage.getItem("recommerce_user");
         const storedToken = localStorage.getItem("recommerce_token");
