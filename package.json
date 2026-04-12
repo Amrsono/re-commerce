@@ -6,12 +6,13 @@
     "apps/*",
     "packages/*"
   ],
+  "dependencies": {
+    "@prisma/client": "^7.4.2",
+    "prisma": "^7.4.2"
+  },
   "scripts": {
     "postinstall": "npm run generate --workspace=database",
     "build": "npm run build --workspaces --if-present",
     "dev": "npm run dev --workspaces --parallel"
-  },
-  "devDependencies": {
-    "prisma": "^7.4.2"
   }
 }
