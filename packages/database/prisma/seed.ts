@@ -1,4 +1,5 @@
-const { PrismaClient } = require('../generated/client')
+const path = require('path')
+const { PrismaClient } = require(path.join(__dirname, '../generated/client'))
 const bcrypt = require('bcryptjs')
 
 const prisma = new PrismaClient()
