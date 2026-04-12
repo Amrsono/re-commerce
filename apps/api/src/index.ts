@@ -277,16 +277,17 @@ async function ensureAdmin() {
         const adminExists = await prisma.user.findFirst({ where: { role: 'ADMIN' } });
         if (!adminExists) {
             console.log('[Startup] No admin found, creating default admin...');
+            const hashedPassword = await bcrypt.hash('password123', 10);
             await prisma.user.upsert({
                 where: { email: 'admin@test.com' },
-                update: { role: 'ADMIN', name: 'System Admin' },
-                create: { email: 'admin@test.com', name: 'System Admin', role: 'ADMIN' }
+                update: { role: 'ADMIN', name: 'System Admin', password: hashedPassword },
+                create: { email: 'admin@test.com', name: 'System Admin', role: 'ADMIN', password: hashedPassword }
             });
             console.log('[Startup] Default admin created: admin@test.com');
         } else {
             console.log('[Startup] Verified: Admin account exists.');
         }
-    } catch (error) {
+    } catch (error: any) {
         console.error('[Startup] Failed to ensure admin:', error.message);
     }
 }
