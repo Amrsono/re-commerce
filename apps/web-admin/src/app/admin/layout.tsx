@@ -1,6 +1,7 @@
 "use client";
 
 import Link from 'next/link';
+import Image from 'next/image';
 import { Shield, LayoutDashboard, KanbanSquare, LogOut, Home, MessageSquare } from 'lucide-react';
 import AdminGuard from '@/components/AdminGuard';
 import { useAuth } from '@/contexts/AuthContext';
@@ -20,8 +21,15 @@ export default function AdminLayout({
                 {/* Sidebar */}
                 <aside className="w-full md:w-64 bg-slate-900 border-r border-slate-800 flex flex-col p-4">
                     <div className="flex items-center gap-3 mb-8 px-2">
-                        <Shield className="w-8 h-8 text-blue-500" />
-                        <span className="font-bold text-xl tracking-tight">Recommerce AI</span>
+                        <div className="relative w-8 h-8 overflow-hidden rounded-md border border-slate-700 bg-slate-950">
+                            <Image 
+                                src="/logo.png" 
+                                alt="Make Use Logo" 
+                                fill 
+                                className="object-contain"
+                            />
+                        </div>
+                        <span className="font-bold text-xl tracking-tight">Make Use</span>
                     </div>
                     <nav className="flex-1 space-y-2">
                         <Link href="/" className="flex items-center gap-3 px-3 py-2 rounded-lg hover:bg-slate-800 transition-colors text-slate-300 hover:text-white mb-2">

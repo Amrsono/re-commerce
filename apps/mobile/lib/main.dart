@@ -6,20 +6,20 @@ import 'core/theme/theme.dart';
 void main() {
   runApp(
     const ProviderScope(
-      child: RecommerceApp(),
+      child: MakeUseApp(),
     ),
   );
 }
 
-class RecommerceApp extends StatelessWidget {
-  const RecommerceApp({super.key});
+class MakeUseApp extends StatelessWidget {
+  const MakeUseApp({super.key});
 
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
-      title: 'AI Recommerce',
-      theme: RecommerceTheme.lightTheme,
-      darkTheme: RecommerceTheme.darkTheme,
+      title: 'Make Use',
+      theme: MakeUseTheme.lightTheme,
+      darkTheme: MakeUseTheme.darkTheme,
       themeMode: ThemeMode.system,
       home: const ProductSubmissionWizard(),
     );

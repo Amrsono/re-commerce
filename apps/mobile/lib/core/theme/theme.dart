@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 
-class RecommerceTheme {
+class MakeUseTheme {
   static ThemeData get lightTheme {
     return ThemeData(
       useMaterial3: true,

@@ -1,14 +1,14 @@
-# 🚀 Recommerce Marketplace: Render Deployment Guide
+# 🚀 Make Use AI Marketplace: Deployment Guide
 
-This document explains how the **Recommerce Marketplace** handles its production infrastructure and database migrations using Render Blueprints.
+This document explains how the **Make Use AI Marketplace** handles its production infrastructure and database migrations.
 
 ## 🏗 Infrastructure Overview
 
-We use **Render Blueprints** (`render.yaml`) to orchestrate our infrastructure. This ensures that every time you push to the `main` branch, the following steps happen automatically:
+We use **Vercel** for hosting both our Frontend and API. This ensures that every time you push to the `main` branch, the following happens automatically:
 
 1.  **Frontend**: Builds the Next.js app (`apps/web-admin`).
 2.  **API**: Builds the Express server (`apps/api`).
-3.  **Database**: Automatically performs any pending schema updates.
+3.  **Database**: Vercel Postgres handles the managed database.
 
 ---
 

@@ -42,17 +42,27 @@ export function AuthProvider({ children }: { children: ReactNode }) {
         };
         checkConnectivity();
 
+        // Migration: Migrate legacy recommerce keys to makeuse
+        const legacyUser = localStorage.getItem("recommerce_user");
+        const legacyToken = localStorage.getItem("recommerce_token");
+        if (legacyUser && legacyToken) {
+            localStorage.setItem("makeuse_user", legacyUser);
+            localStorage.setItem("makeuse_token", legacyToken);
+            localStorage.removeItem("recommerce_user");
+            localStorage.removeItem("recommerce_token");
+        }
+
         // Hydrate auth state from localStorage
-        const storedUser = localStorage.getItem("recommerce_user");
-        const storedToken = localStorage.getItem("recommerce_token");
+        const storedUser = localStorage.getItem("makeuse_user");
+        const storedToken = localStorage.getItem("makeuse_token");
 
         if (storedUser && storedToken) {
             try {
                 setUser(JSON.parse(storedUser));
             } catch (e) {
                 console.error("Failed to parse stored user", e);
-                localStorage.removeItem("recommerce_user");
-                localStorage.removeItem("recommerce_token");
+                localStorage.removeItem("makeuse_user");
+                localStorage.removeItem("makeuse_token");
             }
         }
         setIsLoading(false);
@@ -71,8 +81,8 @@ export function AuthProvider({ children }: { children: ReactNode }) {
             if (data.success) {
                 const userData = data.user;
                 setUser(userData);
-                localStorage.setItem("recommerce_user", JSON.stringify(userData));
-                localStorage.setItem("recommerce_token", data.token);
+                localStorage.setItem("makeuse_user", JSON.stringify(userData));
+                localStorage.setItem("makeuse_token", data.token);
 
                 const dest = userData.role === "ADMIN" ? "/admin" : (redirectTo || "/profile");
                 router.push(dest);
@@ -98,8 +108,8 @@ export function AuthProvider({ children }: { children: ReactNode }) {
             if (data.success) {
                 const userData = data.user;
                 setUser(userData);
-                localStorage.setItem("recommerce_user", JSON.stringify(userData));
-                localStorage.setItem("recommerce_token", data.token);
+                localStorage.setItem("makeuse_user", JSON.stringify(userData));
+                localStorage.setItem("makeuse_token", data.token);
 
                 const dest = userData.role === "ADMIN" ? "/admin" : (redirectTo || "/assess");
                 router.push(dest);
@@ -114,8 +124,8 @@ export function AuthProvider({ children }: { children: ReactNode }) {
 
     const logout = async () => {
         setUser(null);
-        localStorage.removeItem("recommerce_user");
-        localStorage.removeItem("recommerce_token");
+        localStorage.removeItem("makeuse_user");
+        localStorage.removeItem("makeuse_token");
         router.push("/");
     };
 

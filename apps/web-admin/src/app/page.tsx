@@ -3,6 +3,7 @@
 import { useState } from 'react';
 import { Sparkles, ScanLine, Smartphone, ArrowRight, ShieldCheck, Zap, LogOut, X, Box, BadgeCheck } from 'lucide-react';
 import Link from 'next/link';
+import Image from 'next/image';
 import { useAuth } from '@/contexts/AuthContext';
 
 export default function LandingPage() {
@@ -18,9 +19,17 @@ export default function LandingPage() {
 
       {/* Navigation */}
       <nav className="container mx-auto px-6 py-6 flex justify-between items-center relative z-10 w-full">
-        <div className="flex items-center gap-2">
-          <ScanLine className="w-8 h-8 text-blue-500" />
-          <span className="font-bold text-xl tracking-tight text-white">Recommerce<span className="text-blue-500">AI</span></span>
+        <div className="flex items-center gap-3">
+          <div className="relative w-10 h-10 overflow-hidden rounded-lg">
+            <Image 
+              src="/logo.png" 
+              alt="Make Use Logo" 
+              fill 
+              className="object-contain"
+              priority
+            />
+          </div>
+          <span className="font-bold text-xl tracking-tight text-white">Make Use</span>
         </div>
         <div className="flex items-center gap-6">
           {user ? (
@@ -49,8 +58,8 @@ export default function LandingPage() {
       {/* Hero Section */}
       <main className="container mx-auto px-6 pt-24 pb-32 text-center relative z-10 flex flex-col items-center">
         <div className="inline-flex items-center gap-2 px-3 py-1.5 rounded-full bg-blue-500/10 border border-blue-500/20 text-blue-400 text-xs font-semibold uppercase tracking-wider mb-8 animate-in fade-in slide-in-from-bottom-4 duration-700">
-          <Sparkles className="w-3.5 h-3.5" />
-          Powered by Claude 3.5 Sonnet
+          <Sparkles className="w-3.5 h-3.5 text-green-500" />
+          Don't trash it, cash it
         </div>
 
         <h1 className="text-5xl md:text-7xl font-extrabold tracking-tight mb-6 leading-tight max-w-4xl text-transparent bg-clip-text bg-gradient-to-b from-white to-white/60 animate-in fade-in slide-in-from-bottom-6 duration-700 delay-100">
@@ -58,7 +67,7 @@ export default function LandingPage() {
         </h1>
 
         <p className="text-lg md:text-xl text-slate-400 mb-10 max-w-2xl animate-in fade-in slide-in-from-bottom-8 duration-700 delay-200">
-          Get an AI-estimated valuation in seconds. If the price is right, we'll pick it up within 24 hours. Minimal effort, maximum payout.
+          Turn your old electronics into instant cash. Get an AI-driven valuation in seconds and we'll pick it up within 24 hours.
         </p>
 
         <div className="flex flex-col sm:flex-row gap-4 animate-in fade-in slide-in-from-bottom-10 duration-700 delay-300">
@@ -129,7 +138,7 @@ export default function LandingPage() {
       </section>
 
       <footer className="border-t border-slate-800/50 py-8 text-center text-slate-500 text-sm">
-        <p>© 2026 Recommerce AI Marketplace. All rights reserved.</p>
+        <p>© 2026 Make Use Marketplace. Don't trash it, cash it.</p>
       </footer>
 
       {/* How it Works Modal */}
@@ -153,7 +162,7 @@ export default function LandingPage() {
               The Marketplace Journey
             </h2>
             <p className="text-slate-400 mb-8 border-b border-slate-800/60 pb-6">
-              Recommerce AI eliminates the friction of selling your electronics. No haggling, no scams, just data-driven payouts.
+              Make Use eliminates the friction of selling your electronics. No haggling, no scams, just data-driven payouts.
             </p>
 
             <div className="space-y-8 relative before:absolute before:inset-y-0 before:left-[19px] before:w-0.5 before:bg-slate-800 ml-2">

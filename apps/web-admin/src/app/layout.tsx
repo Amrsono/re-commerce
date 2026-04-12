@@ -6,8 +6,8 @@ import { AuthProvider } from "@/contexts/AuthContext";
 const inter = Inter({ subsets: ["latin"] });
 
 export const metadata: Metadata = {
-  title: "Recommerce AI Marketplace",
-  description: "AI-Powered Electronics Recommerce",
+  title: "Make Use: Don't trash it, cash it",
+  description: "AI-Powered Electronics Marketplace - Get instant cash for your old devices.",
 };
 
 export default function RootLayout({

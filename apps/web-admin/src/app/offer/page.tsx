@@ -5,6 +5,7 @@ import { useRouter } from "next/navigation";
 import { useAuth } from "@/contexts/AuthContext";
 import { ArrowRight, ArrowLeft, CheckCircle2, AlertTriangle, MonitorSmartphone, MapPin, DollarSign, CheckSquare, Camera, UploadCloud, Image as ImageIcon, Smartphone } from "lucide-react";
 import Link from "next/link";
+import Image from "next/image";
 import { QRCodeSVG } from "qrcode.react";
 
 type OfferData = {
@@ -148,9 +149,16 @@ export default function OfferJourney() {
 
             {/* Top Nav */}
             <div className="absolute top-0 left-0 w-full p-6 flex justify-between items-center z-20">
-                <Link href="/" className="font-bold text-xl tracking-tight text-white flex items-center gap-2">
-                    <MonitorSmartphone className="w-6 h-6 text-blue-500" />
-                    Recommerce<span className="text-blue-500">AI</span>
+                <Link href="/" className="font-bold text-xl tracking-tight text-white flex items-center gap-3">
+                    <div className="relative w-8 h-8 overflow-hidden rounded-md border border-slate-700 bg-slate-950">
+                        <Image 
+                            src="/logo.png" 
+                            alt="Make Use Logo" 
+                            fill 
+                            className="object-contain"
+                        />
+                    </div>
+                    Make Use
                 </Link>
                 {step < 6 && (
                     <div className="flex items-center gap-4">

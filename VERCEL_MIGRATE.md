@@ -1,23 +1,23 @@
-# Recommerce Marketplace: Vercel Migration Guide
+# Make Use Marketplace: Vercel Migration Guide
 
-This document summarizes the steps to migrate the Web and API apps from Render to Vercel using the **2-Project Monorepo Strategy**.
+This document summarizes the steps to migrate the Web and API apps to Vercel using the **2-Project Monorepo Strategy**.
 
 ## 1. Vercel Project Setup (Dashboard)
 
 You need to create two separate projects in Vercel. Both will point to the same GitHub repository.
 
-### Project A: `recommerce-web` (Frontend)
+### Project A: `makeuse-web` (Frontend)
 1.  **Import** the repository in Vercel.
-2.  **Project Name**: `recommerce-web`
+2.  **Project Name**: `makeuse-web`
 3.  **Root Directory**: `apps/web-admin` (Important!)
 4.  **Framework Preset**: `Next.js`
 5.  **Build Command**: `npm run build`
 6.  **Environment Variables**:
-    *   `NEXT_PUBLIC_API_URL`: The URL of Project B (e.g., `https://recommerce-api.vercel.app/api`)
+    *   `NEXT_PUBLIC_API_URL`: The URL of Project B (e.g., `https://makeuse-api.vercel.app/api`)
 
-### Project B: `recommerce-api` (Backend)
+### Project B: `makeuse-api` (Backend)
 1.  **Import** the repository again in Vercel.
-2.  **Project Name**: `recommerce-api`
+2.  **Project Name**: `makeuse-api`
 3.  **Root Directory**: `apps/api` (Important!)
 4.  **Framework Preset**: `Other` (Vercel will detect `vercel.json`)
 5.  **Build Command**: `npm run build`
@@ -32,7 +32,7 @@ You need to create two separate projects in Vercel. Both will point to the same 
 1.  In the Vercel Dashboard, go to the **Storage** tab.
 2.  Click **Create** > **Postgres**.
 3.  Choose a region close to you.
-4.  **Connect** the database to **both** `recommerce-web` and `recommerce-api` projects. This automatically injects the `POSTGRES_*` environment variables.
+4.  **Connect** the database to **both** `makeuse-web` and `makeuse-api` projects. This automatically injects the `POSTGRES_*` environment variables.
 
 ---
 

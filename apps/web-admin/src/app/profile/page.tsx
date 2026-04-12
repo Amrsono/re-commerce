@@ -25,6 +25,7 @@ import {
     Calendar
 } from "lucide-react";
 import Link from "next/link";
+import Image from "next/image";
 import OrderTracker from "@/components/OrderTracker";
 import ChatInterface from "@/components/ChatInterface";
 
@@ -139,11 +140,16 @@ export default function ProfilePage() {
             {/* Nav */}
              <nav className="border-b border-slate-800/50 bg-slate-900/50 backdrop-blur-xl sticky top-0 z-50">
                 <div className="container mx-auto px-6 py-4 flex justify-between items-center">
-                    <Link href="/" className="flex items-center gap-2">
-                        <div className="p-1.5 bg-blue-500 rounded-lg">
-                            <ShieldCheck className="w-5 h-5 text-white" />
+                    <Link href="/" className="flex items-center gap-3">
+                        <div className="relative w-8 h-8 overflow-hidden rounded-md border border-slate-700 bg-slate-950">
+                            <Image 
+                                src="/logo.png" 
+                                alt="Make Use Logo" 
+                                fill 
+                                className="object-contain"
+                            />
                         </div>
-                        <span className="font-bold text-lg text-white">Recommerce<span className="text-blue-500">AI</span></span>
+                        <span className="font-bold text-lg text-white">Make Use</span>
                     </Link>
                     <div className="flex items-center gap-4">
                         <button className="p-2 text-slate-400 hover:text-white transition-colors relative">
